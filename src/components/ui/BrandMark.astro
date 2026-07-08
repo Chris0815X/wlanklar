@@ -1,0 +1,25 @@
+---
+// Wellenform-Markenzeichen: erst unruhig, dann glatt — "wir messen, dann lösen wir".
+// Bewusst kein WLAN-Balken-Klischee. Wiederverwendet in Header, Favicon, Sektionstrennern.
+interface Props {
+  class?: string;
+}
+const { class: className } = Astro.props;
+---
+
+<svg
+  class={className}
+  viewBox="0 0 48 24"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  role="img"
+  aria-label="WLANklar Signalverlauf"
+>
+  <path
+    d="M2 18 L6 7 L10 17 L14 5 L18 15 L22 12 Q28 12 46 12"
+    stroke="currentColor"
+    stroke-width="2.4"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  ></path>
+</svg>

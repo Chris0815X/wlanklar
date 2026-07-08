@@ -1,0 +1,70 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
+import RegionList from "../../components/sections/RegionList.astro";
+import TravelChecker from "../../components/islands/TravelChecker";
+import ContactWizard from "../../components/islands/ContactWizard";
+import { siteConfig } from "../../data/config";
+---
+
+<BaseLayout
+  title="Einsatzgebiet: WLAN-Service in der Lausitz & im Spreewald"
+  description="WLANklar ist vor Ort in der Lausitz und im Spreewald unterwegs. Prüfen Sie mit Ihrer Postleitzahl, welche Anfahrtspauschale für Ihren Ort gilt."
+  includeSchema
+>
+  <div class="container" style="padding-top: 20px;">
+    <Breadcrumbs items={[{ label: "Startseite", href: "/" }, { label: "Einsatzgebiet" }]} />
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">Einsatzgebiet</span>
+        <h1>Vor Ort in der Lausitz & im Spreewald.</h1>
+        <p class="lead">
+          WLANklar ist in der Lausitz unterwegs, z. B. rund um Senftenberg, Großkoschen, Geierswalde, Hoyerswerda,
+          Großräschen, Lauchhammer, Schwarzheide, Lauta, Ruhland, Elsterheide und Umgebung. Im Spreewald gilt eine
+          transparente Entfernungspauschale.
+        </p>
+      </div>
+      <div class="grid cols-2">
+        <div class="panel">
+          <h3>Anfahrt</h3>
+          <ul style="padding-left: 18px; color: var(--color-ink-muted);">
+            <li>Kerngebiet Lausitz: inklusive</li>
+            <li>16–30 km: +29 €</li>
+            <li>31–50 km: +49 €</li>
+            <li>Darüber: nach Absprache</li>
+            <li>Spreewald-Orte: nach Entfernungspauschale</li>
+          </ul>
+          <a class="btn btn-secondary btn-small" href="/einsatzgebiet/spreewald/">Spreewald-Orte ansehen</a>
+        </div>
+        <div class="panel">
+          <h3>Postleitzahl prüfen</h3>
+          <p style="color: var(--color-ink-muted);">Orientierung, keine verbindliche Preiszusage.</p>
+          <TravelChecker client:idle />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <RegionList
+    eyebrow="Orte"
+    title="Beispielorte in der Lausitz & im Spreewald"
+    lead="Auch wenn Ihr Ort nicht dabei ist: eine Anfrage ist trotzdem möglich."
+    cities={siteConfig.cityExamples}
+  />
+
+  <section class="section section-alt" id="kontakt">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">Kontakt</span>
+        <h2>In Ihrem Ort? Dann fragen Sie direkt einen Termin an.</h2>
+        <p class="lead">Dauert etwa 1 Minute. Die Anfahrt prüfen wir anhand Ihrer PLZ gleich mit.</p>
+      </div>
+      <div class="panel">
+        <ContactWizard client:load />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

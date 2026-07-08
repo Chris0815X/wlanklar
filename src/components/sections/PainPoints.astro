@@ -1,0 +1,22 @@
+---
+interface Props {
+  eyebrow: string;
+  title: string;
+  points: string[];
+}
+const { eyebrow, title, points } = Astro.props;
+---
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-label">{eyebrow}</span>
+      <h2>{title}</h2>
+    </div>
+    <div class="grid cols-3">
+      {points.map((point) => (
+        <div class="panel">{point}</div>
+      ))}
+    </div>
+  </div>
+</section>

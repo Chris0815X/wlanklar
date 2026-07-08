@@ -1,0 +1,25 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import QuizFunnel from "../components/islands/QuizFunnel";
+---
+
+<BaseLayout
+  title="Mini-Diagnose: Welches WLAN-Problem haben Sie?"
+  description="Beantworten Sie ein paar Fragen zu Ihrem WLAN-Problem und erhalten Sie sofort eine erste Einschätzung von WLANklar – inklusive Weiterleitung per WhatsApp."
+>
+  <section class="section">
+    <div class="container" style="max-width: 720px;">
+      <div class="section-head">
+        <span class="section-label">Mini-Diagnose</span>
+        <h1>Welches WLAN-Problem haben Sie?</h1>
+        <p class="lead">
+          Beantworten Sie ein paar Fragen. Danach erhalten Sie eine erste Einschätzung und können die Angaben direkt
+          per WhatsApp mitschicken.
+        </p>
+      </div>
+      <div class="panel">
+        <QuizFunnel client:load />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

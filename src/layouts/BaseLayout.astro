@@ -1,0 +1,48 @@
+---
+import Header from "../components/layout/Header.astro";
+import Footer from "../components/layout/Footer.astro";
+import MobileStickyCta from "../components/layout/MobileStickyCta.astro";
+import AttributionInit from "../components/islands/AttributionInit.astro";
+import { localBusinessSchema } from "../data/schema";
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description: string;
+  includeSchema?: boolean;
+  noIndex?: boolean;
+}
+
+const { title, description, includeSchema = false, noIndex = false } = Astro.props;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const schema = includeSchema ? localBusinessSchema(canonicalUrl.origin) : null;
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonicalUrl} />
+    <title>{title} – WLANklar</title>
+    <meta name="description" content={description} />
+    {noIndex && <meta name="robots" content="noindex,follow" />}
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={`${title} – WLANklar`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    {schema && (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} is:inline />
+    )}
+  </head>
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+    <MobileStickyCta />
+    <AttributionInit />
+  </body>
+</html>

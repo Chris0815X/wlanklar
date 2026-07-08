@@ -1,0 +1,53 @@
+---
+interface Cta {
+  href: string;
+  label: string;
+  secondary?: boolean;
+}
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  lead: string;
+  micro?: string;
+  image: { src: string; alt: string };
+  panelTitle?: string;
+  panelItems?: string[];
+  ctas: Cta[];
+}
+
+const { eyebrow, title, lead, micro, image, panelTitle, panelItems = [], ctas } = Astro.props;
+---
+
+<section class="hero section">
+  <div class="container">
+    <div class="hero-copy">
+      <span class="section-label">{eyebrow}</span>
+      <h1>{title}</h1>
+      <p class="lead">{lead}</p>
+      <div class="btn-row">
+        {ctas.map((cta) => (
+          <a class={cta.secondary ? "btn btn-secondary" : "btn"} href={cta.href}>{cta.label}</a>
+        ))}
+      </div>
+      {micro && <p class="hero-micro">{micro}</p>}
+    </div>
+    <div class="hero-panel">
+      <div class="hero-photo-frame">
+        <img src={image.src} alt={image.alt} loading="eager" />
+      </div>
+      {(panelTitle || panelItems.length > 0) && (
+        <div class="hero-panel-body">
+          {panelTitle && <strong>{panelTitle}</strong>}
+          {panelItems.length > 0 && (
+            <ul>
+              {panelItems.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          )}
+        </div>
+      )}
+    </div>
+  </div>
+</section>

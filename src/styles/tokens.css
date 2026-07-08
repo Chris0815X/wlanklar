@@ -1,0 +1,45 @@
+/*
+  Design-Tokens, Richtung "Trust Blue + Action Orange":
+  Datenbasiert über die UI/UX-Pro-Max-Designdatenbank ermittelt (Produkttyp
+  "Home Services", Stil "Flat Design + Trust & Authority", Landingpage-Muster
+  "Conversion-Optimized + Trust"). Trust-Blau für Marke/Navigation/Vertrauen,
+  ein einzelner Orange-Akzent ausschließlich für Handlungsaufforderungen (CTAs),
+  Lexend/Source Sans 3 für hohe Lesbarkeit und Zugänglichkeit statt Monospace.
+*/
+
+:root {
+  /* Farben */
+  --color-paper: #eff6ff;
+  --color-paper-raised: #ffffff;
+  --color-ink: #1e3a8a;
+  --color-ink-muted: #64748b;
+  --color-line: #bfdbfe;
+  --color-line-strong: #93c5fd;
+
+  --color-signal: #1e40af;
+  --color-signal-dark: #172554;
+  --color-signal-soft: rgba(30, 64, 175, 0.08);
+  --color-signal-line: rgba(30, 64, 175, 0.3);
+
+  --color-accent: #ea580c;
+  --color-accent-dark: #c2410c;
+  --color-on-accent: #ffffff;
+
+  --color-warn: #dc2626;
+  --color-warn-soft: rgba(220, 38, 38, 0.08);
+
+  --shadow: 0 4px 6px rgba(15, 23, 42, 0.06);
+  --shadow-md: 0 10px 22px rgba(15, 23, 42, 0.09);
+  --radius: 10px;
+  --radius-lg: 14px;
+  --max: 1180px;
+
+  /* Typografie */
+  --font-mono: "Lexend", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Source Sans 3", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --step-h1: clamp(2.15rem, 1.5rem + 3.2vw, 3.6rem);
+  --step-h2: clamp(1.7rem, 1.3rem + 1.8vw, 2.5rem);
+  --step-h3: 1.2rem;
+  --step-lead: clamp(1.08rem, 0.98rem + 0.5vw, 1.25rem);
+}

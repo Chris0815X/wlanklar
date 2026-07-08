@@ -1,0 +1,60 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
+import PricingGrid from "../../components/sections/PricingGrid.astro";
+import TravelChecker from "../../components/islands/TravelChecker";
+---
+
+<BaseLayout
+  title="WLAN-Service im Spreewald"
+  description="WLANklar unterstützt im Spreewald bei schlechtem WLAN, Gäste-WLAN, QR-Code, Smart-TV, Homeoffice, Repeater-Frust und kleinen Netzwerkproblemen."
+>
+  <div class="container" style="padding-top: 20px;">
+    <Breadcrumbs items={[{ label: "Startseite", href: "/" }, { label: "Einsatzgebiet", href: "/einsatzgebiet/" }, { label: "Spreewald" }]} />
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">Region</span>
+        <h1>WLAN-Service im Spreewald.</h1>
+        <p class="lead">
+          WLANklar unterstützt im Spreewald bei schlechtem WLAN, Gäste-WLAN, QR-Code, Smart-TV, Homeoffice,
+          Repeater-Frust und kleinen Netzwerkproblemen.
+        </p>
+        <p class="hero-micro">Vetschau · Raddusch · Burg im Spreewald · Lübbenau · Lehde · Leipe · Straupitz · Lübben · Schlepzig</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">Orte</span>
+        <h2>Spreewald-Orte nach transparenter Entfernungspauschale.</h2>
+      </div>
+      <div class="grid cols-3">
+        {[
+          "Vetschau & Raddusch",
+          "Burg im Spreewald",
+          "Lübbenau, Lehde & Leipe",
+          "Straupitz",
+          "Lübben",
+          "Schlepzig",
+        ].map((place) => (
+          <div class="panel">{place}</div>
+        ))}
+      </div>
+      <div class="panel" style="margin-top: 20px; max-width: 420px;">
+        <h3>Postleitzahl prüfen</h3>
+        <TravelChecker client:idle />
+      </div>
+    </div>
+  </section>
+
+  <PricingGrid
+    eyebrow="Angebote"
+    title="Für Zuhause, Ferienwohnungen und kleine Büros im Spreewald."
+    serviceIds={["wlan-check", "gastgeber-check", "buero-check"]}
+  />
+</BaseLayout>

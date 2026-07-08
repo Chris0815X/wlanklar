@@ -1,0 +1,94 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Breadcrumbs from "../components/layout/Breadcrumbs.astro";
+import Hero from "../components/sections/Hero.astro";
+import PainPoints from "../components/sections/PainPoints.astro";
+import PricingGrid from "../components/sections/PricingGrid.astro";
+import FaqAccordion from "../components/sections/FaqAccordion.astro";
+import ContactWizard from "../components/islands/ContactWizard";
+---
+
+<BaseLayout
+  title="WLAN und Gästezugang für kleine Büros, Praxen & Studios"
+  description="Zuverlässiges WLAN, sauberer Kunden-WLAN-Zugang und reibungslos verbundene Arbeitsgeräte für kleine Büros, Praxen und Studios – von WLANklar vor Ort eingerichtet."
+>
+  <div class="container" style="padding-top: 20px;">
+    <Breadcrumbs items={[{ label: "Startseite", href: "/" }, { label: "Kleine Büros, Praxen & Studios" }]} />
+  </div>
+
+  <Hero
+    eyebrow="Kleine Büros, Praxen & Studios"
+    title="WLAN, das in Ihrem Betrieb einfach läuft."
+    lead="Zuverlässiges WLAN, sauberer Kunden-WLAN-Zugang und Arbeitsgeräte, die einfach funktionieren. Wir kommen vorbei und richten es so ein, dass es läuft."
+    micro="WLAN · Kunden-WLAN · Kartenzahlung · Drucker/Scanner · Tablet · Kassen-PC · einfache Dokumentation"
+    image={{ src: "/images/buero-wlan-check.png", alt: "Router, Access Point, Drucker und Arbeitsplatz in einem kleinen Büro" }}
+    panelTitle="Unser Schwerpunkt"
+    panelItems={["WLAN & Kunden-WLAN", "Drucker & Arbeitsplatzgeräte", "Termine auch außerhalb der Öffnungszeiten"]}
+    ctas={[{ href: "#kontakt", label: "Jetzt Termin anfragen" }]}
+  />
+
+  <PainPoints
+    eyebrow="Kommt Ihnen bekannt vor?"
+    title="Typische Probleme in kleinen Betrieben."
+    points={[
+      "Kunden-WLAN fehlt oder ist nicht getrennt",
+      "Kartenzahlung verliert die Verbindung",
+      "Drucker wird nicht gefunden",
+      "Terminsoftware hängt",
+      "WLAN reicht nicht bis in Nebenräume",
+      "Repeater bringt nichts",
+      "Nach Routerwechsel funktioniert nichts mehr",
+      "Musik oder TV bricht ab",
+      "Zu viele WLAN-Namen",
+      "Es soll einfach zuverlässig laufen",
+    ]}
+  />
+
+  <PricingGrid
+    eyebrow="Angebote"
+    title="Zuverlässiges Netzwerk für Ihren Betrieb – zum Festpreis."
+    note="Alle Gewerbepreise netto zzgl. MwSt."
+    columns={2}
+    serviceIds={["buero-check", "buero-setup"]}
+  />
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">Leistungsumfang</span>
+        <h2>Unser Schwerpunkt – und was darüber hinaus geht.</h2>
+      </div>
+      <div class="grid cols-3">
+        <div class="panel">
+          <h3>WLAN & Gästezugang</h3>
+          <p style="color: var(--color-ink-muted);">Router prüfen, Kunden-WLAN sauber getrennt einrichten, Abdeckung verbessern.</p>
+        </div>
+        <div class="panel">
+          <h3>Drucker & Arbeitsplatzgeräte</h3>
+          <p style="color: var(--color-ink-muted);">Drucker, Scanner, Kassen- und Arbeitsplatzgeräte zuverlässig anbinden.</p>
+        </div>
+        <div class="panel">
+          <h3>Kleine Projekte nach Absprache</h3>
+          <p style="color: var(--color-ink-muted);">
+            Sie brauchen etwas darüber hinaus? Sprechen Sie uns an – kleinere Projekte setzen wir nach individueller
+            Absprache gern um.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <FaqAccordion ids={["buero-projekte", "buero-netto", "buero-termin", "nachbetreuung"]} />
+
+  <section class="section" id="kontakt">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">Kontakt</span>
+        <h2>Schildern Sie kurz, was in Ihrem Betrieb nicht läuft.</h2>
+      </div>
+      <div class="panel">
+        <ContactWizard client:load />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

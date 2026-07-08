@@ -1,0 +1,56 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import Breadcrumbs from "../components/layout/Breadcrumbs.astro";
+import { getService } from "../data/services";
+
+interface Props {
+  title: string;
+  description: string;
+  publishDate: Date;
+  relatedServiceIds?: string[];
+  segments?: string[];
+}
+
+const { title, description, publishDate, relatedServiceIds = [], segments = [] } = Astro.props;
+
+const segmentLinks: Record<string, { label: string; href: string }> = {
+  privat: { label: "Zuhause & Homeoffice", href: "/zuhause-homeoffice/" },
+  ferienwohnung: { label: "Ferienwohnungen & Monteurzimmer", href: "/ferienwohnungen/" },
+  buero: { label: "Kleine Büros, Praxen & Studios", href: "/kleine-bueros/" },
+};
+
+const relatedServices = relatedServiceIds.map((id) => getService(id)).filter(Boolean);
+---
+
+<BaseLayout title={title} description={description}>
+  <article class="section">
+    <div class="container" style="max-width: 720px;">
+      <Breadcrumbs items={[{ label: "Startseite", href: "/" }, { label: "Ratgeber", href: "/ratgeber/" }, { label: title }]} />
+      <span class="section-label">
+        {publishDate.toLocaleDateString("de-DE", { year: "numeric", month: "long", day: "numeric" })}
+      </span>
+      <h1>{title}</h1>
+      <div class="lead" style="margin-bottom: 32px;">
+        <slot />
+      </div>
+
+      {(relatedServices.length > 0 || segments.length > 0) && (
+        <div class="panel">
+          <h3>Das könnte Sie auch interessieren</h3>
+          <div class="btn-row">
+            {segments.map((segment) => segmentLinks[segment] && (
+              <a class="btn btn-secondary btn-small" href={segmentLinks[segment].href}>
+                {segmentLinks[segment].label}
+              </a>
+            ))}
+            {relatedServices.map((service) => (
+              <a class="btn btn-secondary btn-small" href={`/kontakt/?leistung=${service!.id}`}>
+                {service!.name}
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  </article>
+</BaseLayout>

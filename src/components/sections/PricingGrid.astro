@@ -1,0 +1,55 @@
+---
+import { getService } from "../../data/services";
+import PriceReadout from "../ui/PriceReadout.astro";
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  note?: string;
+  serviceIds: string[];
+  columns?: 2 | 3;
+}
+
+const { eyebrow, title, note, serviceIds, columns = 3 } = Astro.props;
+const items = serviceIds.map((id) => getService(id)).filter((service) => Boolean(service));
+---
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-label">{eyebrow}</span>
+      <h2>{title}</h2>
+      {note && <p class="lead">{note}</p>}
+    </div>
+    <div class={`grid cols-${columns}`}>
+      {items.map((service) => (
+        <div class={`panel ${service!.featured ? "is-featured" : ""}`}>
+          {service!.featured && <span class="badge">Meistgewählt</span>}
+          <h3 style="margin-top: 10px;">{service!.name}</h3>
+          <p style="color: var(--color-ink-muted);">{service!.tagline}</p>
+          <PriceReadout price={service!.price} priceFrom={service!.priceFrom} priceSuffix={service!.priceSuffix} />
+          {service!.upsellNote && (
+            <p class="price-callout">
+              <strong>Anrechnung:</strong> {service!.upsellNote}
+            </p>
+          )}
+          {service!.guaranteeNote && (
+            <p class="price-callout">
+              <strong>Unsere Zusage:</strong> {service!.guaranteeNote}
+            </p>
+          )}
+          {service!.includes.length > 0 && (
+            <ul style="margin-top: 16px; padding-left: 18px; color: var(--color-ink-muted);">
+              {service!.includes.map((line) => (
+                <li>{line}</li>
+              ))}
+            </ul>
+          )}
+          <div style="margin-top: 16px;">
+            <a class="btn btn-small" href={`/kontakt/?leistung=${service!.id}`}>Anfragen</a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

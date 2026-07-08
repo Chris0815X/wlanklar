@@ -1,0 +1,13 @@
+---
+import { freeCallCta } from "../../lib/whatsapp";
+const call = freeCallCta();
+---
+
+<div class="mobile-sticky-cta">
+  <div class="grid cols-2">
+    <a class="btn btn-secondary btn-small" href={call.href}>
+      Kostenlos anrufen
+    </a>
+    <a class="btn btn-small" href="/kontakt/">Termin anfragen</a>
+  </div>
+</div>

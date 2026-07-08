@@ -1,0 +1,29 @@
+---
+import BrandMark from "../ui/BrandMark.astro";
+import { siteConfig } from "../../data/config";
+
+const navItems = [
+  { href: "/zuhause-homeoffice/", label: "Zuhause" },
+  { href: "/ferienwohnungen/", label: "Ferienwohnungen" },
+  { href: "/kleine-bueros/", label: "Büros" },
+  { href: "/einsatzgebiet/", label: "Einsatzgebiet" },
+  { href: "/ratgeber/", label: "Ratgeber" },
+];
+---
+
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="/">
+      <BrandMark class="brand-mark" />
+      {siteConfig.brandName}
+    </a>
+    <nav class="site-nav" aria-label="Hauptnavigation">
+      {navItems.map((item) => (
+        <a href={item.href}>{item.label}</a>
+      ))}
+    </nav>
+    <div class="header-cta">
+      <a class="btn btn-small" href="/kontakt/">Termin anfragen</a>
+    </div>
+  </div>
+</header>

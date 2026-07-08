@@ -1,0 +1,16 @@
+---
+interface Props {
+  items: string[];
+}
+const { items } = Astro.props;
+---
+
+<section class="section-alt" style="padding-block: 24px;">
+  <div class="container">
+    <div class="grid cols-4">
+      {items.map((item) => (
+        <div class="panel-note">{item}</div>
+      ))}
+    </div>
+  </div>
+</section>

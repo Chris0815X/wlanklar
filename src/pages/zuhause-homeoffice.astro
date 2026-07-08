@@ -1,0 +1,101 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Breadcrumbs from "../components/layout/Breadcrumbs.astro";
+import Hero from "../components/sections/Hero.astro";
+import PainPoints from "../components/sections/PainPoints.astro";
+import PricingGrid from "../components/sections/PricingGrid.astro";
+import FaqAccordion from "../components/sections/FaqAccordion.astro";
+import ContactWizard from "../components/islands/ContactWizard";
+---
+
+<BaseLayout
+  title="WLAN-Hilfe für Zuhause und Homeoffice"
+  description="Endlich stabiles WLAN in jedem Raum. WLANklar kommt vorbei, findet die Ursache und löst sie – für Zuhause und Homeoffice."
+>
+  <div class="container" style="padding-top: 20px;">
+    <Breadcrumbs items={[{ label: "Startseite", href: "/" }, { label: "Zuhause & Homeoffice" }]} />
+  </div>
+
+  <Hero
+    eyebrow="Zuhause & Homeoffice"
+    title="WLAN-Hilfe für Zuhause und Homeoffice."
+    lead="Endlich stabiles WLAN – in jedem Raum. Wir kommen vorbei, finden die Ursache und lösen sie oft schon am selben Termin."
+    image={{ src: "/images/hero-wlan-check.png", alt: "WLAN-Check mit Tablet am Router in einem hellen Wohnzimmer" }}
+    panelTitle="20 Jahre Erfahrung"
+    panelItems={["Router, Repeater, Mesh und Powerline im Blick", "Passend für Wohnung, Haus und Homeoffice"]}
+    ctas={[{ href: "#kontakt", label: "Termin anfragen" }]}
+  />
+
+  <PainPoints
+    eyebrow="Kommt Ihnen bekannt vor?"
+    title="Typische Probleme zuhause und im Homeoffice."
+    points={[
+      "WLAN reicht nicht in alle Räume",
+      "Repeater bringt nichts",
+      "Homeoffice-Calls brechen ab",
+      "Smart-TV ruckelt beim Streaming",
+      "Glasfaser ist da, WLAN bleibt schwach",
+      "Drucker wird nicht gefunden",
+      "Geräte verbinden sich falsch",
+      "Mesh oder Powerline: unklar was passt",
+      "Nach Routerwechsel herrscht Chaos",
+      "Zu viele WLAN-Namen im Haus",
+    ]}
+  />
+
+  <PricingGrid
+    eyebrow="Preise"
+    title="Klare Pakete für Zuhause und Homeoffice."
+    note="Wird aus dem WLAN-Check vor Ort direkt das Komplettpaket, zahlen Sie nicht 99 € + 199 €, sondern 199 € gesamt. Neue Geräte kommen nur nach Absprache dazu."
+    serviceIds={["wlan-check", "wlan-soforthilfe", "stabiles-heimnetz"]}
+  />
+
+  <section class="section" style="padding-block: 0 0;">
+    <div class="container">
+      <div class="panel" style="display: flex; flex-wrap: wrap; gap: 24px; align-items: center; justify-content: space-between;">
+        <div style="flex: 1 1 260px;">
+          <strong>Sie wissen schon genau, was Sie brauchen?</strong>
+          <p style="margin: 4px 0 0; color: var(--color-ink-muted);">
+            Dann reicht oft eine einzelne Einrichtung unten – ohne Ursachensuche.
+          </p>
+        </div>
+        <div style="flex: 1 1 260px;">
+          <strong>Sie wissen nicht, woran es liegt?</strong>
+          <p style="margin: 4px 0 0; color: var(--color-ink-muted);">
+            Dann ist der WLAN-Check oben der richtige Start – wir finden die Ursache für Sie.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <PricingGrid
+    eyebrow="Kleine schnelle Hilfe"
+    title="Feste Einzelleistungen, wenn die Ursache schon klar ist."
+    note="Für ein neues Gerät, das nur eingerichtet werden muss – kein Ursachen-Check enthalten."
+    serviceIds={["router-basis", "repeater-basis", "smart-tv"]}
+  />
+
+  <FaqAccordion
+    ids={[
+      "was-kostet-es",
+      "check-garantie",
+      "vorbereitung",
+      "kein-routerzugang",
+      "vorhandene-geraete",
+      "neue-hardware-pflicht",
+    ]}
+  />
+
+  <section class="section section-alt" id="kontakt">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">Kontakt</span>
+        <h2>Schildern Sie kurz, was nicht zuverlässig funktioniert.</h2>
+      </div>
+      <div class="panel">
+        <ContactWizard client:load />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

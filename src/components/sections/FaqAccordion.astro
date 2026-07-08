@@ -1,0 +1,29 @@
+---
+import { getFaqEntries } from "../../data/faq";
+
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  ids: string[];
+}
+
+const { eyebrow = "Häufige Fragen", title = "FAQ", ids } = Astro.props;
+const entries = getFaqEntries(ids);
+---
+
+<section class="section" id="faq">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-label">{eyebrow}</span>
+      <h2>{title}</h2>
+    </div>
+    <div class="faq-list">
+      {entries.map((entry) => (
+        <details>
+          <summary>{entry.question}</summary>
+          <p>{entry.answer}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

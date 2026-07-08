@@ -1,0 +1,24 @@
+---
+interface Props {
+  eyebrow: string;
+  title: string;
+  lead: string;
+  cities: readonly string[];
+}
+const { eyebrow, title, lead, cities } = Astro.props;
+---
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-label">{eyebrow}</span>
+      <h2>{title}</h2>
+      <p class="lead">{lead}</p>
+    </div>
+    <div class="panel" style="display: flex; flex-wrap: wrap; gap: 8px 20px;">
+      {cities.map((city) => (
+        <span style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--color-ink-muted);">{city}</span>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,30 @@
+---
+interface Step {
+  title: string;
+  copy: string;
+}
+interface Props {
+  eyebrow: string;
+  title: string;
+  steps: Step[];
+}
+const { eyebrow, title, steps } = Astro.props;
+---
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-label">{eyebrow}</span>
+      <h2>{title}</h2>
+    </div>
+    <div class="grid cols-4">
+      {steps.map((step, index) => (
+        <div class="panel">
+          <span class="badge">{String(index + 1).padStart(2, "0")}</span>
+          <h3 style="margin-top: 10px;">{step.title}</h3>
+          <p style="margin: 0; color: var(--color-ink-muted);">{step.copy}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

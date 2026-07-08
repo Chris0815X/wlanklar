@@ -1,0 +1,126 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/sections/Hero.astro";
+import TrustBand from "../components/sections/TrustBand.astro";
+import PainPoints from "../components/sections/PainPoints.astro";
+import ProcessSteps from "../components/sections/ProcessSteps.astro";
+import PricingGrid from "../components/sections/PricingGrid.astro";
+import FaqAccordion from "../components/sections/FaqAccordion.astro";
+import QuizFunnel from "../components/islands/QuizFunnel";
+import TrustProfile from "../components/sections/TrustProfile.astro";
+import { siteConfig } from "../data/config";
+import { freeCallCta } from "../lib/whatsapp";
+
+const call = freeCallCta();
+---
+
+<BaseLayout
+  title="WLAN-Service vor Ort in der Lausitz & im Spreewald"
+  description="WLANklar hilft bei schlechtem WLAN, Repeater-Frust, Homeoffice-Problemen, Gäste-WLAN und kleinen Netzwerkproblemen – vor Ort in der Lausitz und im Spreewald."
+  includeSchema
+>
+  <Hero
+    eyebrow={`WLAN-Service in der ${siteConfig.region}`}
+    title="Endlich stabiles WLAN – in jedem Raum."
+    lead="Wir kommen vorbei, finden die Ursache und lösen sie oft schon am selben Termin. Für Zuhause, Homeoffice und Ferienwohnungen."
+    micro={`Vor Ort in der ${siteConfig.region} · Router, Repeater, Mesh, Gäste-WLAN & Heimnetz`}
+    image={{ src: "/images/hero-wlan-check.png", alt: "WLAN-Check mit Tablet am Router in einem hellen Wohnzimmer" }}
+    panelTitle="Erst messen. Dann sinnvoll lösen."
+    panelItems={["Router prüfen", "WLAN messen", "Repeater/Mesh/Powerline bewerten", "Lösung erklären"]}
+    ctas={[
+      { href: call.href, label: call.label },
+      { href: "/kontakt/", label: "Direkt Termin anfragen", secondary: true },
+    ]}
+  />
+
+  <TrustBand
+    items={[
+      "Kostenloses Erstgespräch vorab",
+      "Festpreise ohne Überraschungen",
+      "Anfahrt im Kerngebiet inklusive",
+      "7 Tage Nachbetreuung inklusive",
+    ]}
+  />
+
+  <TrustProfile />
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">Zielgruppen</span>
+        <h2>Ein WLAN-Problem, drei unterschiedliche Situationen.</h2>
+      </div>
+      <div class="grid cols-3">
+        <a class="panel" href="/zuhause-homeoffice/" style="text-decoration: none; color: inherit;">
+          <h3>Zuhause & Homeoffice</h3>
+          <p style="color: var(--color-ink-muted);">WLAN-Check, Komplettpaket und stabiles Heimnetz für Wohnung, Haus und Homeoffice.</p>
+        </a>
+        <a class="panel" href="/ferienwohnungen/" style="text-decoration: none; color: inherit;">
+          <h3>Ferienwohnungen & Monteurzimmer</h3>
+          <p style="color: var(--color-ink-muted);">Gäste-WLAN, QR-Code und digitale Gästemappe für weniger Rückfragen.</p>
+        </a>
+        <a class="panel" href="/kleine-bueros/" style="text-decoration: none; color: inherit;">
+          <h3>Kleine Büros, Praxen & Studios</h3>
+          <p style="color: var(--color-ink-muted);">Genau das, was ein kleiner Betrieb wirklich braucht – WLAN, Kunden-WLAN und verbundene Arbeitsgeräte.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <PainPoints
+    eyebrow="Kommt Ihnen bekannt vor?"
+    title="Kommt Ihnen davon etwas bekannt vor?"
+    points={[
+      "Volle Balken, aber trotzdem langsam",
+      "Repeater bringt nichts",
+      "Streaming bricht immer wieder ab",
+      "Glasfaser ist da, WLAN bleibt schwach",
+      "Gäste fragen ständig nach dem WLAN",
+      "Zu viele WLAN-Namen im Haus",
+    ]}
+  />
+
+  <ProcessSteps
+    eyebrow="Erst Diagnose, dann Lösung"
+    title="So bekommen Sie zuverlässiges WLAN."
+    steps={[
+      { title: "Anfrage vorbereiten", copy: "Kurze Angaben zu Objekt, Problem und Erreichbarkeit." },
+      { title: "Ursache vor Ort finden", copy: "Messung statt Vermutung – Router, Signal, Endgeräte." },
+      { title: "Lösung verständlich empfehlen", copy: "Klare Optionen: günstig, solide oder langfristig." },
+      { title: "Passend umsetzen", copy: "Einrichtung der gewählten Lösung vor Ort." },
+      { title: "Verständlich dokumentieren", copy: "Kurze Übergabe, damit alles nachvollziehbar bleibt." },
+    ]}
+  />
+
+  <PricingGrid
+    eyebrow="Preise"
+    title="Klare Preise statt „mal schauen“."
+    note="Falls neue Geräte sinnvoll sind, kommen diese zzgl. Hardware dazu – immer erst nach Absprache. Und fair bleibt es auch beim Upgrade: Wird aus dem WLAN-Check vor Ort direkt das Komplettpaket, zahlen Sie nicht 99 € + 199 €, sondern 199 € gesamt."
+    serviceIds={["wlan-check", "wlan-soforthilfe", "stabiles-heimnetz"]}
+  />
+
+  <section class="section" id="quiz">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">Mini-Diagnose</span>
+        <h2>Welches WLAN-Problem haben Sie?</h2>
+        <p class="lead">Beantworten Sie ein paar Fragen. Danach erhalten Sie eine erste Einschätzung und können die Angaben direkt per WhatsApp mitschicken.</p>
+      </div>
+      <div class="panel">
+        <QuizFunnel client:visible />
+      </div>
+    </div>
+  </section>
+
+  <FaqAccordion
+    ids={[
+      "was-kostet-es",
+      "check-garantie",
+      "anfahrt",
+      "termin-wie-schnell",
+      "perfektes-wlan",
+      "elektronikmarkt-vergleich",
+      "nachbetreuung",
+    ]}
+  />
+</BaseLayout>

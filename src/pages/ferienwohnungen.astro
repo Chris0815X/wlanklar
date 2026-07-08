@@ -1,0 +1,84 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Breadcrumbs from "../components/layout/Breadcrumbs.astro";
+import Hero from "../components/sections/Hero.astro";
+import PainPoints from "../components/sections/PainPoints.astro";
+import PricingGrid from "../components/sections/PricingGrid.astro";
+import FaqAccordion from "../components/sections/FaqAccordion.astro";
+import ContactWizard from "../components/islands/ContactWizard";
+---
+
+<BaseLayout
+  title="Gäste-WLAN für Ferienwohnungen & Monteurzimmer"
+  description="WLANklar macht Ferienwohnungen und Monteurzimmer digital gastfreundlicher – mit Gäste-WLAN, QR-Code, Smart-TV-Check und digitaler Gästemappe."
+>
+  <div class="container" style="padding-top: 20px;">
+    <Breadcrumbs items={[{ label: "Startseite", href: "/" }, { label: "Ferienwohnungen & Monteurzimmer" }]} />
+  </div>
+
+  <Hero
+    eyebrow="Ferienwohnungen & Monteurzimmer"
+    title="Gäste sollen nicht wegen WLAN, Smart-TV oder Zugangsdaten schreiben müssen."
+    lead="WLANklar macht Ihre Ferienwohnung digital gastfreundlicher – mit Gäste-WLAN, QR-Code, Smart-TV-Check, klaren Gästeinfos und optionaler digitaler Gästemappe."
+    image={{ src: "/images/ferienwohnung-gaeste-wlan.png", alt: "Gäste-WLAN-Karte mit QR-Code in einer Ferienwohnung" }}
+    panelTitle="Besonders sinnvoll für"
+    panelItems={["Gastgeber und Vermieter", "Monteurzimmer", "kleine Pensionen", "Objekte mit wiederkehrenden Gästeanfragen"]}
+    ctas={[{ href: "#kontakt", label: "Termin anfragen" }]}
+  />
+
+  <PainPoints
+    eyebrow="Kommt Ihnen bekannt vor?"
+    title="Typische Probleme bei Ferienwohnungen."
+    points={[
+      "WLAN-Passwort ist nicht auffindbar",
+      "Kein QR-Code für Gäste",
+      "Smart-TV macht Probleme",
+      "WLAN-Signal ist zu schwach",
+      "Gäste-WLAN ist nicht vom eigenen Netz getrennt",
+      "Schlechte Bewertung wegen Technik",
+      "Saisonstart ohne Check",
+      "Monteurzimmer-WLAN instabil",
+      "Gästemappe ist veraltet",
+      "Servicepersonal braucht klare Infos",
+    ]}
+  />
+
+  <PricingGrid
+    eyebrow="Angebote"
+    title="Gäste-WLAN, QR-Code und klare Gästeinfos."
+    note="Darüber hinaus bieten wir auch weitere digitale Dienstleistungen für Ferienwohnungen an – z. B. eine digitale Gästemappe oder Unterstützung bei Bewertungen. Sprechen Sie uns einfach an, wir stimmen das individuell ab."
+    columns={2}
+    serviceIds={["gastgeber-check", "gaeste-wlan-komfort", "saisonstart-check"]}
+  />
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">Region</span>
+        <h2>WLAN für Ferienwohnungen im Lausitzer Seenland.</h2>
+        <p class="lead">
+          Besonders im Lausitzer Seenland lohnt sich ein professioneller Blick auf Gäste-WLAN, Smart-TV und digitale
+          Gästeinfos – gerade rund um Senftenberg, Großkoschen und Geierswalde, wo viele Gäste über die Ferienwohnungs-
+          plattformen buchen und wenig Geduld für Technikprobleme haben.
+        </p>
+      </div>
+      <a class="btn btn-secondary" href="/einsatzgebiet/">Einsatzgebiet ansehen</a>
+    </div>
+  </section>
+
+  <FaqAccordion
+    ids={["fewo-lohnt-sich", "fewo-gaeste-probleme", "fewo-anwesenheit", "fewo-netztrennung", "hardware-im-preis"]}
+  />
+
+  <section class="section" id="kontakt">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">Kontakt</span>
+        <h2>Schildern Sie kurz, was für Ihre Unterkunft wichtig ist.</h2>
+      </div>
+      <div class="panel">
+        <ContactWizard client:load />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

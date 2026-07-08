@@ -1,0 +1,16 @@
+---
+import { euro } from "../../lib/format";
+
+interface Props {
+  price: number;
+  priceFrom?: boolean;
+  priceSuffix?: string;
+}
+
+const { price, priceFrom = false, priceSuffix } = Astro.props;
+---
+
+<span class="price-readout">
+  {priceFrom && "ab "}{euro(price)}
+  {priceSuffix && <span class="price-suffix">{priceSuffix}</span>}
+</span>

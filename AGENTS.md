@@ -8,6 +8,29 @@ astro dev --background
 
 Manage the background server with `astro dev stop`, `astro dev status`, and `astro dev logs`.
 
+## WLANklar project source of truth
+
+Before changing website copy, offers, prices, regions, contact logic, or tracking, read:
+
+- `../docs/WLANKLAR_PROJECT_CONTEXT.md`
+- `src/data/config.ts`
+- `src/data/services.ts`
+- `src/data/travel-zones.ts`
+- `src/data/faq.ts`
+
+Current core offer names:
+
+- WLAN-Check vor Ort
+- WLAN-Komplettpaket
+- Stabiles Heimnetz
+- Gastgeber-Check
+- Gäste-WLAN Komfort
+- Saisonstart-Check
+- Büro-WLAN-Check
+- Büro-WLAN Setup
+
+Do not reintroduce old package names or old price levels from the legacy static site. The old `../wlanklar_site/` folder is archive/reference material only.
+
 ## Documentation
 
 Full documentation: https://docs.astro.build

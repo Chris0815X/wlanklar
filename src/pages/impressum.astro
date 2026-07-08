@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { siteConfig } from "../data/config";
 ---
 
 <BaseLayout title="Impressum" description="Impressum von WLANklar." noIndex>
@@ -12,7 +13,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         <p>[Vollständiger Name / Firmenname]<br />[Straße Hausnummer]<br />[PLZ Ort]</p>
 
         <h2>Kontakt</h2>
-        <p>Telefon: [Telefonnummer]<br />E-Mail: [E-Mail-Adresse]</p>
+        <p>Telefon: {siteConfig.phoneDisplay}<br />E-Mail: [E-Mail-Adresse]</p>
 
         <h2>Umsatzsteuer-ID</h2>
         <p>[falls vorhanden]</p>

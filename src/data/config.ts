@@ -4,9 +4,9 @@
 export const siteConfig = {
   brandName: "WLANklar",
   contactName: "Christopher",
-  phone: "",
-  phoneDisplay: "[Telefonnummer]",
-  whatsappNumber: "",
+  phone: "+4935753260047",
+  phoneDisplay: "+49 3575 3260047",
+  whatsappNumber: "4935753260047",
   email: "",
   regionPrimary: "Lausitz",
   regionSecondary: "Spreewald",

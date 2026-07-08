@@ -24,6 +24,18 @@ const navItems = [
     </nav>
     <div class="header-cta">
       <a class="btn btn-small" href="/kontakt/">Termin anfragen</a>
+      <details class="mobile-nav">
+        <summary class="mobile-nav-toggle" aria-label="Menü öffnen">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          </svg>
+        </summary>
+        <nav class="mobile-nav-panel" aria-label="Mobile Hauptnavigation">
+          {navItems.map((item) => (
+            <a href={item.href}>{item.label}</a>
+          ))}
+        </nav>
+      </details>
     </div>
   </div>
 </header>

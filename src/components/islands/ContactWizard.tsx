@@ -50,7 +50,19 @@ export default function ContactWizard() {
   const isHomeoffice = data.objectType === "Zuhause/Homeoffice";
 
   function update<K extends keyof ContactFormData>(key: K, value: string) {
+    if ((key === "customerPhone" || key === "customerEmail") && value.trim()) {
+      setShowContactError(false);
+    }
     setData((current) => ({ ...current, [key]: value }));
+  }
+
+  function validateContactMethod(): boolean {
+    const hasContact = Boolean(data.customerPhone?.trim() || data.customerEmail?.trim());
+    setShowContactError(!hasContact);
+    if (!hasContact) {
+      phoneRef.current?.focus();
+    }
+    return hasContact;
   }
 
   function validateStep(index: number): boolean {
@@ -76,7 +88,9 @@ export default function ContactWizard() {
   }
 
   function handleNext() {
-    if (validateStep(stepIndex)) goTo(stepIndex + 1);
+    if (!validateStep(stepIndex)) return;
+    if (stepIndex === 0 && !validateContactMethod()) return;
+    goTo(stepIndex + 1);
   }
 
   function handleSubmit(event: JSX.TargetedEvent<HTMLFormElement>) {
@@ -85,13 +99,10 @@ export default function ContactWizard() {
 
     refreshFormAttribution(formRef.current);
 
-    const hasContact = Boolean(data.customerPhone?.trim() || data.customerEmail?.trim());
-    if (!hasContact) {
-      setShowContactError(true);
-      phoneRef.current?.focus();
+    if (!validateContactMethod()) {
+      goTo(0);
       return;
     }
-    setShowContactError(false);
 
     const message = buildContactMessage(data, travelEstimate);
     const target = contactTarget(message);

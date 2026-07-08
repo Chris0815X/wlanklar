@@ -70,6 +70,12 @@ export const faqEntries: FaqEntry[] = [
       "Nein. Erst wird geprüft und gemessen, was vorhanden ist. Sehr oft liegt die Lösung in besserer Platzierung oder richtiger Einrichtung – ganz ohne Neukauf.",
   },
   {
+    id: "telefon-einrichten",
+    question: "Kann WLANklar auch ein weiteres Telefon im Haus einrichten?",
+    answer:
+      "Ja. Wenn Ihre vorhandene Router- oder Telefontechnik dafür geeignet ist (z. B. per DECT, wenn die vorhandene Technik es unterstützt), kann WLANklar ein zusätzliches schnurloses Handgerät einrichten und vor Ort testen. Das ist besonders praktisch für Schlafzimmer, Büro oder Obergeschoss. Hardware ist bei Bedarf separat.",
+  },
+  {
     id: "nachbetreuung",
     question: "Was ist, wenn nach dem Termin noch Fragen auftauchen?",
     answer:

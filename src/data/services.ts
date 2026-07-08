@@ -113,6 +113,17 @@ export const services: Service[] = [
     ],
   },
   {
+    id: "telefon-handgeraet",
+    segment: "schnell",
+    name: "Weiteres Telefon im Haus einrichten",
+    price: 49,
+    priceFrom: true,
+    priceSuffix: "als Zusatzleistung",
+    tagline:
+      "Ob Schlafzimmer, Büro oder Obergeschoss: WLANklar prüft, ob Ihre vorhandene Router- oder Telefontechnik ein zusätzliches schnurloses Handgerät unterstützt, richtet es ein und testet die Verbindung vor Ort.",
+    includes: ["Als Zusatz zu Router-, WLAN- oder Heimnetz-Terminen buchbar. Hardware bei Bedarf separat."],
+  },
+  {
     id: "gastgeber-check",
     segment: "ferienwohnung",
     name: "Gastgeber-Check",

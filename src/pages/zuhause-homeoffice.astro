@@ -6,6 +6,10 @@ import PainPoints from "../components/sections/PainPoints.astro";
 import PricingGrid from "../components/sections/PricingGrid.astro";
 import FaqAccordion from "../components/sections/FaqAccordion.astro";
 import ContactWizard from "../components/islands/ContactWizard";
+import PriceReadout from "../components/ui/PriceReadout.astro";
+import { getService } from "../data/services";
+
+const telefonHandgeraet = getService("telefon-handgeraet")!;
 ---
 
 <BaseLayout
@@ -76,6 +80,33 @@ import ContactWizard from "../components/islands/ContactWizard";
     serviceIds={["router-basis", "repeater-basis", "smart-tv"]}
   />
 
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">Zusatzleistung</span>
+        <h2>Mehr Komfort im Alltag</h2>
+        <p class="lead">
+          Manchmal geht es nicht nur um WLAN. Ein zusätzliches schnurloses Telefon im Schlafzimmer, Büro oder
+          Obergeschoss kann den Alltag deutlich einfacher machen. WLANklar prüft, ob Ihre vorhandene Technik dafür
+          geeignet ist, richtet das Handgerät ein und testet die Verbindung.
+        </p>
+      </div>
+      <div class="panel" style="max-width: 460px;">
+        <h3>{telefonHandgeraet.name}</h3>
+        <p style="color: var(--color-ink-muted);">{telefonHandgeraet.tagline}</p>
+        <PriceReadout
+          price={telefonHandgeraet.price}
+          priceFrom={telefonHandgeraet.priceFrom}
+          priceSuffix={telefonHandgeraet.priceSuffix}
+        />
+        {telefonHandgeraet.includes.map((line) => <p class="price-callout">{line}</p>)}
+        <div style="margin-top: 16px;">
+          <a class="btn btn-small" href={`/kontakt/?leistung=${telefonHandgeraet.id}`}>Beim WLAN-Termin mit anfragen</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <FaqAccordion
     ids={[
       "was-kostet-es",
@@ -83,6 +114,7 @@ import ContactWizard from "../components/islands/ContactWizard";
       "vorbereitung",
       "kein-routerzugang",
       "vorhandene-geraete",
+      "telefon-einrichten",
       "neue-hardware-pflicht",
     ]}
   />

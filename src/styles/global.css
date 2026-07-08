@@ -602,11 +602,15 @@ img {
 .quiz-form {
   display: grid;
   gap: 16px;
+  /* Grid-Items dürfen sonst nicht unter ihre intrinsische Breite schrumpfen
+     (min-width: auto), wodurch breite <select>-Optionen die Seite aufziehen. */
+  min-width: 0;
 }
 
 .field {
   display: grid;
   gap: 6px;
+  min-width: 0;
 }
 
 .field-label {
@@ -631,6 +635,9 @@ textarea {
   border-radius: var(--radius);
   background: var(--color-paper-raised);
   color: var(--color-ink);
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
 }
 
 textarea {

@@ -2,7 +2,7 @@ import { useRef, useState } from "preact/hooks";
 import type { JSX } from "preact";
 import { estimateTravel } from "../../lib/travel-lookup";
 import { cleanPostcode } from "../../lib/format";
-import { buildContactMessage, contactTarget, type ContactFormData } from "../../lib/whatsapp";
+import { buildContactMessage, phoneHref, whatsappHref, type ContactFormData } from "../../lib/whatsapp";
 import { trackEvent, refreshFormAttribution } from "../../lib/tracking";
 import { getService } from "../../data/services";
 import { TravelResultBox } from "./TravelResultBox";
@@ -31,6 +31,7 @@ const problemTypeOptions = [
 ];
 
 const routerAccessOptions = ["ja, Routerpasswort vorhanden", "nur WLAN-Passwort vorhanden", "nein/unsicher"];
+const contactPreferenceOptions = ["Telefon", "WhatsApp", "E-Mail"];
 
 const steps = [
   { title: "Kontakt & Ort", copy: "Damit der Termin eingeordnet und die Anfahrt geprüft werden kann." },
@@ -41,7 +42,11 @@ const steps = [
 export default function ContactWizard() {
   const [stepIndex, setStepIndex] = useState(0);
   const [data, setData] = useState<ContactFormData>(prefillFromQuery);
-  const [showContactError, setShowContactError] = useState(false);
+  const [contactError, setContactError] = useState("");
+  const [submitState, setSubmitState] = useState<"idle" | "submitting" | "prepared" | "error">("idle");
+  const [submitError, setSubmitError] = useState("");
+  const [preparedLeadId, setPreparedLeadId] = useState("");
+  const [preparedMessage, setPreparedMessage] = useState("");
   const stepRefs = [useRef<HTMLFieldSetElement>(null), useRef<HTMLFieldSetElement>(null), useRef<HTMLFieldSetElement>(null)];
   const phoneRef = useRef<HTMLInputElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
@@ -50,19 +55,37 @@ export default function ContactWizard() {
   const isHomeoffice = data.objectType === "Zuhause/Homeoffice";
 
   function update<K extends keyof ContactFormData>(key: K, value: string) {
-    if ((key === "customerPhone" || key === "customerEmail") && value.trim()) {
-      setShowContactError(false);
+    if ((key === "customerPhone" || key === "customerEmail" || key === "preferredContact") && value.trim()) {
+      setContactError("");
     }
     setData((current) => ({ ...current, [key]: value }));
   }
 
   function validateContactMethod(): boolean {
-    const hasContact = Boolean(data.customerPhone?.trim() || data.customerEmail?.trim());
-    setShowContactError(!hasContact);
-    if (!hasContact) {
+    const phone = data.customerPhone?.trim() || "";
+    const email = data.customerEmail?.trim() || "";
+    const preferredContact = data.preferredContact?.trim() || "";
+
+    if (!preferredContact) {
+      setContactError("Bitte wählen Sie aus, wie wir uns zu dieser Anfrage melden sollen.");
       phoneRef.current?.focus();
+      return false;
     }
-    return hasContact;
+
+    if ((preferredContact === "Telefon" || preferredContact === "WhatsApp") && !phone) {
+      setContactError(`Für Kontakt per ${preferredContact} bitte Telefon/WhatsApp angeben.`);
+      phoneRef.current?.focus();
+      return false;
+    }
+
+    if (preferredContact === "E-Mail" && !email) {
+      setContactError("Für Kontakt per E-Mail bitte eine E-Mail-Adresse angeben.");
+      document.getElementById("cw-email")?.focus();
+      return false;
+    }
+
+    setContactError("");
+    return true;
   }
 
   function validateStep(index: number): boolean {
@@ -87,14 +110,48 @@ export default function ContactWizard() {
     });
   }
 
+  function collectAttribution() {
+    const form = formRef.current;
+    if (!form) return {};
+
+    const fields = Array.from(form.querySelectorAll<HTMLInputElement>('input[type="hidden"][name^="tracking"]'));
+    return fields.reduce<Record<string, string>>((result, field) => {
+      result[field.name] = field.value;
+      return result;
+    }, {});
+  }
+
+  async function createLead(message: string) {
+    const response = await fetch("/api/lead-create", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        ...data,
+        message,
+        companyWebsite: (document.getElementById("cw-company-website") as HTMLInputElement | null)?.value || "",
+        travel: travelEstimate,
+        attribution: collectAttribution(),
+        pagePath: typeof window !== "undefined" ? window.location.pathname : "",
+      }),
+    });
+
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok || result.ok !== true) {
+      throw new Error(result.error || "lead_create_failed");
+    }
+
+    return String(result.leadId || "");
+  }
+
   function handleNext() {
     if (!validateStep(stepIndex)) return;
     if (stepIndex === 0 && !validateContactMethod()) return;
     goTo(stepIndex + 1);
   }
 
-  function handleSubmit(event: JSX.TargetedEvent<HTMLFormElement>) {
+  async function handleSubmit(event: JSX.TargetedEvent<HTMLFormElement>) {
     event.preventDefault();
+    setSubmitError("");
     if (!validateStep(stepIndex)) return;
 
     refreshFormAttribution(formRef.current);
@@ -105,22 +162,101 @@ export default function ContactWizard() {
     }
 
     const message = buildContactMessage(data, travelEstimate);
-    const target = contactTarget(message);
+    setSubmitState("submitting");
 
-    trackEvent(
-      "lead_prepare",
-      {
-        lead_channel: target.channel,
-        object_type: data.objectType || "",
-        problem_type: data.problemType || "",
-        has_email: Boolean(data.customerEmail?.trim()),
-        router_access: data.routerAccess || "",
-        travel_fee: travelEstimate?.feeText || "",
-      },
-      { category: "marketing" },
+    try {
+      const leadId = await createLead(message);
+      setPreparedLeadId(leadId);
+      setPreparedMessage(message);
+      setSubmitState("prepared");
+
+      trackEvent(
+        "lead_created",
+        {
+          lead_channel: data.preferredContact || "",
+          lead_id: leadId,
+          object_type: data.objectType || "",
+          problem_type: data.problemType || "",
+          has_email: Boolean(data.customerEmail?.trim()),
+          router_access: data.routerAccess || "",
+          travel_fee: travelEstimate?.feeText || "",
+        },
+        { category: "marketing" },
+      );
+    } catch {
+      setPreparedMessage(message);
+      setSubmitState("error");
+      setSubmitError(
+        "Die Anfrage konnte gerade nicht gespeichert werden. Sie können die Angaben trotzdem bewusst per WhatsApp senden oder telefonisch Kontakt aufnehmen.",
+      );
+
+      trackEvent(
+        "lead_prepare_failed",
+        {
+          lead_channel: data.preferredContact || "",
+          object_type: data.objectType || "",
+          problem_type: data.problemType || "",
+        },
+        { category: "marketing" },
+      );
+    }
+  }
+
+  if (submitState === "prepared") {
+    const wantsWhatsapp = data.preferredContact === "WhatsApp";
+
+    return (
+      <div class="contact-confirmation" role="status" aria-live="polite">
+        <span class="badge">Anfrage gespeichert</span>
+        <h3>Danke, Ihre Anfrage ist eingegangen.</h3>
+        <p>
+          Wir melden uns über den gewählten Kontaktweg: <strong>{data.preferredContact}</strong>. WhatsApp wird nur
+          genutzt, wenn Sie es ausgewählt haben oder jetzt bewusst zusätzlich öffnen.
+        </p>
+        {wantsWhatsapp && (
+          <p class="contact-privacy-note">
+            Mit WhatsApp erlauben Sie WLANklar, zu dieser konkreten Anfrage per WhatsApp zu antworten. Keine Werbung,
+            kein Newsletter.
+          </p>
+        )}
+        <div class="btn-row">
+          {wantsWhatsapp && (
+            <a
+              class="btn"
+              href={whatsappHref(preparedMessage)}
+              target="_blank"
+              rel="noopener"
+              onClick={() =>
+                trackEvent("contact_click", { channel: "whatsapp", lead_id: preparedLeadId }, { category: "marketing" })
+              }
+            >
+              Jetzt WhatsApp öffnen
+            </a>
+          )}
+          {data.preferredContact === "Telefon" && (
+            <a class="btn" href={phoneHref()}>
+              Jetzt anrufen
+            </a>
+          )}
+          {!wantsWhatsapp && (
+            <a
+              class="btn btn-secondary"
+              href={whatsappHref(preparedMessage)}
+              target="_blank"
+              rel="noopener"
+              onClick={() =>
+                trackEvent("contact_click", { channel: "whatsapp", lead_id: preparedLeadId }, { category: "marketing" })
+              }
+            >
+              Optional per WhatsApp senden
+            </a>
+          )}
+          <button type="button" class="btn btn-secondary" onClick={() => setSubmitState("idle")}>
+            Angaben ändern
+          </button>
+        </div>
+      </div>
     );
-
-    window.location.href = target.href;
   }
 
   return (
@@ -197,8 +333,36 @@ export default function ContactWizard() {
             onInput={(e) => update("customerEmail", (e.target as HTMLInputElement).value)}
           />
         </div>
-        {showContactError && (
-          <p class="form-error">Bitte Telefon/WhatsApp oder E-Mail angeben, damit wir uns melden können.</p>
+        <fieldset class="contact-preference">
+          <legend>Gewünschter Kontaktweg</legend>
+          <div class="contact-choice-grid">
+            {contactPreferenceOptions.map((option) => (
+              <label class="contact-choice" htmlFor={`cw-contact-${option}`}>
+                <input
+                  id={`cw-contact-${option}`}
+                  type="radio"
+                  name="preferredContact"
+                  value={option}
+                  required
+                  checked={data.preferredContact === option}
+                  onChange={(e) => update("preferredContact", (e.target as HTMLInputElement).value)}
+                />
+                <span>{option}</span>
+              </label>
+            ))}
+          </div>
+          {data.preferredContact === "WhatsApp" && (
+            <p class="contact-privacy-note">
+              WhatsApp wird nur für diese konkrete Anfrage genutzt. Keine Werbung, kein Newsletter.
+            </p>
+          )}
+        </fieldset>
+        <div class="bot-field" aria-hidden="true">
+          <label htmlFor="cw-company-website">Website</label>
+          <input id="cw-company-website" tabIndex={-1} autoComplete="off" />
+        </div>
+        {contactError && (
+          <p class="form-error">{contactError}</p>
         )}
 
         <div class="wizard-actions">
@@ -316,13 +480,26 @@ export default function ContactWizard() {
           />
         </div>
         <p class="step-copy">Dauert etwa 1 Minute. Pflichtfelder sind markiert.</p>
+        {submitState === "error" && (
+          <div class="form-error">
+            <p>{submitError}</p>
+            <div class="btn-row">
+              <a class="btn btn-small" href={whatsappHref(preparedMessage)} target="_blank" rel="noopener">
+                Angaben per WhatsApp senden
+              </a>
+              <a class="btn btn-secondary btn-small" href={phoneHref()}>
+                Anrufen
+              </a>
+            </div>
+          </div>
+        )}
 
         <div class="wizard-actions">
           <button type="button" class="btn btn-secondary" onClick={() => goTo(1)}>
             Zurück
           </button>
-          <button type="submit" class="btn">
-            Anfrage senden
+          <button type="submit" class="btn" disabled={submitState === "submitting"}>
+            {submitState === "submitting" ? "Anfrage wird gesendet..." : "Anfrage senden"}
           </button>
         </div>
       </fieldset>

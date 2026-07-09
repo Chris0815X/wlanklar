@@ -101,10 +101,28 @@ Das Kontaktformular ist als mehrstufiger Wizard umgesetzt.
 
 Aktuelle Logik:
 
-- Telefon/WhatsApp oder E-Mail reicht als Kontaktmöglichkeit.
+- Kunden wählen bewusst den gewünschten Kontaktweg: Telefon, WhatsApp oder E-Mail.
+- WhatsApp öffnet nicht mehr automatisch nach dem Formular.
+- Nach erfolgreicher Speicherung erscheint eine Bestätigung mit optionalem WhatsApp-Button.
 - Ort, PLZ, Objektart, Problemtyp und Kurzbeschreibung helfen bei der Vorbereitung.
 - Businesskunden sollen ihr Anliegen frei beschreiben können.
-- WhatsApp- und Telefonlinks sind aktiv. E-Mail sowie direkte Baserow-/Backend-Anbindung sind noch offen.
+- WhatsApp- und Telefonlinks sind aktiv.
+- Formularanfragen werden über Netlify Functions in Netlify Blobs zwischengespeichert.
+- Direkte Baserow-Synchronisierung erfolgt später über einen privaten Debian-Sync-Worker.
+
+## Lead Queue
+
+Netlify Functions:
+
+- `POST /api/lead-create` - öffentliches Formularziel, schreibt Leads in Netlify Blobs
+- `GET /api/lead-pull` - geschützter Abruf für den späteren Sync-Worker
+- `POST /api/lead-ack` - geschützte Bestätigung/Löschung nach Baserow-Sync
+
+Erforderliche Environment Variable für Worker-Endpunkte:
+
+- `LEAD_SYNC_SECRET`
+
+Der Baserow API-Key gehört nicht in Netlify und nicht in den Browser. Er soll später nur auf der Debian-VM im Sync-Worker liegen.
 
 ## Tracking
 

@@ -624,6 +624,66 @@ img {
   font-size: 0.8rem;
 }
 
+.contact-preference {
+  border: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.contact-preference legend {
+  font-size: 0.86rem;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.contact-choice-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.contact-choice {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  border: 1px solid var(--color-line-strong);
+  border-radius: var(--radius);
+  background: var(--color-paper-raised);
+  padding: 10px 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.contact-choice input[type="radio"] {
+  flex: 0 0 auto;
+  width: 16px;
+  height: 16px;
+  min-height: 0;
+  padding: 0;
+}
+
+.contact-choice:has(input:checked) {
+  border-color: var(--color-signal);
+  background: var(--color-signal-soft);
+}
+
+.contact-privacy-note {
+  color: var(--color-ink-muted);
+  font-size: 0.86rem;
+  margin: 0;
+}
+
+.bot-field {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 input,
 select,
 textarea {
@@ -753,6 +813,39 @@ textarea:focus {
   border-radius: var(--radius);
   padding: 10px 12px;
   font-size: 0.9rem;
+}
+
+.form-error p {
+  margin-bottom: 10px;
+}
+
+.contact-confirmation {
+  display: grid;
+  gap: 14px;
+  border: 1px solid var(--color-signal-line);
+  border-radius: var(--radius-lg);
+  background: var(--color-signal-soft);
+  padding: clamp(18px, 4vw, 28px);
+}
+
+.contact-confirmation h3,
+.contact-confirmation p {
+  margin-bottom: 0;
+}
+
+.contact-confirmation .btn-row {
+  margin-top: 4px;
+}
+
+button:disabled {
+  cursor: wait;
+  opacity: 0.72;
+}
+
+@media (max-width: 560px) {
+  .contact-choice-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .quiz-result {

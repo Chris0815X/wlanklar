@@ -8,6 +8,7 @@ export interface ContactFormData {
   name?: string;
   customerPhone?: string;
   customerEmail?: string;
+  preferredContact?: string;
   postcode?: string;
   city?: string;
   objectType?: string;
@@ -65,7 +66,9 @@ export function buildContactMessage(data: ContactFormData, travelEstimate: Trave
   const travelLine = travelEstimate ? `\nAnfahrt laut PLZ-Check: ${travelSummary(travelEstimate)}` : "";
   return `Hallo ${brand()}, ich möchte einen Termin anfragen.\n\nName: ${data.name || ""}\nTelefon/WhatsApp: ${
     data.customerPhone || ""
-  }\nE-Mail: ${data.customerEmail || ""}\nPLZ/Ort: ${data.postcode || ""} ${data.city || ""}${travelLine}\nObjekt: ${
+  }\nE-Mail: ${data.customerEmail || ""}\nGewünschter Kontaktweg: ${data.preferredContact || ""}\nPLZ/Ort: ${
+    data.postcode || ""
+  } ${data.city || ""}${travelLine}\nObjekt: ${
     data.objectType || ""
   }\nProblemtyp: ${data.problemType || ""}\nKurzbeschreibung: ${data.problem || ""}\nTechnische Zusatzinfos: ${
     data.additionalInfo || ""

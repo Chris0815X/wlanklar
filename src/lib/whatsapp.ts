@@ -16,7 +16,6 @@ export interface ContactFormData {
   routerAccess?: string;
   problem?: string;
   additionalInfo?: string;
-  timing?: string;
 }
 
 function brand() {
@@ -24,7 +23,7 @@ function brand() {
 }
 
 export function defaultMessage(): string {
-  return `Hallo ${brand()}, ich möchte einen Termin anfragen.\n\nName: \nTelefon/WhatsApp: \nE-Mail: \nPLZ/Ort: \nObjekt: Zuhause / Ferienwohnung / kleines Büro\nProblemtyp: \nKurzbeschreibung: \nTechnische Zusatzinfos: \nRouterzugang vorhanden?: \nWunschtermin: `;
+  return `Hallo ${brand()}, ich möchte einen Termin anfragen.\n\nName: \nTelefon/WhatsApp: \nE-Mail: \nPLZ/Ort: \nObjekt: Zuhause / Ferienwohnung / kleines Büro\nProblemtyp: \nKurzbeschreibung: \nTechnische Zusatzinfos: \nRouterzugang vorhanden?: `;
 }
 
 export function whatsappHref(message?: string): string {
@@ -72,7 +71,7 @@ export function buildContactMessage(data: ContactFormData, travelEstimate: Trave
     data.objectType || ""
   }\nProblemtyp: ${data.problemType || ""}\nKurzbeschreibung: ${data.problem || ""}\nTechnische Zusatzinfos: ${
     data.additionalInfo || ""
-  }\nRouterzugang vorhanden?: ${data.routerAccess || ""}\nWunschtermin/Dringlichkeit: ${data.timing || ""}`;
+  }\nRouterzugang vorhanden?: ${data.routerAccess || ""}`;
 }
 
 export function buildQuizMessage(answers: QuizAnswers, travelEstimate: TravelEstimate | null): string {

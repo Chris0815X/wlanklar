@@ -7,16 +7,21 @@ import { trackEvent, refreshFormAttribution } from "../../lib/tracking";
 import { getService } from "../../data/services";
 import { TravelResultBox } from "./TravelResultBox";
 
-function prefillFromQuery(): ContactFormData {
-  if (typeof window === "undefined") return {};
+type ContactWizardProps = {
+  defaultObjectType?: string;
+};
+
+function prefillFromQuery(defaultObjectType = ""): ContactFormData {
+  const objectType = defaultObjectType ? { objectType: defaultObjectType } : {};
+  if (typeof window === "undefined") return objectType;
   const params = new URLSearchParams(window.location.search);
   const leistung = params.get("leistung");
   const service = leistung ? getService(leistung) : undefined;
-  if (service) return { additionalInfo: `Interesse an: ${service.name}` };
+  if (service) return { ...objectType, additionalInfo: `Interesse an: ${service.name}` };
   if (params.get("intent") === "erstgespraech") {
-    return { additionalInfo: "Wunsch: kostenloses Erstgespräch – bitte kurz zurückrufen." };
+    return { ...objectType, additionalInfo: "Wunsch: kostenloses Erstgespräch – bitte kurz zurückrufen." };
   }
-  return {};
+  return objectType;
 }
 
 const objectTypeOptions = ["Zuhause/Homeoffice", "Ferienwohnung/Monteurzimmer", "kleines Büro/Praxis/Studio"];
@@ -36,18 +41,17 @@ const contactPreferenceOptions = ["Telefon", "WhatsApp", "E-Mail"];
 const steps = [
   { title: "Kontakt & Ort", copy: "Damit der Termin eingeordnet und die Anfahrt geprüft werden kann." },
   { title: "Situation", copy: "Was ist betroffen und welche Art von Objekt soll geprüft werden?" },
-  { title: "Details", copy: "Optional hilfreich für die Vorbereitung, aber kein Pflichtprogramm." },
 ];
 
-export default function ContactWizard() {
+export default function ContactWizard({ defaultObjectType = "" }: ContactWizardProps) {
   const [stepIndex, setStepIndex] = useState(0);
-  const [data, setData] = useState<ContactFormData>(prefillFromQuery);
+  const [data, setData] = useState<ContactFormData>(() => prefillFromQuery(defaultObjectType));
   const [contactError, setContactError] = useState("");
   const [submitState, setSubmitState] = useState<"idle" | "submitting" | "prepared" | "error">("idle");
   const [submitError, setSubmitError] = useState("");
   const [preparedLeadId, setPreparedLeadId] = useState("");
   const [preparedMessage, setPreparedMessage] = useState("");
-  const stepRefs = [useRef<HTMLFieldSetElement>(null), useRef<HTMLFieldSetElement>(null), useRef<HTMLFieldSetElement>(null)];
+  const stepRefs = [useRef<HTMLFieldSetElement>(null), useRef<HTMLFieldSetElement>(null)];
   const phoneRef = useRef<HTMLInputElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -146,6 +150,7 @@ export default function ContactWizard() {
   function handleNext() {
     if (!validateStep(stepIndex)) return;
     if (stepIndex === 0 && !validateContactMethod()) return;
+    if (stepIndex >= steps.length - 1) return;
     goTo(stepIndex + 1);
   }
 
@@ -444,21 +449,6 @@ export default function ContactWizard() {
             onInput={(e) => update("problem", (e.target as HTMLTextAreaElement).value)}
           />
         </div>
-
-        <div class="wizard-actions">
-          <button type="button" class="btn btn-secondary" onClick={() => goTo(0)}>
-            Zurück
-          </button>
-          <button type="button" class="btn" onClick={handleNext}>
-            Weiter
-          </button>
-        </div>
-      </fieldset>
-
-      <fieldset class="form-step" hidden={stepIndex !== 2} ref={stepRefs[2]}>
-        <legend>{steps[2].title}</legend>
-        <p class="step-copy">{steps[2].copy}</p>
-
         <div class="field">
           <label class="field-label" htmlFor="cw-additional">
             Technische Zusatzinfos <span class="is-optional">(optional)</span>
@@ -469,17 +459,6 @@ export default function ContactWizard() {
             onInput={(e) => update("additionalInfo", (e.target as HTMLTextAreaElement).value)}
           />
         </div>
-        <div class="field">
-          <label class="field-label" htmlFor="cw-timing">
-            Wunschtermin/Dringlichkeit <span class="is-optional">(optional)</span>
-          </label>
-          <input
-            id="cw-timing"
-            value={data.timing || ""}
-            onInput={(e) => update("timing", (e.target as HTMLInputElement).value)}
-          />
-        </div>
-        <p class="step-copy">Dauert etwa 1 Minute. Pflichtfelder sind markiert.</p>
         {submitState === "error" && (
           <div class="form-error">
             <p>{submitError}</p>
@@ -495,7 +474,7 @@ export default function ContactWizard() {
         )}
 
         <div class="wizard-actions">
-          <button type="button" class="btn btn-secondary" onClick={() => goTo(1)}>
+          <button type="button" class="btn btn-secondary" onClick={() => goTo(0)}>
             Zurück
           </button>
           <button type="submit" class="btn" disabled={submitState === "submitting"}>

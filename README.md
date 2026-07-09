@@ -97,15 +97,17 @@ Aktuelle PLZ-Logik steht in `src/data/travel-zones.ts`.
 
 ## Kontaktformular
 
-Das Kontaktformular ist als mehrstufiger Wizard umgesetzt.
+Das Kontaktformular ist als zweistufiger Wizard umgesetzt.
 
 Aktuelle Logik:
 
 - Kunden wählen bewusst den gewünschten Kontaktweg: Telefon, WhatsApp oder E-Mail.
 - WhatsApp öffnet nicht mehr automatisch nach dem Formular.
 - Nach erfolgreicher Speicherung erscheint eine Bestätigung mit optionalem WhatsApp-Button.
-- Ort, PLZ, Objektart, Problemtyp und Kurzbeschreibung helfen bei der Vorbereitung.
-- Businesskunden sollen ihr Anliegen frei beschreiben können.
+- Ort, PLZ, Objektart, Routerzugang und Kurzbeschreibung helfen bei der Vorbereitung.
+- Technische Zusatzinfos sind optional im zweiten Schritt gebündelt.
+- Auf Bereichsseiten wird die passende Objektart vorgewählt; der Formularablauf bleibt überall gleich.
+- Privatkunden erhalten zusätzlich ein Problemtyp-Dropdown, Business- und Ferienwohnungskunden beschreiben ihr Anliegen frei.
 - WhatsApp- und Telefonlinks sind aktiv.
 - Formularanfragen werden über Netlify Functions in Netlify Blobs zwischengespeichert.
 - Direkte Baserow-Synchronisierung erfolgt später über einen privaten Debian-Sync-Worker.

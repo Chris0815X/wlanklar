@@ -58,7 +58,6 @@ export function sanitizeLead(payload) {
     routerAccess: sanitizeText(payload.routerAccess, 120),
     problem: sanitizeText(payload.problem, 1600),
     additionalInfo: sanitizeText(payload.additionalInfo, 1600),
-    timing: sanitizeText(payload.timing, 300),
     message: sanitizeText(payload.message, 2600),
     travel: payload.travel && typeof payload.travel === "object" ? payload.travel : null,
     attribution: payload.attribution && typeof payload.attribution === "object" ? payload.attribution : {},

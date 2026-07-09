@@ -36,6 +36,18 @@ export const siteConfig = {
   ],
 } as const;
 
+export const techHelpPrices = {
+  technikCheckFrom: 99,
+  windows11CheckFrom: 79,
+  laptopUpgradeWorkFrom: 129,
+  windowsSetupFrom: 149,
+  newDeviceSetupFrom: 149,
+  dataTransferFrom: 99,
+  backupSetupFrom: 129,
+  printerSetupFrom: 79,
+  purchaseAdviceFrom: 79,
+} as const;
+
 interface TrackingConfig {
   enabled: boolean;
   debug: boolean;

@@ -16,6 +16,7 @@ interface Props {
 const { title, description, includeSchema = false, noIndex = false } = Astro.props;
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 const schema = includeSchema ? localBusinessSchema(canonicalUrl.origin) : null;
+const pageTitle = title.includes("WLANklar") ? title : `${title} – WLANklar`;
 ---
 
 <!doctype html>
@@ -25,11 +26,11 @@ const schema = includeSchema ? localBusinessSchema(canonicalUrl.origin) : null;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={canonicalUrl} />
-    <title>{title} – WLANklar</title>
+    <title>{pageTitle}</title>
     <meta name="description" content={description} />
     {noIndex && <meta name="robots" content="noindex,follow" />}
     <meta property="og:type" content="website" />
-    <meta property="og:title" content={`${title} – WLANklar`} />
+    <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
     {schema && (

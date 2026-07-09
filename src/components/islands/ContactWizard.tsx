@@ -17,22 +17,42 @@ function prefillFromQuery(defaultObjectType = ""): ContactFormData {
   const params = new URLSearchParams(window.location.search);
   const leistung = params.get("leistung");
   const service = leistung ? getService(leistung) : undefined;
-  if (service) return { ...objectType, additionalInfo: `Interesse an: ${service.name}` };
+  if (service) {
+    const serviceObjectType =
+      service.segment === "technik" ? { objectType: "Technik-Hilfe zuhause" } : objectType;
+    return { ...serviceObjectType, additionalInfo: `Interesse an: ${service.name}` };
+  }
   if (params.get("intent") === "erstgespraech") {
     return { ...objectType, additionalInfo: "Wunsch: kostenloses Erstgespräch – bitte kurz zurückrufen." };
   }
   return objectType;
 }
 
-const objectTypeOptions = ["Zuhause/Homeoffice", "Ferienwohnung/Monteurzimmer", "kleines Büro/Praxis/Studio"];
+const objectTypeOptions = [
+  "Zuhause/Homeoffice",
+  "Ferienwohnung/Monteurzimmer",
+  "kleines Büro/Praxis/Studio",
+  "Technik-Hilfe zuhause",
+];
 
-const problemTypeOptions = [
+const homeProblemTypeOptions = [
   "WLAN reicht nicht in alle Räume",
   "Internet ist langsam",
   "Verbindung bricht ab",
   "Smart-TV/Streaming-Probleme",
   "Gäste-WLAN oder QR-Code fehlt",
   "unklare Ursache",
+];
+
+const techProblemTypeOptions = [
+  "Laptop langsam",
+  "Windows-11-Check",
+  "neues Gerät einrichten",
+  "Datenübernahme",
+  "Backup",
+  "Drucker/Scanner",
+  "Kaufberatung",
+  "anderes Technikproblem",
 ];
 
 const routerAccessOptions = ["ja, Routerpasswort vorhanden", "nur WLAN-Passwort vorhanden", "nein/unsicher"];
@@ -57,12 +77,19 @@ export default function ContactWizard({ defaultObjectType = "" }: ContactWizardP
 
   const travelEstimate = estimateTravel(data.postcode);
   const isHomeoffice = data.objectType === "Zuhause/Homeoffice";
+  const isTechHelp = data.objectType === "Technik-Hilfe zuhause";
+  const problemTypeOptions = isTechHelp ? techProblemTypeOptions : homeProblemTypeOptions;
+  const showProblemType = isHomeoffice || isTechHelp;
 
   function update<K extends keyof ContactFormData>(key: K, value: string) {
     if ((key === "customerPhone" || key === "customerEmail" || key === "preferredContact") && value.trim()) {
       setContactError("");
     }
-    setData((current) => ({ ...current, [key]: value }));
+    setData((current) => ({
+      ...current,
+      [key]: value,
+      ...(key === "objectType" ? { problemType: "" } : {}),
+    }));
   }
 
   function validateContactMethod(): boolean {
@@ -400,14 +427,14 @@ export default function ContactWizard({ defaultObjectType = "" }: ContactWizardP
             ))}
           </select>
         </div>
-        {isHomeoffice && (
+        {showProblemType && (
           <div class="field">
             <label class="field-label" htmlFor="cw-problem-type">
               Problemtyp
             </label>
             <select
               id="cw-problem-type"
-              required={isHomeoffice}
+              required={showProblemType}
               value={data.problemType || ""}
               onChange={(e) => update("problemType", (e.target as HTMLSelectElement).value)}
             >

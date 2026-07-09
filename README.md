@@ -42,6 +42,7 @@ Der lokale Dev-Server läuft standardmäßig unter `http://localhost:4321`.
 - `/zuhause-homeoffice/`
 - `/ferienwohnungen/`
 - `/kleine-bueros/`
+- `/technik-hilfe/`
 - `/einsatzgebiet/`
 - `/kontakt/`
 - `/impressum/`
@@ -80,6 +81,22 @@ Gewerbliche Preise sind netto zzgl. MwSt.
 - Büro-WLAN-Check: 169 EUR zzgl. MwSt.
 - Büro-WLAN Setup: ab 599 EUR zzgl. Hardware und MwSt.
 
+### Technik-Hilfe zuhause
+
+- Technik-Check zuhause: ab 99 EUR
+- Windows-11-Check: ab 79 EUR
+- Laptop wieder schneller machen: ab 129 EUR plus Hardware
+- Windows neu einrichten: ab 149 EUR
+- Neues Gerät startklar machen: ab 149 EUR
+- Datenübernahme & Fotos sortieren: ab 99 EUR
+- Backup verständlich einrichten: ab 129 EUR
+- Drucker oder Scanner ins Netzwerk bringen: ab 79 EUR als Zusatzleistung
+- Technik-Kaufberatung: ab 79 EUR
+
+Die Technik-Hilfe ist bewusst als ergänzender Bereich positioniert: ausgewählte Hilfe für Laptop, Windows, Drucker,
+Backup, neue Geräte und Kaufberatung; keine professionelle Datenrettung, Smartphone-Hardware-Reparatur oder komplexe
+Firmen-IT.
+
 ### Zusatzzeit
 
 - Privatkunden: 25 EUR je weitere 15 Minuten
@@ -107,7 +124,7 @@ Aktuelle Logik:
 - Ort, PLZ, Objektart, Routerzugang und Kurzbeschreibung helfen bei der Vorbereitung.
 - Technische Zusatzinfos sind optional im zweiten Schritt gebündelt.
 - Auf Bereichsseiten wird die passende Objektart vorgewählt; der Formularablauf bleibt überall gleich.
-- Privatkunden erhalten zusätzlich ein Problemtyp-Dropdown, Business- und Ferienwohnungskunden beschreiben ihr Anliegen frei.
+- Privatkunden und Technik-Hilfe erhalten zusätzlich ein passendes Problemtyp-Dropdown; Business- und Ferienwohnungskunden beschreiben ihr Anliegen frei.
 - WhatsApp- und Telefonlinks sind aktiv.
 - Formularanfragen werden über Netlify Functions in Netlify Blobs zwischengespeichert.
 - Direkte Baserow-Synchronisierung erfolgt später über einen privaten Debian-Sync-Worker.

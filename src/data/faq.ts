@@ -139,6 +139,56 @@ export const faqEntries: FaqEntry[] = [
     answer:
       "Ja, nach Absprache auch vor Öffnung oder nach Feierabend – damit Ihr Betrieb ungestört weiterläuft und keine Kunden im Laden stehen, während am Netzwerk gearbeitet wird.",
   },
+
+  // Technik-Hilfe zuhause
+  {
+    id: "technik-jeden-computer",
+    question: "Repariert WLANklar jeden Computer?",
+    answer:
+      "Nein. WLANklar hilft bei ausgewählten, klar abgrenzbaren Technikproblemen zuhause. Bei Hardwaredefekten, Displaybruch, Mainboard-Schäden oder professioneller Datenrettung ist eine spezialisierte Werkstatt die bessere Wahl.",
+  },
+  {
+    id: "technik-laptop-schneller",
+    question: "Kann ein alter Laptop wirklich wieder schneller werden?",
+    answer:
+      "Manchmal ja. Häufig bringen SSD, mehr RAM oder eine saubere Neueinrichtung viel. Ob sich das lohnt, hängt vom Gerät ab. WLANklar prüft das und gibt eine ehrliche Empfehlung.",
+  },
+  {
+    id: "technik-datenuebernahme",
+    question: "Übernimmt WLANklar auch Daten vom alten auf den neuen Laptop?",
+    answer:
+      "Ja, soweit die Daten zugänglich sind und das alte Gerät noch funktioniert. Professionelle Datenrettung bei defekten Datenträgern ist nicht Teil des Angebots.",
+  },
+  {
+    id: "technik-windows-neu",
+    question: "Richten Sie auch Windows neu ein?",
+    answer:
+      "Ja, nach vorheriger Absprache. Wichtig ist vorher zu klären, welche Daten gesichert werden sollen und welche Programme oder Zugänge später wieder benötigt werden.",
+  },
+  {
+    id: "technik-drucker",
+    question: "Helfen Sie bei Druckern?",
+    answer:
+      "Ja, wenn es um die Einbindung ins WLAN oder Heimnetz, Treiber/App und einfache Funktionstests geht. Sehr alte oder defekte Drucker können jedoch wirtschaftlich wenig sinnvoll sein.",
+  },
+  {
+    id: "technik-kaufberatung",
+    question: "Kann ich auch Kaufberatung buchen?",
+    answer:
+      "Ja. WLANklar hilft bei der Auswahl von Laptop, Router, Drucker oder Zubehör, damit Sie kein unpassendes Gerät kaufen.",
+  },
+  {
+    id: "technik-senioren",
+    question: "Ist das auch für Senioren geeignet?",
+    answer:
+      "Ja. Viele Technikthemen werden bewusst ruhig und verständlich erklärt – zum Beispiel neues Gerät einrichten, Fotos sichern, E-Mail, Drucker oder einfache Backup-Lösungen.",
+  },
+  {
+    id: "technik-bezahlung",
+    question: "Wie wird bezahlt?",
+    answer:
+      "Privatkunden zahlen bequem direkt vor Ort per Karte, Smartphone oder bar. Die Rechnung erhalten Sie digital.",
+  },
 ];
 
 export function getFaqEntries(ids: string[]): FaqEntry[] {

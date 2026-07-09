@@ -1,0 +1,210 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Breadcrumbs from "../components/layout/Breadcrumbs.astro";
+import PricingGrid from "../components/sections/PricingGrid.astro";
+import ProcessSteps from "../components/sections/ProcessSteps.astro";
+import FaqAccordion from "../components/sections/FaqAccordion.astro";
+import ContactWizard from "../components/islands/ContactWizard";
+import { whatsappHref } from "../lib/whatsapp";
+
+const whatsappMessage =
+  "Hallo WLANklar, ich habe ein Technikproblem zuhause und möchte kurz anfragen, ob Sie helfen können.";
+
+const techServiceIds = [
+  "technik-check",
+  "windows-11-check",
+  "laptop-schneller",
+  "windows-neu-einrichten",
+  "neues-geraet-startklar",
+  "datenuebernahme-fotos",
+  "backup-einrichten",
+  "drucker-scanner-netzwerk",
+  "technik-kaufberatung",
+];
+---
+
+<BaseLayout
+  title="Technik-Hilfe zuhause – WLANklar in Lausitz, Spreewald & Dresden"
+  description="WLANklar hilft nicht nur bei WLAN, sondern auch bei ausgewählten Technikproblemen zuhause: Laptop langsam, Windows-11-Check, neues Gerät einrichten, Datenübernahme, Backup, Drucker und Kaufberatung."
+>
+  <div class="container" style="padding-top: 20px;">
+    <Breadcrumbs items={[{ label: "Startseite", href: "/" }, { label: "Technik-Hilfe für Zuhause" }]} />
+  </div>
+
+  <section class="hero section">
+    <div class="container">
+      <div class="hero-copy">
+        <span class="section-label">Ausgewählte Hilfe zuhause</span>
+        <h1>Technik-Hilfe für Zuhause</h1>
+        <p class="lead">
+          Laptop langsam, Windows unsicher, Drucker streikt oder neues Gerät noch nicht eingerichtet? WLANklar
+          unterstützt bei ausgewählten Technikproblemen zuhause – verständlich erklärt und sauber umgesetzt.
+        </p>
+        <div class="btn-row">
+          <a class="btn" href="#kontakt">Technik-Anfrage stellen</a>
+          <a class="btn btn-secondary" href={whatsappHref(whatsappMessage)} target="_blank" rel="noopener">
+            Per WhatsApp Kontakt aufnehmen
+          </a>
+        </div>
+        <p class="hero-micro">
+          Vor Ort in der Lausitz, im Spreewald & in Dresden · Laptop · Windows · Drucker · Backup · Kaufberatung
+        </p>
+      </div>
+      <div class="hero-panel">
+        <div class="hero-panel-body">
+          <span class="badge">Typische Hilfe vor Ort</span>
+          <h2 style="font-size: var(--step-h3); margin-top: 12px;">Wenn Alltagstechnik nicht sauber läuft.</h2>
+          <ul>
+            <li>Laptop prüfen und sinnvoll aufrüsten</li>
+            <li>Windows neu einrichten oder Upgrade prüfen</li>
+            <li>neues Gerät startklar machen</li>
+            <li>Daten, Fotos und Backup verständlich sortieren</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">Einordnung</span>
+        <h2>Ausgewählte Technik-Hilfe statt Computer-Bauchladen</h2>
+        <p class="lead">
+          WLANklar hilft bei Technikthemen, die im Alltag wirklich stören und sich klar abgrenzen lassen. Es geht nicht
+          um beliebige Reparaturen, sondern um praktische Unterstützung bei Laptop, Windows, Drucker, Backup, neuen
+          Geräten und Kaufentscheidungen.
+        </p>
+      </div>
+      <div class="grid cols-4">
+        <div class="panel">
+          <h3>Verständlich erklärt</h3>
+          <p style="color: var(--color-ink-muted);">Keine Fachsprache, die mehr verwirrt als hilft.</p>
+        </div>
+        <div class="panel">
+          <h3>Klare Empfehlung</h3>
+          <p style="color: var(--color-ink-muted);">Aufrüsten, neu einrichten oder ersetzen – mit ehrlicher Einordnung.</p>
+        </div>
+        <div class="panel">
+          <h3>Vor Ort in der Region</h3>
+          <p style="color: var(--color-ink-muted);">Technik-Hilfe zuhause in der Lausitz, im Spreewald und nach Absprache in Dresden.</p>
+        </div>
+        <div class="panel">
+          <h3>Saubere Grenzen</h3>
+          <p style="color: var(--color-ink-muted);">Wenn ein Fall nicht passt, wird das offen gesagt.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <PricingGrid
+    eyebrow="Angebote"
+    title="Pragmatische Hilfe für Laptop, Windows, Drucker und Backup."
+    note="Preise gelten für ausgewählte Technik-Hilfe zuhause. Hardware, Ersatzteile oder längere Datenübernahmen kommen nur nach Absprache dazu."
+    columns={3}
+    serviceIds={techServiceIds}
+  />
+
+  <section class="section" style="padding-block: 0 clamp(48px, 8vw, 88px);">
+    <div class="container">
+      <div class="panel">
+        <strong>Lokale Technik-Hilfe zuhause</strong>
+        <p style="margin: 6px 0 0; color: var(--color-ink-muted);">
+          Sinnvoll bei Themen wie Computerhilfe in Großräschen, Laptop langsam in der Lausitz, Windows-11-Check,
+          Laptop aufrüsten, Drucker einrichten, Datenübernahme Laptop oder Backup einrichten. Im Spreewald und in
+          Dresden wird der Einsatz je nach Entfernung und Terminlage abgestimmt.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <ProcessSteps
+    eyebrow="Ablauf"
+    title="So läuft die Technik-Hilfe ab"
+    steps={[
+      { title: "Anfrage senden", copy: "Beschreiben Sie kurz das Gerät, das Problem und den gewünschten Kontaktweg." },
+      { title: "Einschätzung", copy: "WLANklar prüft, ob das Thema zum Angebot passt und welche Leistung sinnvoll ist." },
+      {
+        title: "Termin oder Empfehlung",
+        copy: "Wenn es vor Ort sinnvoll lösbar ist, vereinbaren wir einen Termin. Wenn nicht, erhalten Sie eine ehrliche Einschätzung.",
+      },
+      {
+        title: "Umsetzung",
+        copy: "Vor Ort wird geprüft, eingerichtet, aufgerüstet oder erklärt – je nach vereinbarter Leistung.",
+      },
+      {
+        title: "Kurze Dokumentation",
+        copy: "Sie erhalten eine verständliche Zusammenfassung, was gemacht wurde und worauf Sie achten sollten.",
+      },
+    ]}
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">Grenzen</span>
+        <h2>Klare Grenzen für faire Hilfe</h2>
+        <p class="lead">
+          Damit Termine planbar bleiben und keine falschen Erwartungen entstehen, bietet WLANklar bewusst keine
+          beliebigen Reparaturen an.
+        </p>
+      </div>
+      <div class="grid cols-2">
+        <div class="panel">
+          <h3>Nicht Teil des Angebots</h3>
+          <ul style="margin-top: 16px; padding-left: 18px; color: var(--color-ink-muted);">
+            <li>professionelle Datenrettung bei defekten Festplatten oder SSDs</li>
+            <li>Display-, Mainboard- oder Lötarbeiten</li>
+            <li>Smartphone-Hardware-Reparaturen</li>
+            <li>Gaming-PC-Bau nach Wunschliste</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h3>Ebenfalls nicht passend</h3>
+          <ul style="margin-top: 16px; padding-left: 18px; color: var(--color-ink-muted);">
+            <li>Virenentfernung mit Erfolgsgarantie</li>
+            <li>Server-, NAS- oder komplexe Firmen-IT</li>
+            <li>sicherheitskritische Kamera- oder Alarmanlagen</li>
+            <li>Smart-Home-Komplettsysteme ohne klare Eingrenzung</li>
+          </ul>
+        </div>
+      </div>
+      <p class="panel-note" style="margin-top: 20px;">
+        Wenn ein Fall nicht zum Angebot passt, sagt WLANklar das ehrlich und empfiehlt bei Bedarf den passenden nächsten
+        Schritt.
+      </p>
+    </div>
+  </section>
+
+  <FaqAccordion
+    ids={[
+      "technik-jeden-computer",
+      "technik-laptop-schneller",
+      "technik-datenuebernahme",
+      "technik-windows-neu",
+      "technik-drucker",
+      "technik-kaufberatung",
+      "technik-senioren",
+      "technik-bezahlung",
+    ]}
+  />
+
+  <section class="section section-alt" id="kontakt">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">Kontakt</span>
+        <h2>Technikproblem zuhause? Kurz beschreiben reicht.</h2>
+        <p class="lead">
+          Senden Sie eine kurze Anfrage mit Gerät, Problem, Ort und gewünschtem Kontaktweg. WLANklar meldet sich mit
+          einer Einschätzung, ob und wie das Thema sinnvoll gelöst werden kann.
+        </p>
+      </div>
+      <div class="panel">
+        <ContactWizard client:load defaultObjectType="Technik-Hilfe zuhause" />
+      </div>
+      <div class="btn-row" style="margin-top: 18px;">
+        <a class="btn btn-secondary" href="/zuhause-homeoffice/">Zurück zu WLAN & Heimnetz</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

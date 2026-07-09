@@ -1,8 +1,9 @@
 // Typisierter Angebotskatalog mit stabilen IDs.
 // Einzige Quelle für Preise/Beschreibungen: PricingGrid, Quiz-Logik und Ratgeber-Verlinkung
 // referenzieren dieselben Einträge statt Preise als Strings zu duplizieren.
+import { techHelpPrices } from "./config";
 
-export type Segment = "privat" | "ferienwohnung" | "buero" | "schnell";
+export type Segment = "privat" | "ferienwohnung" | "buero" | "schnell" | "technik";
 
 export interface Service {
   id: string;
@@ -214,6 +215,145 @@ export const services: Service[] = [
       "Basis-Sicherheitsprüfung",
     ],
     featured: true,
+  },
+  {
+    id: "technik-check",
+    segment: "technik",
+    name: "Technik-Check zuhause",
+    price: techHelpPrices.technikCheckFrom,
+    priceFrom: true,
+    tagline: "Für alle, die nicht sicher sind, ob sich Reparatur, Aufrüstung oder Neukauf lohnt.",
+    includes: [
+      "Gerät und Problem kurz prüfen",
+      "sinnvolle Optionen erklären",
+      "Aufwand und mögliche Kosten einschätzen",
+      "Empfehlung: aufrüsten, neu einrichten oder ersetzen",
+    ],
+  },
+  {
+    id: "windows-11-check",
+    segment: "technik",
+    name: "Windows-11-Check",
+    price: techHelpPrices.windows11CheckFrom,
+    priceFrom: true,
+    tagline: "Prüfung, ob Ihr PC oder Laptop für Windows 11 geeignet ist oder ob eine Aufrüstung sinnvoller wäre.",
+    includes: [
+      "Systemzustand prüfen",
+      "Upgrade-Möglichkeit einschätzen",
+      "Sicherheits- und Update-Situation erklären",
+      "Empfehlung für Upgrade, Aufrüstung oder Neukauf",
+    ],
+  },
+  {
+    id: "laptop-schneller",
+    segment: "technik",
+    name: "Laptop wieder schneller machen",
+    price: techHelpPrices.laptopUpgradeWorkFrom,
+    priceFrom: true,
+    priceSuffix: "plus Hardware",
+    tagline:
+      "Wenn ein älterer Laptop langsam geworden ist, prüfen wir, ob SSD, RAM oder eine saubere Neueinrichtung sinnvoll sind.",
+    includes: [
+      "Zustand einschätzen",
+      "Aufrüstbarkeit prüfen",
+      "SSD/RAM-Empfehlung",
+      "Arbeitsleistung für Aufrüstung nach Absprache",
+      "Hardware separat",
+    ],
+  },
+  {
+    id: "windows-neu-einrichten",
+    segment: "technik",
+    name: "Windows neu einrichten",
+    price: techHelpPrices.windowsSetupFrom,
+    priceFrom: true,
+    tagline:
+      "Wenn Windows träge, unübersichtlich oder fehleranfällig geworden ist, kann eine saubere Neueinrichtung sinnvoll sein.",
+    includes: [
+      "Vorbereitung nach Absprache",
+      "Windows neu einrichten",
+      "wichtige Updates",
+      "Grundprogramme",
+      "WLAN/Drucker nach Möglichkeit anbinden",
+      "Datenübernahme optional",
+    ],
+  },
+  {
+    id: "neues-geraet-startklar",
+    segment: "technik",
+    name: "Neues Gerät startklar machen",
+    price: techHelpPrices.newDeviceSetupFrom,
+    priceFrom: true,
+    tagline: "Neuer Laptop oder PC? WLANklar richtet die wichtigsten Dinge ein, damit Sie direkt sinnvoll starten können.",
+    includes: [
+      "Benutzerkonto",
+      "WLAN",
+      "Updates",
+      "Browser",
+      "E-Mail",
+      "Drucker nach Möglichkeit",
+      "kurze Erklärung",
+    ],
+  },
+  {
+    id: "datenuebernahme-fotos",
+    segment: "technik",
+    name: "Datenübernahme & Fotos sortieren",
+    price: techHelpPrices.dataTransferFrom,
+    priceFrom: true,
+    tagline:
+      "Dokumente, Fotos oder wichtige Dateien vom alten auf das neue Gerät übertragen – soweit technisch möglich und sinnvoll.",
+    includes: [
+      "Datenbestand prüfen",
+      "Übertragung nach Absprache",
+      "einfache Ordnerstruktur",
+      "Fotos/Dokumente verständlich sortieren",
+      "keine professionelle Datenrettung defekter Datenträger",
+    ],
+  },
+  {
+    id: "backup-einrichten",
+    segment: "technik",
+    name: "Backup verständlich einrichten",
+    price: techHelpPrices.backupSetupFrom,
+    priceFrom: true,
+    tagline: "Damit wichtige Fotos und Dokumente nicht nur auf einem Gerät liegen.",
+    includes: [
+      "einfache Backup-Strategie erklären",
+      "externe Festplatte oder Cloud-Grundstruktur",
+      "Sicherung wichtiger Ordner einrichten",
+      "kurze Anleitung für den Alltag",
+    ],
+  },
+  {
+    id: "drucker-scanner-netzwerk",
+    segment: "technik",
+    name: "Drucker oder Scanner ins Netzwerk bringen",
+    price: techHelpPrices.printerSetupFrom,
+    priceFrom: true,
+    priceSuffix: "als Zusatzleistung",
+    tagline: "Wenn Drucker oder Scanner nicht zuverlässig mit Laptop, PC oder WLAN zusammenarbeiten.",
+    includes: [
+      "Verbindung prüfen",
+      "Gerät ins Netzwerk einbinden, wenn möglich",
+      "Treiber/App prüfen",
+      "Testdruck oder Scan",
+      "besonders sinnvoll als Zusatz zu WLAN- oder Heimnetzterminen",
+    ],
+  },
+  {
+    id: "technik-kaufberatung",
+    segment: "technik",
+    name: "Technik-Kaufberatung",
+    price: techHelpPrices.purchaseAdviceFrom,
+    priceFrom: true,
+    tagline: "Neuer Laptop, Router, Drucker oder Zubehör? WLANklar hilft bei der Auswahl, ohne Verkaufsdruck.",
+    includes: [
+      "Bedarf klären",
+      "passende Geräteklasse empfehlen",
+      "Fehlkäufe vermeiden",
+      "auf Wunsch Einkaufsliste oder konkrete Empfehlung",
+    ],
   },
 ];
 

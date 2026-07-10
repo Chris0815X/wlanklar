@@ -5,6 +5,7 @@ import PricingGrid from "../components/sections/PricingGrid.astro";
 import ProcessSteps from "../components/sections/ProcessSteps.astro";
 import FaqAccordion from "../components/sections/FaqAccordion.astro";
 import ContactWizard from "../components/islands/ContactWizard";
+import { serviceSchema } from "../data/schema";
 import { whatsappHref } from "../lib/whatsapp";
 
 const whatsappMessage =
@@ -21,11 +22,21 @@ const techServiceIds = [
   "drucker-scanner-netzwerk",
   "technik-kaufberatung",
 ];
+
+const schemas = [
+  serviceSchema({
+    name: "Technik-Hilfe zuhause in Senftenberg",
+    serviceType: "Computerhilfe, Windows-11-Check, Drucker einrichten, Datenübernahme und Backup",
+    url: "/technik-hilfe/",
+    areaServed: "Senftenberg, Lausitz und Spreewald",
+  }),
+];
 ---
 
 <BaseLayout
-  title="Technik-Hilfe zuhause – WLANklar in Lausitz, Spreewald & Dresden"
-  description="WLANklar hilft nicht nur bei WLAN, sondern auch bei ausgewählten Technikproblemen zuhause: Laptop langsam, Windows-11-Check, neues Gerät einrichten, Datenübernahme, Backup, Drucker und Kaufberatung."
+  title="Technik-Hilfe zuhause in Senftenberg | Laptop, Windows & Drucker"
+  description="Computerhilfe zuhause in Senftenberg & Umgebung: Laptop langsam, Windows-11-Check, Drucker einrichten, Datenübernahme, Backup, neues Gerät startklar machen."
+  schemas={schemas}
 >
   <div class="container" style="padding-top: 20px;">
     <Breadcrumbs items={[{ label: "Startseite", href: "/" }, { label: "Technik-Hilfe für Zuhause" }]} />
@@ -35,10 +46,11 @@ const techServiceIds = [
     <div class="container">
       <div class="hero-copy">
         <span class="section-label">Ausgewählte Hilfe zuhause</span>
-        <h1>Technik-Hilfe für Zuhause</h1>
+        <h1>Technik-Hilfe zuhause in Senftenberg & Umgebung</h1>
         <p class="lead">
-          Laptop langsam, Windows unsicher, Drucker streikt oder neues Gerät noch nicht eingerichtet? WLANklar
-          unterstützt bei ausgewählten Technikproblemen zuhause – verständlich erklärt und sauber umgesetzt.
+          Laptop langsam, Windows unsicher, Drucker verbindet sich nicht oder neues Gerät noch nicht eingerichtet?
+          WLANklar hilft zuhause in Senftenberg, Großräschen, Lauchhammer, Schwarzheide, Ruhland, Lauta, Hoyerswerda
+          und Umgebung bei ausgewählten Technikproblemen.
         </p>
         <div class="btn-row">
           <a class="btn" href="#kontakt">Technik-Anfrage stellen</a>
@@ -47,18 +59,18 @@ const techServiceIds = [
           </a>
         </div>
         <p class="hero-micro">
-          Vor Ort in der Lausitz, im Spreewald & in Dresden · Laptop · Windows · Drucker · Backup · Kaufberatung
+          Vor Ort in Senftenberg, Lausitz & Spreewald · Laptop · Windows · Drucker · Backup · Kaufberatung
         </p>
       </div>
       <div class="hero-panel">
         <div class="hero-panel-body">
           <span class="badge">Typische Hilfe vor Ort</span>
-          <h2 style="font-size: var(--step-h3); margin-top: 12px;">Wenn Alltagstechnik nicht sauber läuft.</h2>
+          <h2 style="font-size: var(--step-h3); margin-top: 12px;">Klar abgrenzbare Computerhilfe.</h2>
           <ul>
-            <li>Laptop prüfen und sinnvoll aufrüsten</li>
-            <li>Windows neu einrichten oder Upgrade prüfen</li>
-            <li>neues Gerät startklar machen</li>
-            <li>Daten, Fotos und Backup verständlich sortieren</li>
+            <li>Laptop prüfen und Windows-11-Check</li>
+            <li>Windows neu einrichten oder neues Gerät starten</li>
+            <li>Drucker oder Scanner ins WLAN bringen</li>
+            <li>Daten übernehmen und Backup verständlich einrichten</li>
           </ul>
         </div>
       </div>
@@ -67,13 +79,49 @@ const techServiceIds = [
 
   <section class="section section-alt">
     <div class="container">
+      <div class="panel" style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; justify-content: space-between;">
+        <p style="flex: 1 1 360px; margin: 0; color: var(--color-ink-muted);">
+          Geht es vor allem um langsames WLAN, Repeater, Router oder Internetabbrüche? Dann ist der
+          {" "}<a href="/zuhause-homeoffice/">WLAN-Check für Zuhause & Homeoffice</a> der bessere Start.
+        </p>
+        <a class="btn btn-secondary" href="/wlan-techniker-senftenberg/">Router-/WLAN-Probleme ansehen</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
       <div class="section-head">
-        <span class="section-label">Einordnung</span>
-        <h2>Ausgewählte Technik-Hilfe statt Computer-Bauchladen</h2>
+        <span class="section-label">Computerhilfe</span>
+        <h2>Computerhilfe und Technik-Hilfe in Senftenberg, Lausitz & Spreewald</h2>
         <p class="lead">
-          WLANklar hilft bei Technikthemen, die im Alltag wirklich stören und sich klar abgrenzen lassen. Es geht nicht
-          um beliebige Reparaturen, sondern um praktische Unterstützung bei Laptop, Windows, Drucker, Backup, neuen
-          Geräten und Kaufentscheidungen.
+          WLANklar hilft bei ausgewählten Technikproblemen zuhause in Senftenberg, Großkoschen, Großräschen,
+          Lauchhammer, Schwarzheide, Ruhland, Lauta, Hoyerswerda, Elsterheide und Umgebung.
+        </p>
+      </div>
+      <div class="panel">
+        <p style="margin: 0; color: var(--color-ink-muted);">
+          Typische Anfragen sind: Computerhilfe Senftenberg, PC Hilfe Senftenberg, Laptop langsam, Windows-11-Check,
+          Laptop schneller machen, Windows neu einrichten, neues Gerät einrichten, Drucker mit WLAN verbinden,
+          Datenübernahme vom alten Laptop und Backup einrichten.
+        </p>
+      </div>
+      <div class="btn-row" style="margin-top: 24px;">
+        <a class="btn btn-secondary" href="/computerhilfe-senftenberg/">Computerhilfe Senftenberg</a>
+        <a class="btn btn-secondary" href="/drucker-einrichten-senftenberg/">Drucker einrichten</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">Gezielte Hilfe</span>
+        <h2>Technik-Hilfe für konkrete Alltagsprobleme</h2>
+        <p class="lead">
+          WLANklar hilft bei klar umrissenen Technikthemen zuhause: Laptop prüfen, Windows-11-Check, Windows neu
+          einrichten, Drucker oder Scanner ins WLAN bringen, Daten übernehmen, Backup verständlich einrichten und
+          Kaufentscheidungen nachvollziehbar machen.
         </p>
       </div>
       <div class="grid cols-4">
@@ -82,16 +130,16 @@ const techServiceIds = [
           <p style="color: var(--color-ink-muted);">Keine Fachsprache, die mehr verwirrt als hilft.</p>
         </div>
         <div class="panel">
-          <h3>Klare Empfehlung</h3>
-          <p style="color: var(--color-ink-muted);">Aufrüsten, neu einrichten oder ersetzen – mit ehrlicher Einordnung.</p>
+          <h3>Passende Empfehlung</h3>
+          <p style="color: var(--color-ink-muted);">Ob prüfen, neu einrichten, aufrüsten oder ersetzen: Sie bekommen eine nachvollziehbare Einschätzung.</p>
         </div>
         <div class="panel">
           <h3>Vor Ort in der Region</h3>
-          <p style="color: var(--color-ink-muted);">Technik-Hilfe zuhause in der Lausitz, im Spreewald und nach Absprache in Dresden.</p>
+          <p style="color: var(--color-ink-muted);">Technik-Hilfe zuhause in Senftenberg, der Lausitz und im Spreewald.</p>
         </div>
         <div class="panel">
-          <h3>Saubere Grenzen</h3>
-          <p style="color: var(--color-ink-muted);">Wenn ein Fall nicht passt, wird das offen gesagt.</p>
+          <h3>Ehrliche Einschätzung</h3>
+          <p style="color: var(--color-ink-muted);">Wenn eine Werkstatt oder ein spezialisierter IT-Dienstleister besser passt, sagen wir das vorab.</p>
         </div>
       </div>
     </div>
@@ -107,13 +155,40 @@ const techServiceIds = [
 
   <section class="section" style="padding-block: 0 clamp(48px, 8vw, 88px);">
     <div class="container">
-      <div class="panel">
-        <strong>Lokale Technik-Hilfe zuhause</strong>
-        <p style="margin: 6px 0 0; color: var(--color-ink-muted);">
-          Sinnvoll bei Themen wie Computerhilfe in Großräschen, Laptop langsam in der Lausitz, Windows-11-Check,
-          Laptop aufrüsten, Drucker einrichten, Datenübernahme Laptop oder Backup einrichten. Im Spreewald und in
-          Dresden wird der Einsatz je nach Entfernung und Terminlage abgestimmt.
-        </p>
+      <div class="grid cols-2">
+        <div class="panel">
+          <h2 style="font-size: var(--step-h3);">Computerhilfe zuhause: verständlich statt kompliziert</h2>
+          <p style="color: var(--color-ink-muted);">
+            Viele Technikprobleme sind im Alltag nervig, aber nicht groß genug für eine klassische Werkstatt: Der
+            Laptop ist langsam, Windows meldet ständig Updates, der Drucker wird nicht gefunden oder wichtige Fotos
+            sollen endlich gesichert werden. WLANklar erklärt die Optionen verständlich und setzt nur um, was zum Gerät
+            und zur Situation passt.
+          </p>
+        </div>
+        <div class="panel">
+          <h2 style="font-size: var(--step-h3);">Laptop langsam? Erst prüfen, dann entscheiden</h2>
+          <p style="color: var(--color-ink-muted);">
+            Nicht jeder langsame Laptop muss ersetzt werden. Manchmal helfen SSD, mehr Arbeitsspeicher, eine saubere
+            Neueinrichtung oder das Entfernen unnötiger Altlasten. WLANklar prüft, ob sich Aufrüstung oder
+            Neueinrichtung lohnt – oder ob ein Neukauf ehrlicher wäre.
+          </p>
+        </div>
+        <div class="panel">
+          <h2 style="font-size: var(--step-h3);">Drucker oder Scanner ins WLAN bringen</h2>
+          <p style="color: var(--color-ink-muted);">
+            Wenn der Drucker nicht gefunden wird, liegt das Problem oft nicht nur am Drucker, sondern am WLAN, Router,
+            Treiber, falschen Netzwerk oder veralteter App. WLANklar prüft Verbindung, Treiber/App und Netzwerk und
+            richtet Drucker oder Scanner nach Möglichkeit sauber ein.
+          </p>
+        </div>
+        <div class="panel">
+          <h2 style="font-size: var(--step-h3);">Backup und Datenübernahme verständlich einrichten</h2>
+          <p style="color: var(--color-ink-muted);">
+            Wichtige Fotos, Dokumente und persönliche Dateien sollten nicht nur auf einem einzelnen Laptop liegen.
+            WLANklar hilft bei einfacher Datenübernahme vom alten Gerät und richtet eine verständliche
+            Backup-Grundstruktur ein – mit externer Festplatte oder Cloud, je nach Bedarf.
+          </p>
+        </div>
       </div>
     </div>
   </section>
@@ -142,36 +217,36 @@ const techServiceIds = [
   <section class="section">
     <div class="container">
       <div class="section-head">
-        <span class="section-label">Grenzen</span>
-        <h2>Klare Grenzen für faire Hilfe</h2>
+        <span class="section-label">Passende Fälle</span>
+        <h2>Damit der Termin wirklich hilft</h2>
         <p class="lead">
-          Damit Termine planbar bleiben und keine falschen Erwartungen entstehen, bietet WLANklar bewusst keine
-          beliebigen Reparaturen an.
+          Vor dem Termin schauen wir gemeinsam, ob Ihr Anliegen gut zur Technik-Hilfe zuhause passt. So bleibt die
+          Hilfe planbar, verständlich und auf das ausgerichtet, was vor Ort sinnvoll lösbar ist.
         </p>
       </div>
       <div class="grid cols-2">
         <div class="panel">
-          <h3>Nicht Teil des Angebots</h3>
+          <h3>Gut passend</h3>
           <ul style="margin-top: 16px; padding-left: 18px; color: var(--color-ink-muted);">
-            <li>professionelle Datenrettung bei defekten Festplatten oder SSDs</li>
-            <li>Display-, Mainboard- oder Lötarbeiten</li>
-            <li>Smartphone-Hardware-Reparaturen</li>
-            <li>Gaming-PC-Bau nach Wunschliste</li>
+            <li>Laptop prüfen und sinnvoll schneller machen</li>
+            <li>Windows-11-Check oder Windows neu einrichten</li>
+            <li>Drucker, Scanner oder neues Gerät startklar machen</li>
+            <li>Daten übernehmen, Fotos sortieren oder Backup einrichten</li>
           </ul>
         </div>
         <div class="panel">
-          <h3>Ebenfalls nicht passend</h3>
+          <h3>Besser für Spezialisten</h3>
           <ul style="margin-top: 16px; padding-left: 18px; color: var(--color-ink-muted);">
-            <li>Virenentfernung mit Erfolgsgarantie</li>
-            <li>Server-, NAS- oder komplexe Firmen-IT</li>
-            <li>sicherheitskritische Kamera- oder Alarmanlagen</li>
-            <li>Smart-Home-Komplettsysteme ohne klare Eingrenzung</li>
+            <li>defekte Festplatten oder SSDs mit Datenrettungsbedarf</li>
+            <li>Display-, Mainboard- oder Lötarbeiten</li>
+            <li>umfangreiche Server-, NAS- oder Firmen-IT-Projekte</li>
+            <li>sicherheitskritische Kamera-, Alarm- oder Smart-Home-Systeme</li>
           </ul>
         </div>
       </div>
       <p class="panel-note" style="margin-top: 20px;">
-        Wenn ein Fall nicht zum Angebot passt, sagt WLANklar das ehrlich und empfiehlt bei Bedarf den passenden nächsten
-        Schritt.
+        Wenn ein anderer Ansprechpartner sinnvoller ist, sagen wir das vorab. Dann verlieren Sie keine Zeit mit einem
+        Termin, der Ihr Problem nicht zuverlässig lösen kann.
       </p>
     </div>
   </section>

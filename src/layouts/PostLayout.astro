@@ -1,17 +1,19 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
 import Breadcrumbs from "../components/layout/Breadcrumbs.astro";
+import { articleSchema } from "../data/schema";
 import { getService } from "../data/services";
 
 interface Props {
   title: string;
   description: string;
   publishDate: Date;
+  updatedDate?: Date;
   relatedServiceIds?: string[];
   segments?: string[];
 }
 
-const { title, description, publishDate, relatedServiceIds = [], segments = [] } = Astro.props;
+const { title, description, publishDate, updatedDate, relatedServiceIds = [], segments = [] } = Astro.props;
 
 const segmentLinks: Record<string, { label: string; href: string }> = {
   privat: { label: "Zuhause & Homeoffice", href: "/zuhause-homeoffice/" },
@@ -20,9 +22,32 @@ const segmentLinks: Record<string, { label: string; href: string }> = {
 };
 
 const relatedServices = relatedServiceIds.map((id) => getService(id)).filter(Boolean);
+const schemas = [
+  articleSchema({
+    headline: title,
+    description,
+    publishDate,
+    updatedDate,
+    url: Astro.url.pathname,
+  }),
+];
+const isFerienwohnungPost = segments.includes("ferienwohnung");
+const ctaCopy = isFerienwohnungPost
+  ? "Wenn Sie Gäste-WLAN, QR-Code oder Smart-TV nicht selbst vorbereiten möchten, hilft WLANklar vor Ort im Lausitzer Seenland."
+  : "Wenn Sie das Problem nicht selbst eingrenzen möchten, hilft WLANklar mit einem WLAN-Check vor Ort in Senftenberg und Umgebung.";
+const ctaLink = isFerienwohnungPost
+  ? { href: "/gaeste-wlan-ferienwohnung-lausitzer-seenland/", label: "Gäste-WLAN im Lausitzer Seenland ansehen" }
+  : { href: "/wlan-techniker-senftenberg/", label: "WLAN-Check in Senftenberg anfragen" };
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout
+  title={title}
+  description={description}
+  ogType="article"
+  publishedTime={publishDate}
+  modifiedTime={updatedDate}
+  schemas={schemas}
+>
   <article class="section">
     <div class="container" style="max-width: 720px;">
       <Breadcrumbs items={[{ label: "Startseite", href: "/" }, { label: "Ratgeber", href: "/ratgeber/" }, { label: title }]} />
@@ -32,6 +57,12 @@ const relatedServices = relatedServiceIds.map((id) => getService(id)).filter(Boo
       <h1>{title}</h1>
       <div class="lead" style="margin-bottom: 32px;">
         <slot />
+      </div>
+
+      <div class="panel" style="margin-bottom: 24px;">
+        <h2 style="font-size: var(--step-h3);">Hilfe vor Ort</h2>
+        <p style="color: var(--color-ink-muted);">{ctaCopy}</p>
+        <a class="btn btn-small" href={ctaLink.href}>{ctaLink.label}</a>
       </div>
 
       {(relatedServices.length > 0 || segments.length > 0) && (

@@ -20,3 +20,5 @@ Ein Repeater kann für einzelne zusätzliche Räume funktionieren, wenn er richt
 ## Was WLANklar vor Ort prüft
 
 WLANklar misst, wie stark das Signal an der geplanten Repeater-Position tatsächlich ist, ob eine Kabelverbindung möglich ist und ob ein Mesh-System die passendere Lösung wäre. Die Empfehlung richtet sich nach dem, was im Haus tatsächlich funktioniert – nicht nach der günstigsten Einzelkomponente.
+
+Wenn Sie unsicher sind, ob ein Repeater, Mesh oder Access Point passt, finden Sie hier die passende Vor-Ort-Hilfe: [Repeater oder Mesh-WLAN in Senftenberg einrichten](/repeater-mesh-einrichten-senftenberg/).

@@ -6,11 +6,24 @@ import PainPoints from "../components/sections/PainPoints.astro";
 import PricingGrid from "../components/sections/PricingGrid.astro";
 import FaqAccordion from "../components/sections/FaqAccordion.astro";
 import ContactWizard from "../components/islands/ContactWizard";
+import { faqPageSchema, serviceSchema } from "../data/schema";
+
+const faqIds = ["fewo-getrenntes-gaeste-wlan", "fewo-qr-code", "fewo-monteurzimmer", "fewo-anwesenheit", "hardware-im-preis"];
+const schemas = [
+  serviceSchema({
+    name: "Gäste-WLAN für Ferienwohnungen im Lausitzer Seenland",
+    serviceType: "Gäste-WLAN, WLAN-QR-Code, Smart-TV-Check und Gästeinfos",
+    url: "/ferienwohnungen/",
+    areaServed: "Senftenberg, Großkoschen, Geierswalde und Lausitzer Seenland",
+  }),
+  faqPageSchema(faqIds),
+];
 ---
 
 <BaseLayout
-  title="Gäste-WLAN für Ferienwohnungen & Monteurzimmer"
-  description="WLANklar macht Ferienwohnungen und Monteurzimmer digital gastfreundlicher – mit Gäste-WLAN, QR-Code, Smart-TV-Check und digitaler Gästemappe."
+  title="Gäste-WLAN Ferienwohnung Lausitzer Seenland | QR-Code & Smart-TV"
+  description="Gäste-WLAN, WLAN-QR-Code, Smart-TV-Check und klare Gästeinfos für Ferienwohnungen, Monteurzimmer & Pensionen rund um Senftenberg, Großkoschen, Geierswalde und Lausitzer Seenland."
+  schemas={schemas}
 >
   <div class="container" style="padding-top: 20px;">
     <Breadcrumbs items={[{ label: "Startseite", href: "/" }, { label: "Ferienwohnungen & Monteurzimmer" }]} />
@@ -18,13 +31,32 @@ import ContactWizard from "../components/islands/ContactWizard";
 
   <Hero
     eyebrow="Ferienwohnungen & Monteurzimmer"
-    title="Gäste sollen nicht wegen WLAN, Smart-TV oder Zugangsdaten schreiben müssen."
-    lead="WLANklar macht Ihre Ferienwohnung digital gastfreundlicher – mit Gäste-WLAN, QR-Code, Smart-TV-Check, klaren Gästeinfos und optionaler digitaler Gästemappe."
-    image={{ src: "/images/ferienwohnung-gaeste-wlan.png", alt: "Gäste-WLAN-Karte mit QR-Code in einer Ferienwohnung" }}
+    title="Gäste-WLAN für Ferienwohnungen im Lausitzer Seenland"
+    lead="Gäste erwarten heute, dass WLAN, Smart-TV und Zugangsdaten sofort funktionieren – besonders in Ferienwohnungen am Senftenberger See, in Großkoschen, Geierswalde, Senftenberg und im Lausitzer Seenland."
+    image={{ src: "/images/ferienwohnung-gaeste-wlan.png", alt: "Gäste-WLAN-Karte mit QR-Code für eine Ferienwohnung im Lausitzer Seenland" }}
     panelTitle="Besonders sinnvoll für"
     panelItems={["Gastgeber und Vermieter", "Monteurzimmer", "kleine Pensionen", "Objekte mit wiederkehrenden Gästeanfragen"]}
     ctas={[{ href: "#kontakt", label: "Termin anfragen" }]}
   />
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">Gastgeber</span>
+        <h2>Weniger Rückfragen zu WLAN, QR-Code und Smart-TV</h2>
+        <p class="lead">
+          WLANklar richtet Gäste-WLAN, WLAN-QR-Code, Smart-TV und klare Gästeinfos so ein, dass weniger Rückfragen
+          entstehen und Ihre Unterkunft professioneller wirkt.
+        </p>
+      </div>
+      <div class="panel">
+        <p style="margin: 0; color: var(--color-ink-muted);">
+          Besonders sinnvoll ist das für Ferienwohnungen, Monteurzimmer, kleine Pensionen und Gastgeber, die nicht
+          ständig wegen WLAN-Passwort, Streaming oder Verbindungsproblemen erreichbar sein möchten.
+        </p>
+      </div>
+    </div>
+  </section>
 
   <PainPoints
     eyebrow="Kommt Ihnen bekannt vor?"
@@ -55,20 +87,28 @@ import ContactWizard from "../components/islands/ContactWizard";
     <div class="container">
       <div class="section-head">
         <span class="section-label">Region</span>
-        <h2>WLAN für Ferienwohnungen im Lausitzer Seenland.</h2>
+        <h2>WLAN-Service für Ferienwohnungen rund um den Senftenberger See</h2>
         <p class="lead">
-          Besonders im Lausitzer Seenland lohnt sich ein professioneller Blick auf Gäste-WLAN, Smart-TV und digitale
-          Gästeinfos – gerade rund um Senftenberg, Großkoschen und Geierswalde, wo viele Gäste über die Ferienwohnungs-
-          plattformen buchen und wenig Geduld für Technikprobleme haben.
+          Rund um Senftenberg, Großkoschen, Geierswalde, Lauta, Elsterheide und das Lausitzer Seenland ist
+          funktionierendes WLAN für Gäste ein wichtiger Teil der Unterkunft. WLANklar prüft, ob Router, Repeater, Mesh
+          oder Smart-TV sinnvoll eingerichtet sind und ob Gäste wirklich unkompliziert online gehen können.
         </p>
       </div>
-      <a class="btn btn-secondary" href="/einsatzgebiet/">Einsatzgebiet ansehen</a>
+      <div class="panel">
+        <p style="margin: 0; color: var(--color-ink-muted);">
+          Auf Wunsch erhalten Sie einen WLAN-QR-Code, eine kurze Gästeanleitung, eine Vermieter-Dokumentation und ein
+          gedrucktes Gäste-WLAN-Set mit klaren Hinweisen für die Unterkunft.
+        </p>
+      </div>
+      <div class="btn-row" style="margin-top: 24px;">
+        <a class="btn btn-secondary" href="/gaeste-wlan-ferienwohnung-lausitzer-seenland/">Gäste-WLAN im Lausitzer Seenland ansehen</a>
+        <a class="btn btn-secondary" href="/wlan-techniker-senftenberg/">WLAN-Techniker in Senftenberg</a>
+        <a class="btn btn-secondary" href="/ratgeber/gaeste-wlan-ferienwohnung/">Ratgeber Gäste-WLAN lesen</a>
+      </div>
     </div>
   </section>
 
-  <FaqAccordion
-    ids={["fewo-lohnt-sich", "fewo-gaeste-probleme", "fewo-anwesenheit", "fewo-netztrennung", "hardware-im-preis"]}
-  />
+  <FaqAccordion ids={faqIds} />
 
   <section class="section" id="kontakt">
     <div class="container">

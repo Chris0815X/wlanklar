@@ -1,0 +1,105 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Breadcrumbs from "../components/layout/Breadcrumbs.astro";
+import Hero from "../components/sections/Hero.astro";
+import PricingGrid from "../components/sections/PricingGrid.astro";
+import ContactWizard from "../components/islands/ContactWizard";
+import { serviceSchema } from "../data/schema";
+
+const schemas = [
+  serviceSchema({
+    name: "Repeater und Mesh-WLAN einrichten in Senftenberg",
+    serviceType: "Repeater, Mesh-WLAN, Access Point, Powerline und WLAN-Messung",
+    url: "/repeater-mesh-einrichten-senftenberg/",
+  }),
+];
+---
+
+<BaseLayout
+  title="Repeater & Mesh einrichten Senftenberg | WLAN im ganzen Haus"
+  description="Repeater oder Mesh-WLAN einrichten in Senftenberg & Umgebung: WLANklar prüft Routerstandort, Signal, Etagen, Problemräume und richtet passende WLAN-Lösungen ein."
+  schemas={schemas}
+>
+  <div class="container" style="padding-top: 20px;">
+    <Breadcrumbs items={[{ label: "Startseite", href: "/" }, { label: "Repeater & Mesh Senftenberg" }]} />
+  </div>
+
+  <Hero
+    eyebrow="Repeater & Mesh"
+    title="Repeater und Mesh-WLAN einrichten in Senftenberg"
+    lead="Der Repeater bringt nichts, das WLAN reicht nicht ins Obergeschoss oder im Homeoffice bricht die Verbindung ab? WLANklar prüft vor Ort in Senftenberg und Umgebung, ob Repeater, Mesh, Access Point oder eine andere Lösung sinnvoll ist."
+    image={{ src: "/images/hero-wlan-check.png", alt: "WLAN-Messung mit Tablet in einem Haus in der Lausitz" }}
+    panelTitle="Vor Ort geprüft"
+    panelItems={["Routerstandort", "Problemräume und Etagen", "Repeater- oder Mesh-Position", "Endgeräte wie Laptop, Smartphone und Smart-TV"]}
+    ctas={[{ href: "#kontakt", label: "Repeater- oder Mesh-Check anfragen" }]}
+  />
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="grid cols-2">
+        <div class="panel">
+          <h2 style="font-size: var(--step-h3);">Warum Repeater oft falsch eingesetzt werden</h2>
+          <p style="color: var(--color-ink-muted);">
+            Ein Repeater kann nur verstärken, was an seinem Standort noch brauchbar ankommt. Steht er bereits im
+            Funkloch, wird meist nur ein schlechtes Signal weitergereicht. Deshalb wird zuerst gemessen, wo das WLAN
+            stark genug ist und wo es wirklich abfällt.
+          </p>
+        </div>
+        <div class="panel">
+          <h2 style="font-size: var(--step-h3);">Repeater, Mesh oder Access Point?</h2>
+          <ul style="padding-left: 18px; color: var(--color-ink-muted);">
+            <li>Repeater: sinnvoll bei einfachen Strecken und brauchbarem Zwischensignal</li>
+            <li>Mesh: sinnvoll bei mehreren Räumen oder Etagen</li>
+            <li>Access Point per LAN: oft die stabilste Lösung für größere Wohnungen, Häuser oder Büros</li>
+            <li>Powerline: kann helfen, ist aber abhängig von der Elektroinstallation</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <PricingGrid
+    eyebrow="Leistung"
+    title="Repeater-Einrichtung oder WLAN-Check"
+    note="Wenn die Ursache unklar ist, startet WLANklar mit Messung und Diagnose. Wenn der Repeater nur sauber eingerichtet werden muss, reicht oft die Einzelleistung."
+    serviceIds={["repeater-basis", "wlan-check", "stabiles-heimnetz"]}
+  />
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">Messung</span>
+        <h2>Was WLANklar vor Ort prüft</h2>
+      </div>
+      <div class="grid cols-3">
+        {[
+          "Routerstandort",
+          "WLAN-Signal in Problemräumen",
+          "Geschwindigkeit direkt am Router",
+          "Repeater- oder Mesh-Position",
+          "2,4-GHz- und 5-GHz-Verbindung",
+          "Endgeräte wie Laptop, Smartphone, Smart-TV oder Drucker",
+        ].map((item) => (
+          <div class="panel">{item}</div>
+        ))}
+      </div>
+      <div class="btn-row" style="margin-top: 24px;">
+        <a class="btn btn-secondary" href="/zuhause-homeoffice/">WLAN-Hilfe zuhause</a>
+        <a class="btn btn-secondary" href="/wlan-techniker-senftenberg/">WLAN-Techniker Senftenberg</a>
+        <a class="btn btn-secondary" href="/ratgeber/repeater-bringt-nichts/">Ratgeber: Repeater bringt nichts</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="kontakt">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">Kontakt</span>
+        <h2>Repeater- oder Mesh-Check anfragen</h2>
+      </div>
+      <div class="panel">
+        <ContactWizard client:load defaultObjectType="Zuhause/Homeoffice" />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -22,3 +22,5 @@ Volle Balken zeigen nur, wie stark das Funksignal zwischen Endgerät und Router 
 Ein Geschwindigkeitstest direkt am Router per Kabel zeigt, ob das Problem am Anschluss liegt oder erst im WLAN entsteht. Liegt die Kabel-Geschwindigkeit im erwarteten Bereich, aber das WLAN ist deutlich langsamer, deutet das auf Signal- oder Hardware-Probleme hin.
 
 WLANklar misst genau das vor Ort: Geschwindigkeit direkt am Router, WLAN in den betroffenen Räumen und den Zustand von Repeater, Mesh oder Powerline – und empfiehlt danach eine passende, ehrliche Lösung statt eines pauschalen Hardware-Kaufs.
+
+Wenn das Problem in Senftenberg oder Umgebung nicht eindeutig ist, ist der [WLAN-Techniker in Senftenberg](/wlan-techniker-senftenberg/) der passende Einstieg.

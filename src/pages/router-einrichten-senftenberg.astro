@@ -1,0 +1,106 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Breadcrumbs from "../components/layout/Breadcrumbs.astro";
+import Hero from "../components/sections/Hero.astro";
+import PricingGrid from "../components/sections/PricingGrid.astro";
+import ContactWizard from "../components/islands/ContactWizard";
+import { serviceSchema } from "../data/schema";
+
+const schemas = [
+  serviceSchema({
+    name: "Router einrichten in Senftenberg",
+    serviceType: "FRITZ!Box, Speedport, WLAN-Name, Passwort, Gäste-WLAN, Telefonie und Heimnetz",
+    url: "/router-einrichten-senftenberg/",
+  }),
+];
+---
+
+<BaseLayout
+  title="Router einrichten Senftenberg | FRITZ!Box, Speedport & WLAN"
+  description="Router einrichten in Senftenberg & Umgebung: WLANklar hilft bei FRITZ!Box, Speedport, WLAN-Namen, Passwort, Gäste-WLAN, Telefonie, Smart-TV und Heimnetz."
+  schemas={schemas}
+>
+  <div class="container" style="padding-top: 20px;">
+    <Breadcrumbs items={[{ label: "Startseite", href: "/" }, { label: "Router einrichten Senftenberg" }]} />
+  </div>
+
+  <Hero
+    eyebrow="Router-Einrichtung"
+    title="Router einrichten in Senftenberg & Umgebung"
+    lead="Ein neuer Router ist da, aber WLAN, Telefon, Drucker, Smart-TV oder Repeater funktionieren nicht wie erwartet? WLANklar hilft vor Ort in Senftenberg und Umgebung bei der Einrichtung von Router, WLAN und Heimnetz."
+    image={{ src: "/images/hero-wlan-check.png", alt: "Router-Check mit Tablet in einem hellen Wohnraum" }}
+    panelTitle="Was sauber eingerichtet werden kann"
+    panelItems={["WLAN-Name und Passwort", "Gäste-WLAN", "FRITZ!Box oder Speedport", "Smart-TV, Drucker, Laptop und Smartphone"]}
+    ctas={[{ href: "#kontakt", label: "Router-Einrichtung anfragen" }]}
+  />
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">Routerwechsel</span>
+        <h2>Typische Situationen nach einem Routerwechsel</h2>
+      </div>
+      <div class="grid cols-3">
+        {[
+          "WLAN-Name oder Passwort haben sich geändert",
+          "Drucker, Smart-TV oder Laptop finden das WLAN nicht mehr",
+          "Repeater oder Mesh-System verbinden sich nicht",
+          "Telefon oder DECT-Handgerät muss neu angemeldet werden",
+          "Gäste-WLAN fehlt oder ist nicht sauber getrennt",
+          "Internet funktioniert, aber WLAN ist instabil oder langsam",
+        ].map((item) => (
+          <div class="panel">{item}</div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <PricingGrid
+    eyebrow="Leistung"
+    title="Router-Einrichtung zum Festpreis"
+    note="Für einen neuen Router, der sauber und sicher eingerichtet werden soll. Wenn unklar ist, wo das eigentliche WLAN-Problem liegt, ist der WLAN-Check meist der bessere Start."
+    serviceIds={["router-basis"]}
+  />
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="grid cols-2">
+        <div class="panel">
+          <h2 style="font-size: var(--step-h3);">Was eingerichtet werden kann</h2>
+          <ul style="padding-left: 18px; color: var(--color-ink-muted);">
+            <li>WLAN-Name und WLAN-Passwort</li>
+            <li>Gäste-WLAN</li>
+            <li>FRITZ!Box oder Speedport-Grundeinstellungen</li>
+            <li>Repeater, Mesh oder Powerline</li>
+            <li>Smart-TV, Drucker, Laptop und Smartphone</li>
+            <li>DECT-Telefon oder weiteres Handgerät, wenn technisch möglich</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h2 style="font-size: var(--step-h3);">Erst sauber einrichten, dann erweitern</h2>
+          <p style="color: var(--color-ink-muted);">
+            Nicht immer muss sofort neue Hardware gekauft werden. Oft reicht es, den Router sinnvoll zu platzieren,
+            WLAN-Einstellungen zu prüfen, Repeater korrekt einzubinden oder alte Geräte sauber neu zu verbinden.
+          </p>
+        </div>
+      </div>
+      <div class="btn-row" style="margin-top: 24px;">
+        <a class="btn btn-secondary" href="/zuhause-homeoffice/">WLAN-Hilfe zuhause</a>
+        <a class="btn btn-secondary" href="/repeater-mesh-einrichten-senftenberg/">Repeater oder Mesh einrichten</a>
+        <a class="btn btn-secondary" href="/wlan-techniker-senftenberg/">WLAN-Techniker Senftenberg</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="kontakt">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">Kontakt</span>
+        <h2>Router-Einrichtung anfragen</h2>
+      </div>
+      <div class="panel">
+        <ContactWizard client:load defaultObjectType="Zuhause/Homeoffice" />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

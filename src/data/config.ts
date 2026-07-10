@@ -1,5 +1,8 @@
 // Zentrale Konfiguration: Marke, Kontakt, Regionen.
 // Ersetzt das alte wlanklar_site/config.js. Vor Veröffentlichung Platzhalter füllen.
+// Bei einem Domainwechsel PUBLIC_SITE_URL setzen, damit Canonicals, robots.txt und JSON-LD konsistent bleiben.
+
+export const SITE_URL = import.meta.env.PUBLIC_SITE_URL ?? "https://www.wlanklar.de";
 
 export const siteConfig = {
   brandName: "WLANklar",

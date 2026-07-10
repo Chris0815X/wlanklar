@@ -13,8 +13,8 @@ const telefonHandgeraet = getService("telefon-handgeraet")!;
 ---
 
 <BaseLayout
-  title="WLAN-Hilfe für Zuhause und Homeoffice"
-  description="Endlich stabiles WLAN in jedem Raum. WLANklar kommt vorbei, findet die Ursache und löst sie – für Zuhause und Homeoffice."
+  title="WLAN-Hilfe zuhause in Senftenberg | Router, Repeater & Heimnetz"
+  description="WLAN reicht nicht in alle Räume? WLANklar hilft zuhause in Senftenberg & Umgebung: Router prüfen, Repeater/Mesh einrichten, Smart-TV, Drucker & Homeoffice stabilisieren."
 >
   <div class="container" style="padding-top: 20px;">
     <Breadcrumbs items={[{ label: "Startseite", href: "/" }, { label: "Zuhause & Homeoffice" }]} />
@@ -22,13 +22,54 @@ const telefonHandgeraet = getService("telefon-handgeraet")!;
 
   <Hero
     eyebrow="Zuhause & Homeoffice"
-    title="WLAN-Hilfe für Zuhause und Homeoffice."
-    lead="Endlich stabiles WLAN – in jedem Raum. Wir kommen vorbei, finden die Ursache und lösen sie oft schon am selben Termin."
-    image={{ src: "/images/hero-wlan-check.png", alt: "WLAN-Check mit Tablet am Router in einem hellen Wohnzimmer" }}
+    title="WLAN-Hilfe zuhause in Senftenberg & Umgebung"
+    lead="WLAN reicht nicht in alle Räume, Homeoffice-Calls brechen ab oder der Smart-TV lädt ständig nach? WLANklar hilft zuhause in Senftenberg, Großräschen, Lauchhammer, Schwarzheide, Ruhland, Lauta, Hoyerswerda und Umgebung."
+    image={{ src: "/images/hero-wlan-check.png", alt: "WLAN-Messung mit Tablet in einem Haus in der Lausitz" }}
     panelTitle="20 Jahre Erfahrung"
     panelItems={["Router, Repeater, Mesh und Powerline im Blick", "Passend für Wohnung, Haus und Homeoffice"]}
     ctas={[{ href: "#kontakt", label: "Termin anfragen" }]}
   />
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">Heimnetz prüfen</span>
+        <h2>Router, Repeater, Mesh und Endgeräte vor Ort verstehen</h2>
+        <p class="lead">
+          Wir prüfen Router, WLAN-Signal, Repeater, Mesh, Powerline und wichtige Endgeräte vor Ort. Danach wissen Sie,
+          ob eine bessere Platzierung reicht, Einstellungen geändert werden müssen oder ob Access Point, LAN-Brücke oder
+          Mesh sinnvoller sind.
+        </p>
+      </div>
+      <div class="grid cols-3">
+        <div class="panel">
+          <h3>Router einrichten in Senftenberg & Umgebung</h3>
+          <p style="color: var(--color-ink-muted);">
+            Sinnvoll nach Anbieterwechsel, Routertausch oder wenn WLAN-Name, Passwort, Telefonie und Geräte neu sortiert
+            werden müssen.
+          </p>
+        </div>
+        <div class="panel">
+          <h3>Repeater oder Mesh-WLAN einrichten</h3>
+          <p style="color: var(--color-ink-muted);">
+            Repeater, Mesh oder Access Point werden dort geprüft und platziert, wo sie wirklich helfen.
+          </p>
+        </div>
+        <div class="panel">
+          <h3>Smart-TV, Streaming und WLAN-Verbindung prüfen</h3>
+          <p style="color: var(--color-ink-muted);">
+            Wenn Fernseher, Streaming-Stick, Drucker oder Laptop die Verbindung verlieren, wird das Gerät zusammen mit
+            dem Heimnetz betrachtet.
+          </p>
+        </div>
+      </div>
+      <div class="btn-row" style="margin-top: 24px;">
+        <a class="btn btn-secondary" href="/wlan-techniker-senftenberg/">WLAN-Techniker in Senftenberg</a>
+        <a class="btn btn-secondary" href="/repeater-mesh-einrichten-senftenberg/">Repeater oder Mesh-WLAN einrichten</a>
+        <a class="btn btn-secondary" href="/drucker-einrichten-senftenberg/">Drucker im WLAN einrichten</a>
+      </div>
+    </div>
+  </section>
 
   <PainPoints
     eyebrow="Kommt Ihnen bekannt vor?"
@@ -84,15 +125,15 @@ const telefonHandgeraet = getService("telefon-handgeraet")!;
     <div class="container">
       <div class="section-head">
         <span class="section-label">Zusatzleistung</span>
-        <h2>Mehr Komfort im Alltag</h2>
+        <h2>DECT-Telefon oder zusätzliches Handgerät einrichten</h2>
         <p class="lead">
-          Manchmal geht es nicht nur um WLAN. Ein zusätzliches schnurloses Telefon im Schlafzimmer, Büro oder
-          Obergeschoss kann den Alltag deutlich einfacher machen. WLANklar prüft, ob Ihre vorhandene Technik dafür
-          geeignet ist, richtet das Handgerät ein und testet die Verbindung.
+          Ein zusätzliches schnurloses Telefon im Schlafzimmer, Büro oder Obergeschoss kann praktisch sein – besonders,
+          wenn der Router bereits DECT unterstützt. WLANklar prüft beim Router- oder Heimnetztermin, ob Ihre vorhandene
+          Technik geeignet ist, richtet das Handgerät ein und testet die Verbindung vor Ort.
         </p>
       </div>
       <div class="panel" style="max-width: 460px;">
-        <h3>{telefonHandgeraet.name}</h3>
+        <h3>Schnurloses Telefon im Haus verbinden und testen</h3>
         <p style="color: var(--color-ink-muted);">{telefonHandgeraet.tagline}</p>
         <PriceReadout
           price={telefonHandgeraet.price}

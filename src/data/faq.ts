@@ -119,6 +119,24 @@ export const faqEntries: FaqEntry[] = [
     answer:
       "Nach der Einrichtung nicht mehr. Das Gäste-WLAN wird sauber von Ihrem privaten Netz getrennt – Gäste kommen ins Internet, aber nicht an Ihre eigenen Geräte, Kameras oder Daten.",
   },
+  {
+    id: "fewo-getrenntes-gaeste-wlan",
+    question: "Ist ein getrenntes Gäste-WLAN für Ferienwohnungen sinnvoll?",
+    answer:
+      "Ja. Ein getrenntes Gäste-WLAN sorgt dafür, dass Gäste ins Internet kommen, aber nicht auf private Geräte, Drucker, Kameras oder interne Daten zugreifen.",
+  },
+  {
+    id: "fewo-qr-code",
+    question: "Kann WLANklar einen WLAN-QR-Code für meine Ferienwohnung erstellen?",
+    answer:
+      "Ja. Der QR-Code kann so vorbereitet werden, dass Gäste ihn mit dem Smartphone scannen und sich direkt mit dem Gäste-WLAN verbinden können.",
+  },
+  {
+    id: "fewo-monteurzimmer",
+    question: "Hilft WLANklar auch bei Monteurzimmer-WLAN?",
+    answer:
+      "Ja. Gerade bei Monteurzimmern ist stabiles WLAN wichtig, weil mehrere Personen gleichzeitig Smartphone, Laptop, Streaming oder Messenger nutzen.",
+  },
 
   // Kleine Büros, Praxen & Studios
   {

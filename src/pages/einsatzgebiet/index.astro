@@ -1,15 +1,13 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
-import RegionList from "../../components/sections/RegionList.astro";
 import TravelChecker from "../../components/islands/TravelChecker";
 import ContactWizard from "../../components/islands/ContactWizard";
-import { siteConfig } from "../../data/config";
 ---
 
 <BaseLayout
-  title="Einsatzgebiet: WLAN-Service in der Lausitz & im Spreewald"
-  description="WLANklar ist vor Ort in der Lausitz und im Spreewald unterwegs. Prüfen Sie mit Ihrer Postleitzahl, welche Anfahrtspauschale für Ihren Ort gilt."
+  title="WLAN-Techniker Einsatzgebiet | Senftenberg, Lausitz & Spreewald"
+  description="WLAN- und Technik-Hilfe vor Ort in Senftenberg, Großkoschen, Großräschen, Lauchhammer, Hoyerswerda, Lauta, Ruhland, Elsterheide, Lausitz & Spreewald."
   includeSchema
 >
   <div class="container" style="padding-top: 20px;">
@@ -20,7 +18,7 @@ import { siteConfig } from "../../data/config";
     <div class="container">
       <div class="section-head">
         <span class="section-label">Einsatzgebiet</span>
-        <h1>Vor Ort in der Lausitz & im Spreewald.</h1>
+        <h1>WLAN-Techniker im Einsatzgebiet Senftenberg, Lausitz & Spreewald</h1>
         <p class="lead">
           WLANklar ist in der Lausitz unterwegs, z. B. rund um Senftenberg, Großkoschen, Geierswalde, Hoyerswerda,
           Großräschen, Lauchhammer, Schwarzheide, Lauta, Ruhland, Elsterheide und Umgebung. Im Spreewald gilt eine
@@ -48,12 +46,81 @@ import { siteConfig } from "../../data/config";
     </div>
   </section>
 
-  <RegionList
-    eyebrow="Orte"
-    title="Beispielorte in der Lausitz & im Spreewald"
-    lead="Auch wenn Ihr Ort nicht dabei ist: eine Anfrage ist trotzdem möglich."
-    cities={siteConfig.cityExamples}
-  />
+  <section class="section section-alt">
+    <div class="container">
+      <div class="grid cols-2">
+        <div class="panel">
+          <h2 style="font-size: var(--step-h3);">WLAN-Service in Senftenberg und Umgebung</h2>
+          <p style="color: var(--color-ink-muted);">
+            WLANklar hilft rund um Senftenberg bei WLAN-Problemen, langsamem Internet, Router-Einrichtung, Repeater,
+            Mesh, Heimnetz, Smart-TV, Drucker, Gäste-WLAN und Technik-Hilfe zuhause. Dazu gehören Senftenberg selbst
+            sowie Großkoschen, Brieske, Hosena, Niemtsch, Peickwitz und Sedlitz.
+          </p>
+        </div>
+        <div class="panel">
+          <h2 style="font-size: var(--step-h3);">WLAN-Hilfe in Großräschen, Lauchhammer und Schwarzheide</h2>
+          <p style="color: var(--color-ink-muted);">
+            Auch in Großräschen, Lauchhammer, Schwarzheide und Ruhland unterstützt WLANklar bei typischen Problemen:
+            schlechter Empfang im Haus, instabile Verbindung im Homeoffice, falsch platzierte Repeater, Routerwechsel,
+            Smart-TV-Probleme, Drucker im WLAN oder fehlendes Gäste-WLAN.
+          </p>
+        </div>
+        <div class="panel">
+          <h2 style="font-size: var(--step-h3);">WLAN-Techniker für Hoyerswerda, Lauta und Elsterheide</h2>
+          <p style="color: var(--color-ink-muted);">
+            Im Raum Hoyerswerda, Lauta und Elsterheide hilft WLANklar privaten Haushalten, kleinen Betrieben,
+            Ferienwohnungen und Monteurzimmern bei Einrichtung und Optimierung von WLAN, Heimnetz und verbundenen
+            Geräten.
+          </p>
+        </div>
+        <div class="panel">
+          <h2 style="font-size: var(--step-h3);">Gäste-WLAN im Lausitzer Seenland und Spreewald</h2>
+          <p style="color: var(--color-ink-muted);">
+            Für Ferienwohnungen, Monteurzimmer und kleine Pensionen im Lausitzer Seenland und Spreewald sind stabiles
+            Gäste-WLAN, WLAN-QR-Code, Smart-TV und klare Zugangsdaten besonders wichtig. WLANklar prüft die vorhandene
+            Technik und richtet die Lösung so ein, dass Gäste möglichst wenig nachfragen müssen.
+          </p>
+        </div>
+      </div>
+      <div class="btn-row" style="margin-top: 24px;">
+        <a class="btn btn-secondary" href="/wlan-techniker-senftenberg/">WLAN-Techniker Senftenberg</a>
+        <a class="btn btn-secondary" href="/technik-hilfe/">Technik-Hilfe zuhause</a>
+        <a class="btn btn-secondary" href="/ferienwohnungen/">Ferienwohnungen</a>
+        <a class="btn btn-secondary" href="/kleine-bueros/">Kleine Büros & Praxen</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">Orte</span>
+        <h2>Beispielorte im Einsatzgebiet</h2>
+        <p class="lead">Auch wenn Ihr Ort nicht dabei ist: eine Anfrage ist trotzdem möglich.</p>
+      </div>
+      <div class="grid cols-3">
+        <div class="panel">
+          <h3>Kerngebiet</h3>
+          <p style="color: var(--color-ink-muted);">
+            Senftenberg, Großkoschen, Brieske, Hosena, Niemtsch, Sedlitz, Peickwitz, Großräschen
+          </p>
+        </div>
+        <div class="panel">
+          <h3>Lausitz</h3>
+          <p style="color: var(--color-ink-muted);">
+            Lauchhammer, Schwarzheide, Ruhland, Lauta, Hoyerswerda, Elsterheide, Geierswalde
+          </p>
+        </div>
+        <div class="panel">
+          <h3>Lausitzer Seenland & Spreewald</h3>
+          <p style="color: var(--color-ink-muted);">
+            Senftenberger See, Großkoschen, Geierswalde, Vetschau, Raddusch, Burg im Spreewald, Lübbenau, Lehde,
+            Leipe, Straupitz, Lübben, Schlepzig
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <section class="section section-alt" id="kontakt">
     <div class="container">

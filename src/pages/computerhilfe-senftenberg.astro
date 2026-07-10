@@ -1,0 +1,118 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Breadcrumbs from "../components/layout/Breadcrumbs.astro";
+import PricingGrid from "../components/sections/PricingGrid.astro";
+import ContactWizard from "../components/islands/ContactWizard";
+import { serviceSchema } from "../data/schema";
+
+const schemas = [
+  serviceSchema({
+    name: "Computerhilfe zuhause in Senftenberg",
+    serviceType: "Laptop prüfen, Windows-11-Check, Drucker verbinden, Datenübernahme und Backup",
+    url: "/computerhilfe-senftenberg/",
+  }),
+];
+---
+
+<BaseLayout
+  title="Computerhilfe Senftenberg | Laptop, Windows, Drucker & Backup"
+  description="Computerhilfe zuhause in Senftenberg: Laptop langsam, Windows neu einrichten, Windows-11-Check, Drucker verbinden, Datenübernahme & Backup verständlich lösen."
+  schemas={schemas}
+>
+  <section class="section">
+    <div class="container">
+      <Breadcrumbs items={[{ label: "Startseite", href: "/" }, { label: "Computerhilfe Senftenberg" }]} />
+      <div class="section-head">
+        <span class="section-label">Computerhilfe Senftenberg</span>
+        <h1>Computerhilfe zuhause in Senftenberg</h1>
+        <p class="lead">
+          Laptop langsam, Windows unübersichtlich, Drucker verbindet sich nicht oder wichtige Fotos sollen endlich
+          gesichert werden? WLANklar hilft zuhause in Senftenberg und Umgebung bei ausgewählten Technikproblemen, die
+          klar abgrenzbar und sinnvoll vor Ort lösbar sind.
+        </p>
+      </div>
+      <div class="btn-row">
+        <a class="btn" href="#kontakt">Technik-Hilfe anfragen</a>
+        <a class="btn btn-secondary" href="/technik-hilfe/">Technik-Hilfe zuhause ansehen</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">Leistungen</span>
+        <h2>Wobei WLANklar bei Computerhilfe unterstützt</h2>
+      </div>
+      <div class="grid cols-3">
+        {[
+          "Laptop prüfen und sinnvoll schneller machen",
+          "Windows-11-Check durchführen",
+          "Windows neu einrichten",
+          "Neuen Laptop oder PC startklar machen",
+          "Drucker oder Scanner ins WLAN bringen",
+          "Daten vom alten Gerät übernehmen",
+          "Fotos und Dokumente verständlich sortieren",
+          "Backup mit externer Festplatte oder Cloud einrichten",
+          "Kaufberatung für Laptop, Router, Drucker oder Zubehör",
+        ].map((item) => (
+          <div class="panel">{item}</div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <PricingGrid
+    eyebrow="Passende Leistungen"
+    title="Ausgewählte Technik-Hilfe zuhause"
+    note="WLANklar hilft bei ausgewählten Technikthemen zuhause. Vor dem Termin wird eingeschätzt, ob das Problem sinnvoll vor Ort lösbar ist."
+    columns={3}
+    serviceIds={["technik-check", "windows-11-check", "laptop-schneller", "windows-neu-einrichten", "datenuebernahme-fotos", "backup-einrichten"]}
+  />
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="grid cols-3">
+        <div class="panel">
+          <h2 style="font-size: var(--step-h3);">Nicht jeder langsame Laptop muss ersetzt werden</h2>
+          <p style="color: var(--color-ink-muted);">
+            Manchmal lohnt sich eine Aufrüstung mit SSD oder Arbeitsspeicher, manchmal ist eine saubere Neueinrichtung
+            sinnvoll, und manchmal ist ein Neukauf die ehrlichere Empfehlung. WLANklar prüft den Zustand und erklärt
+            verständlich, welche Option sinnvoll ist.
+          </p>
+        </div>
+        <div class="panel">
+          <h2 style="font-size: var(--step-h3);">Bewusst klar umrissene Hilfe</h2>
+          <p style="color: var(--color-ink-muted);">
+            WLANklar konzentriert sich auf Themen, die zuhause sinnvoll prüfbar und erklärbar sind. Für Displaybruch,
+            Mainboard-Schäden, Lötarbeiten, professionelle Datenrettung, Server, NAS oder komplexe Firmen-IT ist eine
+            spezialisierte Werkstatt oder ein passender IT-Dienstleister die bessere Adresse.
+          </p>
+        </div>
+        <div class="panel">
+          <h2 style="font-size: var(--step-h3);">Computerhilfe in Senftenberg und Umgebung</h2>
+          <p style="color: var(--color-ink-muted);">
+            Der Schwerpunkt liegt auf Senftenberg, Großkoschen, Großräschen, Lauchhammer, Schwarzheide, Ruhland, Lauta,
+            Hoyerswerda und Umgebung. Ob der Termin sinnvoll ist, wird vorab telefonisch oder per WhatsApp eingeschätzt.
+          </p>
+        </div>
+      </div>
+      <div class="btn-row" style="margin-top: 24px;">
+        <a class="btn btn-secondary" href="/drucker-einrichten-senftenberg/">Drucker einrichten</a>
+        <a class="btn btn-secondary" href="/wlan-techniker-senftenberg/">WLAN-Techniker Senftenberg</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="kontakt">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">Kontakt</span>
+        <h2>Technik-Hilfe anfragen</h2>
+      </div>
+      <div class="panel">
+        <ContactWizard client:load defaultObjectType="Technik-Hilfe zuhause" />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

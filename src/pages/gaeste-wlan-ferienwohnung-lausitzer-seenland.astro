@@ -1,0 +1,111 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Breadcrumbs from "../components/layout/Breadcrumbs.astro";
+import Hero from "../components/sections/Hero.astro";
+import PricingGrid from "../components/sections/PricingGrid.astro";
+import ContactWizard from "../components/islands/ContactWizard";
+import { serviceSchema } from "../data/schema";
+
+const schemas = [
+  serviceSchema({
+    name: "Gäste-WLAN für Ferienwohnungen im Lausitzer Seenland",
+    serviceType: "Gäste-WLAN, WLAN-QR-Code, Smart-TV, Zugangsdaten und Gästeinfos",
+    url: "/gaeste-wlan-ferienwohnung-lausitzer-seenland/",
+    areaServed: "Lausitzer Seenland, Senftenberg, Großkoschen, Geierswalde, Lauta und Elsterheide",
+  }),
+];
+---
+
+<BaseLayout
+  title="Gäste-WLAN Ferienwohnung Lausitzer Seenland | QR-Code & Einrichtung"
+  description="Gäste-WLAN für Ferienwohnungen im Lausitzer Seenland: WLANklar richtet Gäste-WLAN, QR-Code, Smart-TV, Zugangsdaten und klare Gästeinfos ein."
+  schemas={schemas}
+>
+  <div class="container" style="padding-top: 20px;">
+    <Breadcrumbs items={[{ label: "Startseite", href: "/" }, { label: "Gäste-WLAN Lausitzer Seenland" }]} />
+  </div>
+
+  <Hero
+    eyebrow="Ferienwohnung & Monteurzimmer"
+    title="Gäste-WLAN für Ferienwohnungen im Lausitzer Seenland"
+    lead="Gäste wollen nicht lange nach dem WLAN-Passwort suchen oder wegen Smart-TV, QR-Code und Zugangsdaten schreiben. WLANklar hilft Gastgebern im Lausitzer Seenland, Gäste-WLAN verständlich und zuverlässig einzurichten."
+    image={{ src: "/images/ferienwohnung-gaeste-wlan.png", alt: "Gäste-WLAN-Karte mit QR-Code für eine Ferienwohnung" }}
+    panelTitle="Für weniger Rückfragen"
+    panelItems={["getrenntes Gäste-WLAN", "WLAN-QR-Code", "Smart-TV-Verbindung", "kurze Gästeanleitung"]}
+    ctas={[{ href: "#kontakt", label: "Gäste-WLAN anfragen" }]}
+  />
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="grid cols-2">
+        <div class="panel">
+          <h2 style="font-size: var(--step-h3);">Für Ferienwohnungen, Monteurzimmer und kleine Pensionen</h2>
+          <p style="color: var(--color-ink-muted);">
+            Besonders rund um Senftenberg, Großkoschen, Geierswalde, Lauta, Elsterheide und den Senftenberger See ist
+            funktionierendes WLAN ein wichtiger Teil der Unterkunft. Gäste erwarten, dass Smartphone, Laptop und
+            Streaming ohne lange Erklärung funktionieren.
+          </p>
+        </div>
+        <div class="panel">
+          <h2 style="font-size: var(--step-h3);">Weniger Rückfragen, professionellerer Eindruck</h2>
+          <p style="color: var(--color-ink-muted);">
+            Ein sauber vorbereitetes Gäste-WLAN reduziert Rückfragen und wirkt professioneller. Gäste sehen sofort, wie
+            sie online gehen können, und Gastgeber haben eine klare Dokumentation für spätere Änderungen.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">Einrichtung</span>
+        <h2>Was eingerichtet werden kann</h2>
+      </div>
+      <div class="grid cols-3">
+        {[
+          "getrenntes Gäste-WLAN",
+          "WLAN-QR-Code für Gäste",
+          "verständliche Zugangsdaten",
+          "Smart-TV-Verbindung",
+          "kurze Gästeanleitung",
+          "Vermieter-Dokumentation",
+          "saisonaler WLAN-Check vor der Hauptsaison",
+        ].map((item) => (
+          <div class="panel">{item}</div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <PricingGrid
+    eyebrow="Angebote"
+    title="Gäste-WLAN, QR-Code und Smart-TV"
+    note="Vom Gastgeber-Check bis zur komfortablen Gäste-WLAN-Lösung mit QR-Code und Dokumentation."
+    columns={2}
+    serviceIds={["gastgeber-check", "gaeste-wlan-komfort", "saisonstart-check"]}
+  />
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="btn-row">
+        <a class="btn btn-secondary" href="/ferienwohnungen/">Ferienwohnungen & Monteurzimmer</a>
+        <a class="btn btn-secondary" href="/wlan-techniker-senftenberg/">WLAN-Techniker Senftenberg</a>
+        <a class="btn btn-secondary" href="/ratgeber/gaeste-wlan-ferienwohnung/">Ratgeber Gäste-WLAN</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="kontakt">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">Kontakt</span>
+        <h2>Gäste-WLAN anfragen</h2>
+      </div>
+      <div class="panel">
+        <ContactWizard client:load defaultObjectType="Ferienwohnung/Monteurzimmer" />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

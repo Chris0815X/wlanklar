@@ -23,3 +23,5 @@ Weniger technische Rückfragen bedeuten weniger Aufwand während des laufenden B
 ## Wie WLANklar dabei unterstützt
 
 Der Gastgeber-Check prüft WLAN, Router, Repeater und Smart-TV vor Ort und gibt eine klare Empfehlung. Beim Gäste-WLAN Komfort wird das Gäste-Netz eingerichtet, ein WLAN-QR-Code erstellt und optional ein gedrucktes oder laminiertes Gäste-WLAN-Set mit Notfallhinweisen ergänzt.
+
+Für Unterkünfte rund um Senftenberg, Großkoschen, Geierswalde und den Senftenberger See gibt es eine eigene Übersicht: [Gäste-WLAN für Ferienwohnungen im Lausitzer Seenland](/gaeste-wlan-ferienwohnung-lausitzer-seenland/).

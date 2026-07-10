@@ -1,0 +1,145 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Breadcrumbs from "../components/layout/Breadcrumbs.astro";
+import Hero from "../components/sections/Hero.astro";
+import PricingGrid from "../components/sections/PricingGrid.astro";
+import ContactWizard from "../components/islands/ContactWizard";
+import { serviceSchema } from "../data/schema";
+
+const schemas = [
+  serviceSchema({
+    name: "WLAN-Techniker in Senftenberg",
+    serviceType: "WLAN-Check, Router-Einrichtung, Repeater- und Mesh-Optimierung",
+    url: "/wlan-techniker-senftenberg/",
+  }),
+];
+---
+
+<BaseLayout
+  title="WLAN-Techniker Senftenberg | Internet, Router & Heimnetz Hilfe"
+  description="WLAN-Techniker in Senftenberg: Hilfe bei langsamem WLAN, Internetproblemen, Router, Repeater, Mesh, Smart-TV, Drucker & Heimnetz. WLAN-Check ab 99 €."
+  schemas={schemas}
+>
+  <div class="container" style="padding-top: 20px;">
+    <Breadcrumbs items={[{ label: "Startseite", href: "/" }, { label: "WLAN-Techniker Senftenberg" }]} />
+  </div>
+
+  <Hero
+    eyebrow="WLAN-Techniker Senftenberg"
+    title="WLAN-Techniker in Senftenberg – Hilfe bei WLAN, Internet, Router und Heimnetz"
+    lead="Ihr WLAN ist langsam, bricht ständig ab oder reicht nicht in alle Räume? WLANklar hilft vor Ort in Senftenberg und Umgebung, wenn Internet, Router, Repeater, Mesh, Smart-TV, Drucker oder Homeoffice-Verbindungen nicht zuverlässig funktionieren."
+    image={{ src: "/images/hero-wlan-check.png", alt: "WLAN-Messung mit Tablet am Router in einem Wohnraum" }}
+    panelTitle="Erst messen. Dann sinnvoll lösen."
+    panelItems={["Internetanschluss prüfen", "Router und WLAN messen", "Repeater, Mesh und Powerline bewerten", "Geräte zuverlässig verbinden"]}
+    ctas={[{ href: "#kontakt", label: "Termin für WLAN-Check anfragen" }]}
+  />
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">Ursache finden</span>
+        <h2>Viele Internetprobleme entstehen im eigenen Heimnetz</h2>
+        <p class="lead">
+          Der Router steht ungünstig, ein Repeater verstärkt ein schwaches Signal, Geräte verbinden sich mit dem falschen
+          WLAN oder mehrere Etagen sind ohne Access Point kaum stabil abzudecken. Genau hier setzt WLANklar an: Erst
+          messen, dann sinnvoll lösen.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">Typische Probleme</span>
+        <h2>Typische Probleme, bei denen WLANklar hilft</h2>
+      </div>
+      <div class="grid cols-2">
+        {[
+          "WLAN reicht nicht bis ins Obergeschoss, Schlafzimmer, Büro oder auf die Terrasse",
+          "Internet ist langsam, obwohl der Anschluss eigentlich schnell sein sollte",
+          "Repeater bringt nichts oder macht das WLAN sogar schlechter",
+          "Smart-TV, Streaming, Drucker oder Laptop verlieren die Verbindung",
+          "Nach Routerwechsel funktioniert das Heimnetz nicht mehr richtig",
+          "Zu viele WLAN-Namen sorgen für Chaos im Haus",
+          "Homeoffice-Calls brechen ab oder ruckeln",
+          "Gäste-WLAN, QR-Code oder getrennte Netzwerke fehlen",
+        ].map((item) => (
+          <div class="panel">{item}</div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="grid cols-2">
+        <div class="panel">
+          <h2 style="font-size: var(--step-h3);">WLAN-Check vor Ort in Senftenberg</h2>
+          <p style="color: var(--color-ink-muted);">
+            Beim WLAN-Check wird direkt bei Ihnen vor Ort geprüft, wo das Problem entsteht: am Internetanschluss, am
+            Router, am WLAN-Signal, am Repeater, an Powerline, Mesh, Kabeln oder einzelnen Endgeräten. Danach erhalten
+            Sie eine verständliche Empfehlung: günstig verbessern, solide lösen oder langfristig sauber aufbauen.
+          </p>
+          <p style="color: var(--color-ink-muted);">
+            Einfache Probleme werden nach Möglichkeit direkt mit behoben. Wenn zusätzliche Hardware sinnvoll ist, wird
+            das vorher transparent besprochen.
+          </p>
+        </div>
+        <div class="panel">
+          <h2 style="font-size: var(--step-h3);">Für Zuhause, Homeoffice, Ferienwohnungen und kleine Betriebe</h2>
+          <p style="color: var(--color-ink-muted);">
+            WLANklar unterstützt Privathaushalte, Homeoffice-Arbeitsplätze, Ferienwohnungen, Monteurzimmer, kleine
+            Büros, Praxen, Studios und Salons in Senftenberg und Umgebung. Der Fokus liegt auf pragmatischer
+            Vor-Ort-Hilfe: WLAN messen, Router sinnvoll einstellen, Repeater oder Mesh korrekt platzieren, Access
+            Points einrichten und Geräte zuverlässig ins Netzwerk bringen.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <PricingGrid
+    eyebrow="Passende Pakete"
+    title="WLAN-Check, Komplettpaket oder stabiles Heimnetz"
+    note="Der passende Einstieg hängt davon ab, ob zuerst die Ursache gefunden werden muss oder ob eine konkrete Einrichtung ansteht."
+    serviceIds={["wlan-check", "wlan-soforthilfe", "stabiles-heimnetz"]}
+  />
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">Region</span>
+        <h2>Einsatzgebiet rund um Senftenberg</h2>
+        <p class="lead">
+          WLANklar kommt unter anderem nach Senftenberg, Brieske, Großkoschen, Hosena, Niemtsch, Peickwitz, Sedlitz,
+          Großräschen, Lauchhammer, Schwarzheide, Ruhland, Lauta, Hoyerswerda und in weitere Orte der Lausitz. Fragen
+          Sie einfach mit Ihrer PLZ an – die Anfahrt wird vor der Terminbestätigung transparent geklärt.
+        </p>
+      </div>
+      <div class="btn-row">
+        <a class="btn btn-secondary" href="/zuhause-homeoffice/">WLAN-Hilfe zuhause</a>
+        <a class="btn btn-secondary" href="/ferienwohnungen/">Ferienwohnungen</a>
+        <a class="btn btn-secondary" href="/kleine-bueros/">Kleine Büros</a>
+        <a class="btn btn-secondary" href="/technik-hilfe/">Technik-Hilfe</a>
+        <a class="btn btn-secondary" href="/einsatzgebiet/">Einsatzgebiet</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="kontakt">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">Kostenloses Erstgespräch</span>
+        <h2>Schildern Sie kurz, was nicht funktioniert.</h2>
+        <p class="lead">
+          In 5–10 Minuten klären wir telefonisch oder per WhatsApp, ob ein WLAN-Check vor Ort sinnvoll ist und welches
+          Paket zu Ihrem Problem passt.
+        </p>
+      </div>
+      <div class="panel">
+        <ContactWizard client:load defaultObjectType="Zuhause/Homeoffice" />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

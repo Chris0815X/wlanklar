@@ -1,0 +1,105 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Breadcrumbs from "../components/layout/Breadcrumbs.astro";
+import PricingGrid from "../components/sections/PricingGrid.astro";
+import ContactWizard from "../components/islands/ContactWizard";
+import { serviceSchema } from "../data/schema";
+
+const schemas = [
+  serviceSchema({
+    name: "Drucker einrichten in Senftenberg",
+    serviceType: "WLAN-Drucker, Scanner, Treiber/App, Netzwerk und Testdruck",
+    url: "/drucker-einrichten-senftenberg/",
+  }),
+];
+---
+
+<BaseLayout
+  title="Drucker einrichten Senftenberg | WLAN, Scanner & Testdruck"
+  description="Drucker oder Scanner verbindet sich nicht? WLANklar hilft in Senftenberg & Umgebung beim Einrichten von WLAN-Drucker, Treiber/App, Netzwerk und Testdruck."
+  schemas={schemas}
+>
+  <section class="section">
+    <div class="container">
+      <Breadcrumbs items={[{ label: "Startseite", href: "/" }, { label: "Drucker einrichten Senftenberg" }]} />
+      <div class="section-head">
+        <span class="section-label">Drucker-Hilfe</span>
+        <h1>Drucker einrichten in Senftenberg – WLAN, Scanner und Testdruck</h1>
+        <p class="lead">
+          Der Drucker wird nicht gefunden, scannt nicht mehr oder verbindet sich nicht mit dem WLAN? WLANklar hilft in
+          Senftenberg und Umgebung bei der Einrichtung von Druckern und Scannern im Heimnetz.
+        </p>
+      </div>
+      <div class="btn-row">
+        <a class="btn" href="#kontakt">Drucker-Hilfe anfragen</a>
+        <a class="btn btn-secondary" href="/technik-hilfe/">Technik-Hilfe ansehen</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">Typische Druckerprobleme</span>
+        <h2>Typische Druckerprobleme</h2>
+      </div>
+      <div class="grid cols-3">
+        {[
+          "Drucker wird am Laptop nicht gefunden",
+          "Drucker ist mit dem falschen WLAN verbunden",
+          "Nach Routerwechsel funktioniert der Drucker nicht mehr",
+          "Scannen klappt nicht, Drucken aber schon",
+          "Treiber oder App sind veraltet",
+          "Drucker verliert ständig die Verbindung",
+        ].map((item) => (
+          <div class="panel">{item}</div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <PricingGrid
+    eyebrow="Leistung"
+    title="Drucker oder Scanner ins Netzwerk bringen"
+    note="Besonders sinnvoll als Zusatz zu WLAN- oder Heimnetzterminen, wenn die Verbindung insgesamt instabil ist."
+    serviceIds={["drucker-scanner-netzwerk"]}
+  />
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="grid cols-2">
+        <div class="panel">
+          <h2 style="font-size: var(--step-h3);">Was vor Ort geprüft wird</h2>
+          <p style="color: var(--color-ink-muted);">
+            WLANklar prüft Verbindung, Router, WLAN, Treiber/App und die wichtigsten Einstellungen. Danach wird der
+            Drucker oder Scanner nach Möglichkeit eingebunden und mit Testdruck oder Testscan geprüft.
+          </p>
+        </div>
+        <div class="panel">
+          <h2 style="font-size: var(--step-h3);">Sinnvoll als Zusatz zum WLAN-Check</h2>
+          <p style="color: var(--color-ink-muted);">
+            Wenn Druckerprobleme zusammen mit schlechtem WLAN auftreten, ist oft der WLAN-Check der bessere Start. Dann
+            wird nicht nur der Drucker verbunden, sondern auch geprüft, ob Router, Repeater oder Heimnetz die eigentliche
+            Ursache sind.
+          </p>
+        </div>
+      </div>
+      <div class="btn-row" style="margin-top: 24px;">
+        <a class="btn btn-secondary" href="/zuhause-homeoffice/">WLAN-Check zuhause ansehen</a>
+        <a class="btn btn-secondary" href="/wlan-techniker-senftenberg/">WLAN-Techniker Senftenberg</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="kontakt">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">Kontakt</span>
+        <h2>Drucker-Hilfe anfragen</h2>
+      </div>
+      <div class="panel">
+        <ContactWizard client:load defaultObjectType="Technik-Hilfe zuhause" />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

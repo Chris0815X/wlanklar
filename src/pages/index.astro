@@ -8,23 +8,22 @@ import PricingGrid from "../components/sections/PricingGrid.astro";
 import FaqAccordion from "../components/sections/FaqAccordion.astro";
 import QuizFunnel from "../components/islands/QuizFunnel";
 import TrustProfile from "../components/sections/TrustProfile.astro";
-import { siteConfig } from "../data/config";
 import { freeCallCta } from "../lib/whatsapp";
 
 const call = freeCallCta();
 ---
 
 <BaseLayout
-  title="WLAN-Service vor Ort in der Lausitz & im Spreewald"
-  description="WLANklar hilft bei schlechtem WLAN, Repeater-Frust, Homeoffice-Problemen, Gäste-WLAN und kleinen Netzwerkproblemen – vor Ort in der Lausitz und im Spreewald."
+  title="WLAN-Techniker Senftenberg, Lausitz & Spreewald | WLANklar"
+  description="WLANklar hilft vor Ort bei WLAN- und Internetproblemen in Senftenberg, Großräschen, Lauchhammer, Hoyerswerda, Lausitz & Spreewald. WLAN-Check ab 99 €."
   includeSchema
 >
   <Hero
-    eyebrow={`WLAN-Service in der ${siteConfig.region}`}
-    title="Endlich stabiles WLAN – in jedem Raum."
-    lead="Wir kommen vorbei, finden die Ursache und lösen sie oft schon am selben Termin. Für Zuhause, Homeoffice und Ferienwohnungen."
-    micro={`Vor Ort in der ${siteConfig.region} · Router, Repeater, Mesh, Gäste-WLAN & Heimnetz`}
-    image={{ src: "/images/hero-wlan-check.png", alt: "WLAN-Check mit Tablet am Router in einem hellen Wohnzimmer" }}
+    eyebrow="WLAN-Service, Router-Hilfe & Internetprobleme vor Ort in Senftenberg, Lausitz & Spreewald"
+    title="WLAN-Techniker für Senftenberg, Lausitz & Spreewald"
+    lead="WLAN langsam, Internet bricht ab oder der Repeater bringt nichts? WLANklar kommt zu Ihnen nach Hause, in die Ferienwohnung oder in den kleinen Betrieb, misst Router, WLAN-Signal und Heimnetz vor Ort und richtet die passende Lösung ein."
+    micro="Für Senftenberg, Großkoschen, Großräschen, Lauchhammer, Schwarzheide, Ruhland, Lauta, Hoyerswerda, Elsterheide, das Lausitzer Seenland und den Spreewald."
+    image={{ src: "/images/hero-wlan-check.png", alt: "WLAN-Techniker von WLANklar beim Router-Check in Senftenberg" }}
     panelTitle="Erst messen. Dann sinnvoll lösen."
     panelItems={["Router prüfen", "WLAN messen", "Repeater/Mesh/Powerline bewerten", "Lösung erklären"]}
     ctas={[
@@ -44,24 +43,87 @@ const call = freeCallCta();
 
   <TrustProfile />
 
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">Vor-Ort-Diagnose</span>
+        <h2>WLAN- und Internetprobleme vor Ort lösen</h2>
+        <p class="lead">
+          Wenn das Internet langsam wirkt, liegt die Ursache oft nicht am Tarif, sondern am WLAN, Routerstandort,
+          Repeater, Mesh-System, Powerline, Heimnetz oder einzelnen Endgeräten. WLANklar prüft vor Ort, wo die
+          Verbindung wirklich ausbremst – in Senftenberg, Großräschen, Lauchhammer, Hoyerswerda, Schwarzheide, Lauta,
+          Ruhland, Elsterheide, im Lausitzer Seenland und im Spreewald.
+        </p>
+      </div>
+      <div class="grid cols-2">
+        <div class="panel">
+          <h3>Erst messen, dann entscheiden</h3>
+          <p style="color: var(--color-ink-muted);">
+            Statt einfach neue Geräte zu verkaufen, wird zuerst gemessen: Geschwindigkeit direkt am Router, WLAN in den
+            Problemräumen, Position von Repeater oder Mesh und die wichtigsten verbundenen Geräte.
+          </p>
+        </div>
+        <div class="panel">
+          <h3>Verständliche Empfehlung</h3>
+          <p style="color: var(--color-ink-muted);">
+            Danach erhalten Sie eine klare Einschätzung – günstig verbessern, solide lösen oder langfristig sauber
+            aufbauen. Einfache Probleme werden nach Möglichkeit direkt mit erledigt.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">Leistungen</span>
+        <h2>Wobei WLANklar hilft</h2>
+      </div>
+      <div class="grid cols-3">
+        {[
+          "WLAN messen und optimieren",
+          "Internetprobleme zuhause eingrenzen",
+          "Router, FRITZ!Box oder Speedport einrichten",
+          "Repeater, Mesh, Powerline und Access Points prüfen",
+          "Heimnetzwerk für mehrere Etagen verbessern",
+          "Smart-TV, Drucker, Laptop und Homeoffice-Geräte verbinden",
+          "Gäste-WLAN und WLAN-QR-Code für Ferienwohnungen einrichten",
+          "Kunden-WLAN für Büro, Praxis, Studio oder Salon einrichten",
+          "Ausgewählte Technik-Hilfe zuhause: Laptop, Windows, Drucker & Backup",
+        ].map((item) => (
+          <div class="panel">{item}</div>
+        ))}
+      </div>
+      <div class="btn-row" style="margin-top: 24px;">
+        <a class="btn" href="/wlan-techniker-senftenberg/">WLAN-Techniker in Senftenberg ansehen</a>
+        <a class="btn btn-secondary" href="/technik-hilfe/">Technik-Hilfe zuhause ansehen</a>
+      </div>
+    </div>
+  </section>
+
   <section class="section">
     <div class="container">
       <div class="section-head">
         <span class="section-label">Zielgruppen</span>
-        <h2>Ein WLAN-Problem, drei unterschiedliche Situationen.</h2>
+        <h2>Ein WLAN- oder Technikproblem, vier typische Situationen.</h2>
       </div>
-      <div class="grid cols-3">
+      <div class="grid cols-4">
         <a class="panel" href="/zuhause-homeoffice/" style="text-decoration: none; color: inherit;">
-          <h3>Zuhause & Homeoffice</h3>
+          <h3>WLAN-Hilfe für Zuhause & Homeoffice in Senftenberg</h3>
           <p style="color: var(--color-ink-muted);">WLAN-Check, Komplettpaket und stabiles Heimnetz für Wohnung, Haus und Homeoffice.</p>
         </a>
         <a class="panel" href="/ferienwohnungen/" style="text-decoration: none; color: inherit;">
-          <h3>Ferienwohnungen & Monteurzimmer</h3>
+          <h3>Gäste-WLAN für Ferienwohnungen im Lausitzer Seenland</h3>
           <p style="color: var(--color-ink-muted);">Gäste-WLAN, QR-Code und digitale Gästemappe für weniger Rückfragen.</p>
         </a>
         <a class="panel" href="/kleine-bueros/" style="text-decoration: none; color: inherit;">
-          <h3>Kleine Büros, Praxen & Studios</h3>
+          <h3>Kunden-WLAN für kleine Büros, Praxen & Studios</h3>
           <p style="color: var(--color-ink-muted);">Genau das, was ein kleiner Betrieb wirklich braucht – WLAN, Kunden-WLAN und verbundene Arbeitsgeräte.</p>
+        </a>
+        <a class="panel" href="/technik-hilfe/" style="text-decoration: none; color: inherit;">
+          <h3>Technik-Hilfe zuhause: Laptop, Windows, Drucker & Backup</h3>
+          <p style="color: var(--color-ink-muted);">Ausgewählte Hilfe, wenn Alltagstechnik zuhause nicht sauber läuft.</p>
         </a>
       </div>
     </div>

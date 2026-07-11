@@ -8,7 +8,7 @@ Der Worker uebertraegt Formularanfragen aus Netlify Blobs in die private Baserow
 2. Der Worker sucht die externe Lead-ID in Baserow, um doppelte Datensaetze zu vermeiden.
 3. Neue Anfragen werden ueber die private Baserow-API angelegt.
 4. Erst nach erfolgreicher Anlage oder erkanntem Duplikat bestaetigt `POST /api/lead-ack` die Anfrage.
-5. Der systemd-Timer startet diesen Ablauf alle fuenf Minuten.
+5. Der systemd-Timer startet diesen Ablauf alle 30 Minuten.
 
 Der Baserow-Token bleibt ausschliesslich in `/etc/wlanklar-baserow-sync.env` auf der Debian-VM. Baserow muss nicht oeffentlich erreichbar sein.
 

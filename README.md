@@ -127,7 +127,7 @@ Aktuelle Logik:
 - Privatkunden und Technik-Hilfe erhalten zusätzlich ein passendes Problemtyp-Dropdown; Business- und Ferienwohnungskunden beschreiben ihr Anliegen frei.
 - WhatsApp- und Telefonlinks sind aktiv.
 - Formularanfragen werden über Netlify Functions in Netlify Blobs zwischengespeichert.
-- Direkte Baserow-Synchronisierung erfolgt später über einen privaten Debian-Sync-Worker.
+- Die Baserow-Synchronisierung erfolgt über den privaten Debian-Sync-Worker in `ops/baserow-sync`.
 
 ## Lead Queue
 
@@ -141,7 +141,7 @@ Erforderliche Environment Variable für Worker-Endpunkte:
 
 - `LEAD_SYNC_SECRET`
 
-Der Baserow API-Key gehört nicht in Netlify und nicht in den Browser. Er soll später nur auf der Debian-VM im Sync-Worker liegen.
+Der Baserow API-Key gehört nicht in Netlify und nicht in den Browser. Er liegt ausschließlich auf der Debian-VM im Sync-Worker. Installation und Betrieb sind in `ops/baserow-sync/README.md` dokumentiert.
 
 ## Tracking
 
@@ -156,7 +156,7 @@ Tracking ist vorbereitet, aber noch nicht extern aktiv.
 
 - E-Mail-Adresse in `src/data/config.ts` ergänzen
 - Impressum und Datenschutz rechtlich prüfen
-- Formularziel für Mail oder Baserow festlegen
+- Debian-Sync-Worker installieren und mit einem eigenen Baserow-Datenbank-Token testen
 - Build ausführen: `npm run build`
 - Mobile Darstellung und Kontakt-Wizard testen
 - Preise gegen `src/data/services.ts` prüfen

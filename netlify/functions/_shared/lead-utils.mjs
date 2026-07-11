@@ -28,10 +28,8 @@ export function verifySyncAuth(req) {
 
   const authHeader = req.headers.get("authorization") || "";
   const bearer = authHeader.replace(/^Bearer\s+/i, "").trim();
-  const querySecret = new URL(req.url).searchParams.get("secret") || "";
-  const provided = bearer || querySecret;
 
-  if (!provided || provided !== expected) {
+  if (!bearer || bearer !== expected) {
     return jsonResponse({ ok: false, error: "unauthorized" }, 401);
   }
 

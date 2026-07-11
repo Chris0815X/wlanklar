@@ -1,0 +1,12 @@
+[Unit]
+Description=Run WLANklar Baserow sync every five minutes
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=5min
+RandomizedDelaySec=30s
+Persistent=true
+Unit=wlanklar-baserow-sync.service
+
+[Install]
+WantedBy=timers.target

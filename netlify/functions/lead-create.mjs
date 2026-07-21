@@ -57,4 +57,9 @@ export default async function leadCreate(req, context) {
 export const config = {
   path: "/api/lead-create",
   method: ["POST", "OPTIONS"],
+  rateLimit: {
+    windowLimit: 5,
+    windowSize: 60,
+    aggregateBy: ["ip", "domain"],
+  },
 };

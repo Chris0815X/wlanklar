@@ -2,6 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ContactWizard from "../components/islands/ContactWizard";
 import TrustProfile from "../components/sections/TrustProfile.astro";
+import { siteConfig } from "../data/config";
 ---
 
 <BaseLayout
@@ -16,6 +17,10 @@ import TrustProfile from "../components/sections/TrustProfile.astro";
         <span class="section-label">Kontakt</span>
         <h1>Schildern Sie kurz, was nicht zuverlässig funktioniert.</h1>
         <p class="lead">Dauert etwa 1 Minute. Pflichtfelder sind markiert.</p>
+        <p>
+          Alternativ erreichen Sie WLANklar unter <a href={`tel:${siteConfig.phone}`}>{siteConfig.phoneDisplay}</a> oder
+          per E-Mail an <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>.
+        </p>
       </div>
       <div class="panel">
         <ContactWizard client:load />

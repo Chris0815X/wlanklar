@@ -45,6 +45,7 @@ const items = serviceIds.map((id) => getService(id)).filter((service) => Boolean
               ))}
             </ul>
           )}
+          {service!.scopeNote && <p class="panel-note" style="margin-top: 16px;">{service!.scopeNote}</p>}
           <div style="margin-top: 16px;">
             <a class="btn btn-small" href={`/kontakt/?leistung=${service!.id}`}>Anfragen</a>
           </div>

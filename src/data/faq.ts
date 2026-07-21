@@ -17,9 +17,9 @@ export const faqEntries: FaqEntry[] = [
   },
   {
     id: "check-garantie",
-    question: "Was, wenn der WLAN-Check keine verbesserungsfähige Ursache findet?",
+    question: "Was, wenn der WLAN-Check & Soforthilfe kein verwertbares Ergebnis liefert?",
     answer:
-      "Dann zahlen Sie statt 99 € nur 29 € Servicepauschale – das sagen wir Ihnen so klar zu. Und falls sich vor Ort direkt eine Lösung ergibt: Wird aus dem Check das WLAN-Komplettpaket, zahlen Sie nicht 99 € + 199 €, sondern 199 € gesamt.",
+      "Können wir weder eine nachvollziehbare Ursache feststellen noch eine konkrete sinnvolle Handlungsempfehlung geben, zahlen Sie statt 99 € nur 29 € Servicepauschale. Ergibt sich vor Ort direkt eine umsetzbare Lösung, kann der Termin auf das WLAN-Komplettpaket erweitert werden. Dann zahlen Sie nicht 99 € + 199 €, sondern insgesamt 199 € zuzüglich gegebenenfalls benötigter Hardware.",
   },
   {
     id: "anfahrt",
@@ -137,6 +137,12 @@ export const faqEntries: FaqEntry[] = [
     answer:
       "Ja. Gerade bei Monteurzimmern ist stabiles WLAN wichtig, weil mehrere Personen gleichzeitig Smartphone, Laptop, Streaming oder Messenger nutzen.",
   },
+  {
+    id: "fewo-check-soforthilfe",
+    question: "Wird beim Gastgeber-Check & Soforthilfe nur geprüft?",
+    answer:
+      "Nein. Beim Gastgeber-Check & Soforthilfe werden einfache Einstellungen direkt korrigiert, vorhandenes Gäste-WLAN nach Möglichkeit optimiert und ein digitaler WLAN-QR-Code erstellt. Wenn neue Hardware oder ein größerer Umbau nötig ist, erhalten Sie eine klare Empfehlung. Wird daraus direkt Gäste-WLAN Komfort, wird der Check auf das größere Paket angerechnet.",
+  },
 
   // Kleine Büros, Praxen & Studios
   {
@@ -146,16 +152,28 @@ export const faqEntries: FaqEntry[] = [
       "Unser Fokus liegt auf WLAN, Gästezugang und einfachen Netzwerkthemen – das machen wir richtig. Kleinere Projekte darüber hinaus sind nach individueller Absprache durchaus möglich: Sprechen Sie uns einfach an, wir sagen ehrlich, ob es zu uns passt.",
   },
   {
+    id: "buero-check-soforthilfe",
+    question: "Wird beim Büro-WLAN-Check & Soforthilfe nur geprüft?",
+    answer:
+      "Nein. Einfache WLAN- und Routereinstellungen werden direkt korrigiert. Nach Möglichkeit wird außerdem ein vorhandenes Kunden-WLAN optimiert oder ein einzelnes Netzwerkgerät wieder verbunden. Für größere Änderungen erhalten Sie einen klaren Kostenrahmen. Wird daraus direkt das Büro-WLAN Setup, wird der Check auf das größere Paket angerechnet.",
+  },
+  {
     id: "buero-netto",
     question: "Sind die Preise netto oder brutto?",
     answer:
-      "Die Gewerbepreise auf dieser Seite verstehen sich netto, zuzüglich Mehrwertsteuer. Sie erhalten selbstverständlich eine ordentliche Rechnung für Ihre Buchhaltung.",
+      "Die Gewerbepreise auf dieser Seite sind Bruttopreise inklusive Mehrwertsteuer. Sie erhalten selbstverständlich eine ordentliche Rechnung für Ihre Buchhaltung.",
   },
   {
     id: "buero-termin",
     question: "Geht ein Termin auch außerhalb unserer Öffnungszeiten?",
     answer:
       "Ja, nach Absprache auch vor Öffnung oder nach Feierabend – damit Ihr Betrieb ungestört weiterläuft und keine Kunden im Laden stehen, während am Netzwerk gearbeitet wird.",
+  },
+  {
+    id: "buero-branchensoftware",
+    question: "Unterstützt WLANklar auch Kassen-, Zahlungs- oder Branchensoftware?",
+    answer:
+      "WLANklar prüft und verbessert die Netzwerkverbindung von Kartenterminals, Kassen-PCs, Tablets und Arbeitsplatzgeräten. Fehler in der Zahlungs-, Kassen-, Termin- oder Branchensoftware selbst sind nicht Teil des Angebots.",
   },
 
   // Technik-Hilfe zuhause
@@ -205,7 +223,7 @@ export const faqEntries: FaqEntry[] = [
     id: "technik-bezahlung",
     question: "Wie wird bezahlt?",
     answer:
-      "Privatkunden zahlen bequem direkt vor Ort per Karte, Smartphone oder bar. Die Rechnung erhalten Sie digital.",
+      "Privatkunden zahlen direkt vor Ort bar oder nach Erhalt der Rechnung per Überweisung. Die Rechnung erhalten Sie digital.",
   },
 ];
 

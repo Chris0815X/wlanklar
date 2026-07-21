@@ -34,10 +34,10 @@ const schemas = [
 const isFerienwohnungPost = segments.includes("ferienwohnung");
 const ctaCopy = isFerienwohnungPost
   ? "Wenn Sie Gäste-WLAN, QR-Code oder Smart-TV nicht selbst vorbereiten möchten, hilft WLANklar vor Ort im Lausitzer Seenland."
-  : "Wenn Sie das Problem nicht selbst eingrenzen möchten, hilft WLANklar mit einem WLAN-Check vor Ort in Senftenberg und Umgebung.";
+  : "Wenn Sie das Problem nicht selbst eingrenzen möchten, hilft WLANklar mit dem WLAN-Check & Soforthilfe vor Ort in Senftenberg und Umgebung.";
 const ctaLink = isFerienwohnungPost
   ? { href: "/gaeste-wlan-ferienwohnung-lausitzer-seenland/", label: "Gäste-WLAN im Lausitzer Seenland ansehen" }
-  : { href: "/wlan-techniker-senftenberg/", label: "WLAN-Check in Senftenberg anfragen" };
+  : { href: "/wlan-techniker-senftenberg/", label: "WLAN-Check & Soforthilfe anfragen" };
 ---
 
 <BaseLayout

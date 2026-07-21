@@ -2,7 +2,7 @@ import { getFaqEntries } from "./faq";
 import { SITE_URL, siteConfig } from "./config";
 
 const serviceTypes = [
-  "WLAN-Check vor Ort",
+  "WLAN-Check & Soforthilfe",
   "WLAN einrichten",
   "Router einrichten",
   "Repeater einrichten",
@@ -27,10 +27,19 @@ export function localBusinessSchema(siteUrl = SITE_URL) {
     "@type": "ProfessionalService",
     "@id": `${baseUrl}/#business`,
     name: siteConfig.brandName,
+    legalName: siteConfig.ownerName,
+    vatID: siteConfig.vatId,
     description:
       "WLANklar hilft vor Ort bei WLAN-Problemen, Router, Repeater, Mesh, Heimnetz, Gäste-WLAN, Kunden-WLAN und ausgewählter Technik-Hilfe in Senftenberg, der Lausitz und im Spreewald.",
     url: `${baseUrl}/`,
     priceRange: "€€",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: siteConfig.street,
+      postalCode: siteConfig.postcode,
+      addressLocality: siteConfig.city,
+      addressCountry: "DE",
+    },
     areaServed: siteConfig.cityExamples.map((name) => ({
       "@type": "AdministrativeArea",
       name,

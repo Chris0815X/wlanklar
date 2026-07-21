@@ -20,6 +20,7 @@ const lead = {
   postcode: "01968",
   city: "Senftenberg",
   objectType: "Zuhause/Homeoffice",
+  number_of_properties: "2–5 Objekte",
   problemType: "Verbindung bricht ab",
   routerAccess: "ja, Routerpasswort vorhanden",
   problem: "Videokonferenzen brechen im Arbeitszimmer ab.",
@@ -42,6 +43,7 @@ test("maps a website lead to the existing Baserow fields", () => {
   assert.equal(row.Quelle, "Website");
   assert.match(row["Interne Notizen"], /External Lead-ID: 20260711-test-id/);
   assert.match(row["Problem / Anfrage"], /Videokonferenzen/);
+  assert.match(row["Technische Infos"], /Objekte\/Unterkünfte: 2–5 Objekte/);
 });
 
 test("keeps an invalid optional phone value out of the Baserow phone field", () => {

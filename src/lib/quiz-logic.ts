@@ -19,7 +19,7 @@ export interface QuizRecommendation {
 }
 
 export function recommend(answers: QuizAnswers): QuizRecommendation {
-  let headline = "Das klingt nach einem sinnvollen Start mit dem WLAN-Check.";
+  let headline = "Das klingt nach einem sinnvollen Start mit dem WLAN-Check & Soforthilfe.";
   let recommendation =
     "WLANklar prüft vor Ort, ob Anschluss, Router, WLAN-Signal, Repeater, Powerline, Kabel oder Endgerät die Ursache sind. Danach erhalten Sie eine passende Empfehlung.";
   let serviceIds = ["wlan-check"];
@@ -30,7 +30,7 @@ export function recommend(answers: QuizAnswers): QuizRecommendation {
       "Hier geht es nicht nur um Empfang, sondern auch um weniger Rückfragen, klaren WLAN-Zugang, Smart-TV und einen professionellen Eindruck bei Anreise.";
     serviceIds = ["gastgeber-check", "gaeste-wlan-komfort"];
   } else if (/Büro|Praxis|Studio/.test(answers.location)) {
-    headline = "Das klingt nach einem Fall für den Büro-WLAN-Check.";
+    headline = "Das klingt nach einem Fall für den Büro-WLAN-Check & Soforthilfe.";
     recommendation =
       "WLANklar prüft vor Ort, warum WLAN, Gästezugang, Drucker, Scanner oder Arbeitsplätze nicht zuverlässig funktionieren, und empfiehlt eine pragmatische Lösung für den kleinen Betrieb.";
     serviceIds = ["buero-check"];
@@ -50,7 +50,7 @@ export function recommend(answers: QuizAnswers): QuizRecommendation {
   ) {
     headline = "Für eine reine Router-Ersteinrichtung kann die Router-Basis-Einrichtung passen.";
     recommendation =
-      "Dieses Paket passt, wenn Anschluss, Zugangsdaten und Hardware vorbereitet sind. Wenn die Ursache unklar ist oder mehrere Räume betroffen sind, ist der WLAN-Check der bessere Start.";
+      "Dieses Paket passt, wenn Anschluss, Zugangsdaten und Hardware vorbereitet sind. Wenn die Ursache unklar ist oder mehrere Räume betroffen sind, ist der WLAN-Check & Soforthilfe der bessere Start.";
     serviceIds = ["router-basis"];
   }
 

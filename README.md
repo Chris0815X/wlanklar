@@ -52,34 +52,41 @@ Der lokale Dev-Server läuft standardmäßig unter `http://localhost:4321`.
 
 ### Privatkunden
 
-- WLAN-Check vor Ort: 99 EUR
+- WLAN-Check & Soforthilfe: 99 EUR
 - WLAN-Komplettpaket: 199 EUR zzgl. Hardware
 - Stabiles Heimnetz: ab 499 EUR zzgl. Hardware
 - Router-Einrichtung, schnell: 69 EUR zzgl. ggf. Anfahrt
 - Repeater-Einrichtung: 69 EUR zzgl. ggf. Anfahrt
-- Smart-TV & Streaming: 69 EUR zzgl. ggf. Anfahrt
+- Smart-TV verbinden & Streaming prüfen: 69 EUR zzgl. ggf. Anfahrt
 - Weiteres Telefon im Haus einrichten: ab 49 EUR als Zusatzleistung
 
 Wichtige Preislogik:
 
-- Wenn aus dem WLAN-Check direkt das WLAN-Komplettpaket wird, kostet der Termin 199 EUR gesamt statt 99 EUR + 199 EUR.
-- Wenn beim WLAN-Check keine sinnvoll verbesserbare Ursache gefunden wird, werden statt 99 EUR nur 29 EUR Servicepauschale berechnet.
+- Wenn aus dem WLAN-Check & Soforthilfe direkt das WLAN-Komplettpaket wird, kostet der Termin 199 EUR gesamt statt 99 EUR + 199 EUR.
+- Können wir weder eine nachvollziehbare Ursache feststellen noch eine konkrete sinnvolle Handlungsempfehlung geben, zahlen Sie statt 99 EUR nur 29 EUR Servicepauschale. Eine eingegrenzte Providerstörung, ungeeignete Hardware oder ein problematisches Endgerät mit konkreter Empfehlung ist ein verwertbares Ergebnis.
+- Router-Einrichtung, Repeater-Einrichtung und Smart-TV-Service gelten jeweils für vorhandene kompatible Geräte und bis zu 45 Minuten vor Ort. Der genaue Umfang steht in `src/data/services.ts`.
 
 ### Ferienwohnungen und Gastgeber
 
-- Gastgeber-Check: 199 EUR
+- Gastgeber-Check & Soforthilfe: 199 EUR, bis zu 90 Minuten vor Ort
 - Gäste-WLAN Komfort: ab 699 EUR zzgl. Hardware
-- Saisonstart-Check: ab 349 EUR pro Objekt/Jahr
+- Saisonstart-Check: 199 EUR pro Objekt, bis zu 90 Minuten vor Ort
 - Gäste-WLAN-Set mit gedruckten Karten: ab 79 EUR
+
+Der Gastgeber-Check & Soforthilfe enthält direkte kleine Korrekturen, einen digitalen WLAN-QR-Code und eine kurze Vermieter-Zusammenfassung. Wird daraus direkt Gäste-WLAN Komfort, kostet der Auftrag ab 699 EUR gesamt statt 199 EUR plus 699 EUR. Alle genannten Preise sind Bruttopreise inklusive Mehrwertsteuer; Hardware kommt nur nach Absprache hinzu.
 
 Weitere digitale Leistungen wie digitale Gästemappe, Bewertungsunterstützung oder kleine Website-/Direktbuchungs-Upsells werden individuell abgestimmt und sind aktuell kein fixes Paket.
 
 ### Kleine Büros, Praxen, Studios und Salons
 
-Gewerbliche Preise sind netto zzgl. MwSt.
+Gewerbliche Preise sind Bruttopreise inklusive Mehrwertsteuer.
 
-- Büro-WLAN-Check: 169 EUR zzgl. MwSt.
-- Büro-WLAN Setup: ab 599 EUR zzgl. Hardware und MwSt.
+- Büro-WLAN-Check & Soforthilfe: 199 EUR inkl. MwSt., bis zu 90 Minuten vor Ort
+- Büro-WLAN Setup: ab 599 EUR inkl. MwSt., zzgl. Hardware
+
+Der Büro-WLAN-Check & Soforthilfe enthält direkte kleine Korrekturen und nach Möglichkeit die Wiederanbindung eines einzelnen Netzwerkgeräts. Wird daraus direkt das Büro-WLAN Setup, kostet der Auftrag ab 599 EUR gesamt statt 199 EUR plus 599 EUR.
+
+Zahlung ist bar vor Ort oder per Rechnung und Überweisung möglich. Kartenzahlung wird derzeit nicht angeboten.
 
 ### Technik-Hilfe zuhause
 
@@ -125,6 +132,7 @@ Aktuelle Logik:
 - Technische Zusatzinfos sind optional im zweiten Schritt gebündelt.
 - Auf Bereichsseiten wird die passende Objektart vorgewählt; der Formularablauf bleibt überall gleich.
 - Privatkunden und Technik-Hilfe erhalten zusätzlich ein passendes Problemtyp-Dropdown; Business- und Ferienwohnungskunden beschreiben ihr Anliegen frei.
+- Bei Ferienwohnungen und Monteurzimmern erscheint optional die Objektanzahl. Das Request-Feld heißt `number_of_properties` und wird vom privaten Sync-Worker in die technischen Baserow-Infos übernommen.
 - WhatsApp- und Telefonlinks sind aktiv.
 - Formularanfragen werden über Netlify Functions in Netlify Blobs zwischengespeichert.
 - Die Baserow-Synchronisierung erfolgt über den privaten Debian-Sync-Worker in `ops/baserow-sync`.
@@ -137,11 +145,17 @@ Netlify Functions:
 - `GET /api/lead-pull` - geschützter Abruf für den späteren Sync-Worker
 - `POST /api/lead-ack` - geschützte Bestätigung/Löschung nach Baserow-Sync
 
+Das öffentliche Formularziel ist über Netlify auf maximal 5 Anfragen pro Minute und Kombination aus IP-Adresse und Domain begrenzt. Zusätzlich bleibt das unsichtbare Honeypot-Feld aktiv.
+
 Erforderliche Environment Variable für Worker-Endpunkte:
 
 - `LEAD_SYNC_SECRET`
 
 Der Baserow API-Key gehört nicht in Netlify und nicht in den Browser. Er liegt ausschließlich auf der Debian-VM im Sync-Worker. Installation und Betrieb sind in `ops/baserow-sync/README.md` dokumentiert.
+
+## Bilder
+
+Die Website liefert optimierte WebP-Dateien aus `public/images` aus. Die unkomprimierten PNG-Quelldateien bleiben zur späteren Bearbeitung unter `source-assets/images` erhalten und werden nicht in den öffentlichen Build kopiert.
 
 ## Tracking
 
@@ -154,8 +168,7 @@ Tracking ist vorbereitet, aber noch nicht extern aktiv.
 
 ## Vor Livegang prüfen
 
-- E-Mail-Adresse in `src/data/config.ts` ergänzen
-- Impressum und Datenschutz rechtlich prüfen
+- Impressum und Datenschutz abschließend rechtlich prüfen
 - Debian-Sync-Worker installieren und mit einem eigenen Baserow-Datenbank-Token testen
 - Build ausführen: `npm run build`
 - Mobile Darstellung und Kontakt-Wizard testen

@@ -92,7 +92,11 @@ export function mapLeadToBaserow(lead) {
       lead.problemType && `Situation: ${lead.problemType}`,
       lead.problem,
     ]),
-    "Technische Infos": lines([lead.additionalInfo, travelText]),
+    "Technische Infos": lines([
+      lead.number_of_properties && `Objekte/Unterkünfte: ${lead.number_of_properties}`,
+      lead.additionalInfo,
+      travelText,
+    ]),
     Routerzugang: lead.routerAccess || "nein/unsicher",
     "Interne Notizen": lines([
       `External Lead-ID: ${lead.id}`,

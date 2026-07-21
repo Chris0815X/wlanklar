@@ -1,16 +1,22 @@
-// Zentrale Konfiguration: Marke, Kontakt, Regionen.
-// Ersetzt das alte wlanklar_site/config.js. Vor Veröffentlichung Platzhalter füllen.
+// Zentrale Konfiguration: Marke, Betreiber, Kontakt und Regionen.
+// Ersetzt das alte wlanklar_site/config.js und versorgt auch Rechtstexte und strukturierte Daten.
 // Bei einem Domainwechsel PUBLIC_SITE_URL setzen, damit Canonicals, robots.txt und JSON-LD konsistent bleiben.
 
 export const SITE_URL = import.meta.env.PUBLIC_SITE_URL ?? "https://www.wlanklar.de";
 
 export const siteConfig = {
   brandName: "WLANklar",
-  contactName: "Christopher",
+  contactName: "Christopher Reiche",
+  ownerName: "Christopher Reiche",
+  legalForm: "Einzelunternehmen",
+  street: "Victoriastraße 11A",
+  postcode: "01983",
+  city: "Großräschen",
   phone: "+4935753260047",
   phoneDisplay: "+49 3575 3260047",
   whatsappNumber: "4935753260047",
-  email: "",
+  email: "hallo@wlanklar.de",
+  vatId: "DE327207216",
   regionPrimary: "Lausitz",
   regionSecondary: "Spreewald",
   region: "Lausitz & Spreewald",

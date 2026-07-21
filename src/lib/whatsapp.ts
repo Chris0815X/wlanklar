@@ -12,6 +12,7 @@ export interface ContactFormData {
   postcode?: string;
   city?: string;
   objectType?: string;
+  numberOfProperties?: string;
   problemType?: string;
   routerAccess?: string;
   problem?: string;
@@ -23,7 +24,7 @@ function brand() {
 }
 
 export function defaultMessage(): string {
-  return `Hallo ${brand()}, ich möchte einen Termin anfragen.\n\nName: \nTelefon/WhatsApp: \nE-Mail: \nPLZ/Ort: \nObjekt: Zuhause / Ferienwohnung / kleines Büro\nProblemtyp: \nKurzbeschreibung: \nTechnische Zusatzinfos: \nRouterzugang vorhanden?: `;
+  return `Hallo ${brand()}, ich möchte einen Termin anfragen.\n\nName: \nTelefon/WhatsApp: \nE-Mail: \nPLZ/Ort: \nObjekt: Zuhause / Ferienwohnung / kleines Büro\nAnzahl Objekte/Unterkünfte: \nProblemtyp: \nKurzbeschreibung: \nTechnische Zusatzinfos: \nRouterzugang vorhanden?: `;
 }
 
 export function whatsappHref(message?: string): string {
@@ -51,8 +52,8 @@ export function phoneHref(): string {
 export function freeCallCta(): { href: string; label: string } {
   const hasPhone = Boolean(siteConfig.phone);
   return hasPhone
-    ? { href: phoneHref(), label: "Kostenlos anrufen" }
-    : { href: "/kontakt/?intent=erstgespraech", label: "Kostenloses Erstgespräch anfragen" };
+    ? { href: phoneHref(), label: "Kostenlos vorab klären" }
+    : { href: "/kontakt/?intent=erstgespraech", label: "Kostenlos vorab klären" };
 }
 
 export function contactTarget(message: string): { href: string; channel: "whatsapp" | "email" } {
@@ -63,13 +64,16 @@ export function contactTarget(message: string): { href: string; channel: "whatsa
 
 export function buildContactMessage(data: ContactFormData, travelEstimate: TravelEstimate | null): string {
   const travelLine = travelEstimate ? `\nAnfahrt laut PLZ-Check: ${travelSummary(travelEstimate)}` : "";
+  const propertyCountLine = data.numberOfProperties
+    ? `\nAnzahl Objekte/Unterkünfte: ${data.numberOfProperties}`
+    : "";
   return `Hallo ${brand()}, ich möchte einen Termin anfragen.\n\nName: ${data.name || ""}\nTelefon/WhatsApp: ${
     data.customerPhone || ""
   }\nE-Mail: ${data.customerEmail || ""}\nGewünschter Kontaktweg: ${data.preferredContact || ""}\nPLZ/Ort: ${
     data.postcode || ""
   } ${data.city || ""}${travelLine}\nObjekt: ${
     data.objectType || ""
-  }\nProblemtyp: ${data.problemType || ""}\nKurzbeschreibung: ${data.problem || ""}\nTechnische Zusatzinfos: ${
+  }${propertyCountLine}\nProblemtyp: ${data.problemType || ""}\nKurzbeschreibung: ${data.problem || ""}\nTechnische Zusatzinfos: ${
     data.additionalInfo || ""
   }\nRouterzugang vorhanden?: ${data.routerAccess || ""}`;
 }

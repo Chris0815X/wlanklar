@@ -11,7 +11,7 @@ const call = freeCallCta();
     <div class="trust-profile">
       <div class="trust-profile-photo">
         <img
-          src="/images/ansprechpartner-wlanklar-original.png"
+          src="/images/ansprechpartner-wlanklar.webp"
           alt="Ihr Ansprechpartner bei WLANklar"
           loading="lazy"
           decoding="async"
@@ -19,6 +19,8 @@ const call = freeCallCta();
       </div>
       <div class="trust-profile-body">
         <span class="section-label">Wer kommt zu Ihnen?</span>
+        <p class="trust-profile-name">Christopher Reiche</p>
+        <p class="trust-profile-origin">Ihr persönlicher Ansprechpartner aus Großräschen</p>
         <h2>Kein anonymes Team – ein fester Ansprechpartner.</h2>
         <p class="lead">
           Über 20 Jahre Erfahrung mit Netzwerktechnik, IT sowie Hard- und Software. Ich komme persönlich zu Ihnen –
@@ -55,6 +57,20 @@ const call = freeCallCta();
     display: block;
     width: 100%;
     height: auto;
+  }
+
+  .trust-profile-name {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: var(--step-h3);
+    font-weight: 700;
+    color: var(--color-ink);
+  }
+
+  .trust-profile-origin {
+    margin: 3px 0 18px;
+    color: var(--color-signal);
+    font-weight: 600;
   }
 
   @media (max-width: 640px) {

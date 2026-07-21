@@ -419,13 +419,38 @@ img {
   gap: 18px;
 }
 
+.footer-contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+}
+
+.footer-contact a,
 .footer-links a {
   text-decoration: none;
   color: var(--color-ink-muted);
 }
 
+.footer-contact a:hover,
 .footer-links a:hover {
   color: var(--color-ink);
+}
+
+/* Rechtstexte */
+
+.legal-page h1,
+.legal-page h2,
+.legal-page a {
+  overflow-wrap: anywhere;
+}
+
+.legal-page .panel h2 {
+  margin-top: 30px;
+  font-size: var(--step-h3);
+}
+
+.legal-page .panel ul {
+  padding-left: 20px;
 }
 
 /* Breadcrumbs */

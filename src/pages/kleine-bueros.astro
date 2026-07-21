@@ -10,7 +10,7 @@ import ContactWizard from "../components/islands/ContactWizard";
 
 <BaseLayout
   title="WLAN für Büro, Praxis & Studio in Senftenberg | Kunden-WLAN"
-  description="WLANklar richtet WLAN, Kunden-WLAN, Drucker, Scanner, Kartenzahlung und Arbeitsplatzgeräte für kleine Büros, Praxen, Studios & Salons im Raum Senftenberg ein."
+  description="WLANklar richtet WLAN, Kunden-WLAN und Netzwerkverbindungen für Drucker, Scanner, Kartenterminals und Arbeitsplatzgeräte in kleinen Büros, Praxen, Studios & Salons im Raum Senftenberg ein."
 >
   <div class="container" style="padding-top: 20px;">
     <Breadcrumbs items={[{ label: "Startseite", href: "/" }, { label: "Kleine Büros, Praxen & Studios" }]} />
@@ -19,9 +19,9 @@ import ContactWizard from "../components/islands/ContactWizard";
   <Hero
     eyebrow="Kleine Büros, Praxen & Studios"
     title="WLAN und Kunden-WLAN für kleine Büros, Praxen & Studios in Senftenberg"
-    lead="Wenn Kunden-WLAN fehlt, Kartenzahlung die Verbindung verliert, der Drucker nicht gefunden wird oder das WLAN bis in Nebenräume nicht reicht, hilft WLANklar kleinen Betrieben im Raum Senftenberg pragmatisch vor Ort."
-    micro="WLAN · Kunden-WLAN · Kartenzahlung · Drucker/Scanner · Tablet · Kassen-PC · einfache Dokumentation"
-    image={{ src: "/images/buero-wlan-check.png", alt: "WLAN-Check für Kunden-WLAN in einem kleinen Büro in Senftenberg" }}
+    lead="Wenn Kunden-WLAN fehlt, das Kartenterminal die Netzwerkverbindung verliert, der Drucker nicht gefunden wird oder das WLAN bis in Nebenräume nicht reicht, hilft WLANklar kleinen Betrieben im Raum Senftenberg pragmatisch vor Ort."
+    micro="WLAN · Kunden-WLAN · Kartenterminal-Verbindung · Drucker/Scanner · Tablet · Kassen-PC · einfache Dokumentation"
+    image={{ src: "/images/buero-wlan-check.webp", alt: "WLAN-Check für Kunden-WLAN in einem kleinen Büro in Senftenberg" }}
     panelTitle="Unser Schwerpunkt"
     panelItems={["WLAN & Kunden-WLAN", "Drucker & Arbeitsplatzgeräte", "Termine auch außerhalb der Öffnungszeiten"]}
     ctas={[{ href: "#kontakt", label: "Jetzt Termin anfragen" }]}
@@ -32,9 +32,9 @@ import ContactWizard from "../components/islands/ContactWizard";
     title="Typische Probleme in kleinen Betrieben."
     points={[
       "Kunden-WLAN fehlt oder ist nicht getrennt",
-      "Kartenzahlung verliert die Verbindung",
+      "Kartenterminal verliert die Netzwerkverbindung",
       "Drucker wird nicht gefunden",
-      "Terminsoftware hängt",
+      "Terminsoftware ist bei instabiler Verbindung nicht zuverlässig erreichbar",
       "WLAN reicht nicht bis in Nebenräume",
       "Repeater bringt nichts",
       "Nach Routerwechsel funktioniert nichts mehr",
@@ -46,8 +46,8 @@ import ContactWizard from "../components/islands/ContactWizard";
 
   <PricingGrid
     eyebrow="Angebote"
-    title="Zuverlässiges Netzwerk für Ihren Betrieb – zum Festpreis."
-    note="Alle Gewerbepreise netto zzgl. MwSt."
+    title="Prüfen, einfache Probleme direkt lösen und klar weiterplanen."
+    note="Schon der Einstieg enthält Soforthilfe vor Ort. Wird daraus direkt das Büro-WLAN Setup, wird der Check angerechnet. Alle Gewerbepreise sind Bruttopreise inklusive Mehrwertsteuer."
     columns={2}
     serviceIds={["buero-check", "buero-setup"]}
   />
@@ -118,7 +118,9 @@ import ContactWizard from "../components/islands/ContactWizard";
     </div>
   </section>
 
-  <FaqAccordion ids={["buero-projekte", "buero-netto", "buero-termin", "nachbetreuung"]} />
+  <FaqAccordion
+    ids={["buero-check-soforthilfe", "buero-projekte", "buero-branchensoftware", "buero-netto", "buero-termin", "nachbetreuung"]}
+  />
 
   <section class="section" id="kontakt">
     <div class="container">

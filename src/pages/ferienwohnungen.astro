@@ -8,7 +8,14 @@ import FaqAccordion from "../components/sections/FaqAccordion.astro";
 import ContactWizard from "../components/islands/ContactWizard";
 import { faqPageSchema, serviceSchema } from "../data/schema";
 
-const faqIds = ["fewo-getrenntes-gaeste-wlan", "fewo-qr-code", "fewo-monteurzimmer", "fewo-anwesenheit", "hardware-im-preis"];
+const faqIds = [
+  "fewo-check-soforthilfe",
+  "fewo-getrenntes-gaeste-wlan",
+  "fewo-qr-code",
+  "fewo-monteurzimmer",
+  "fewo-anwesenheit",
+  "hardware-im-preis",
+];
 const schemas = [
   serviceSchema({
     name: "Gäste-WLAN für Ferienwohnungen im Lausitzer Seenland",
@@ -33,7 +40,7 @@ const schemas = [
     eyebrow="Ferienwohnungen & Monteurzimmer"
     title="Gäste-WLAN für Ferienwohnungen im Lausitzer Seenland"
     lead="Gäste erwarten heute, dass WLAN, Smart-TV und Zugangsdaten sofort funktionieren – besonders in Ferienwohnungen am Senftenberger See, in Großkoschen, Geierswalde, Senftenberg und im Lausitzer Seenland."
-    image={{ src: "/images/ferienwohnung-gaeste-wlan.png", alt: "Gäste-WLAN-Karte mit QR-Code für eine Ferienwohnung im Lausitzer Seenland" }}
+    image={{ src: "/images/ferienwohnung-gaeste-wlan.webp", alt: "Gäste-WLAN-Karte mit QR-Code für eine Ferienwohnung im Lausitzer Seenland" }}
     panelTitle="Besonders sinnvoll für"
     panelItems={["Gastgeber und Vermieter", "Monteurzimmer", "kleine Pensionen", "Objekte mit wiederkehrenden Gästeanfragen"]}
     ctas={[{ href: "#kontakt", label: "Termin anfragen" }]}
@@ -77,13 +84,45 @@ const schemas = [
 
   <PricingGrid
     eyebrow="Angebote"
-    title="Gäste-WLAN, QR-Code und klare Gästeinfos."
-    note="Darüber hinaus bieten wir auch weitere digitale Dienstleistungen für Ferienwohnungen an – z. B. eine digitale Gästemappe oder Unterstützung bei Bewertungen. Sprechen Sie uns einfach an, wir stimmen das individuell ab."
+    title="Prüfen, direkt verbessern oder sauber neu aufsetzen."
+    note="Schon der Einstieg liefert ein konkretes Ergebnis: einfache Korrekturen, einen digitalen WLAN-QR-Code und eine kurze Zusammenfassung. Bei größerem Bedarf wird der Check auf Gäste-WLAN Komfort angerechnet. Alle genannten Preise sind Bruttopreise inklusive Mehrwertsteuer."
     columns={2}
     serviceIds={["gastgeber-check", "gaeste-wlan-komfort", "saisonstart-check"]}
   />
 
   <section class="section section-alt">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">Mehrere Unterkünfte</span>
+        <h2>Mehrere Objekte? Ein Ansprechpartner.</h2>
+        <p class="lead">
+          Sie betreuen mehrere Ferienwohnungen, Monteurzimmer, eine kleine Pension oder eine Ferienanlage? WLANklar
+          prüft die Objekte strukturiert, vereinheitlicht Gäste-WLAN, QR-Codes und Dokumentation und erstellt ein
+          passendes Angebot für Ihren Bestand.
+        </p>
+      </div>
+      <div class="grid cols-2">
+        <div class="panel">
+          <ul style="margin: 0; padding-left: 18px; color: var(--color-ink-muted);">
+            <li>abgestimmte Prüfung mehrerer Objekte</li>
+            <li>einheitliche Gäste-WLAN-Karten und QR-Codes</li>
+            <li>nachvollziehbare Dokumentation für Vermieter oder Servicepersonal</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <ul style="margin: 0; padding-left: 18px; color: var(--color-ink-muted);">
+            <li>gemeinsame Terminplanung</li>
+            <li>individuelles Angebot abhängig von Objektzahl und Ausgangssituation</li>
+          </ul>
+        </div>
+      </div>
+      <div class="btn-row" style="margin-top: 24px;">
+        <a class="btn" href="#kontakt">Mehrere Objekte anfragen</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
     <div class="container">
       <div class="section-head">
         <span class="section-label">Region</span>

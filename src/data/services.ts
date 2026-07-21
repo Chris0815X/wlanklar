@@ -19,16 +19,18 @@ export interface Service {
   upsellNote?: string;
   /** Risiko-Umkehr / Zusage, direkt auf der Preis-Karte sichtbar. */
   guaranteeNote?: string;
+  /** Klare Leistungsgrenze fuer kompakte Einzelleistungen. */
+  scopeNote?: string;
 }
 
 export const services: Service[] = [
   {
     id: "wlan-check",
     segment: "privat",
-    name: "WLAN-Check vor Ort",
+    name: "WLAN-Check & Soforthilfe",
     price: 99,
     priceFrom: false,
-    tagline: "Wir finden die Ursache – und beheben einfache Probleme direkt mit.",
+    tagline: "Wir finden die Ursache, beheben einfache Probleme direkt und zeigen Ihnen den nächsten sinnvollen Schritt.",
     includes: [
       "Geschwindigkeit direkt am Router messen",
       "WLAN in Problemräumen testen",
@@ -38,7 +40,7 @@ export const services: Service[] = [
     ],
     upsellNote: "Wird daraus direkt das WLAN-Komplettpaket, zahlen Sie nicht 99 € + 199 €, sondern 199 € gesamt.",
     guaranteeNote:
-      "Finden wir keine Ursache, die sich sinnvoll verbessern lässt, zahlen Sie statt 99 € nur 29 € Servicepauschale.",
+      "Können wir weder eine nachvollziehbare Ursache feststellen noch eine konkrete sinnvolle Handlungsempfehlung geben, zahlen Sie statt 99 € nur 29 € Servicepauschale.",
   },
   {
     id: "wlan-soforthilfe",
@@ -49,7 +51,7 @@ export const services: Service[] = [
     priceSuffix: "zzgl. Hardware",
     tagline: "Analyse plus komplette Optimierung – in einem Termin.",
     includes: [
-      "Alles aus dem WLAN-Check",
+      "Alles aus dem WLAN-Check & Soforthilfe",
       "Router, Repeater oder Mesh sinnvoll einrichten",
       "WLAN-Namen, Gastnetz oder Frequenzbänder optimieren",
       "Wichtige Geräte verbinden",
@@ -87,6 +89,8 @@ export const services: Service[] = [
       "Bis zu 3 Geräte verbinden",
       "Kurze Einweisung, damit Sie alles Wichtige kennen",
     ],
+    scopeNote:
+      "Der Preis gilt für einen vorhandenen kompatiblen Router und bis zu 45 Minuten vor Ort. Anschluss, Zugangsdaten oder Provider-App müssen verfügbar sein. Bis zu drei Geräte sind inklusive.",
   },
   {
     id: "repeater-basis",
@@ -97,21 +101,26 @@ export const services: Service[] = [
     priceSuffix: "zzgl. ggf. Anfahrt",
     tagline: "Ihr Repeater wird dort platziert, wo er wirklich hilft – verbunden und getestet.",
     includes: [],
+    scopeNote:
+      "Der Preis gilt für einen vorhandenen kompatiblen Repeater und bis zu 45 Minuten vor Ort. Weitere Repeater, Mesh-Geräte oder eine vollständige Abdeckungsanalyse sind nicht enthalten.",
   },
   {
     id: "smart-tv",
     segment: "schnell",
-    name: "Smart-TV & Streaming",
+    name: "Smart-TV verbinden & Streaming prüfen",
     price: 69,
     priceFrom: false,
     priceSuffix: "zzgl. ggf. Anfahrt",
-    tagline: "Fernseher rundum startklar – mehr als nur ins WLAN bringen.",
+    tagline: "Fernseher oder Streaming-Gerät ins Netzwerk bringen und die wichtigsten Funktionen testen.",
     includes: [
-      "Stabil ins Netzwerk einbinden (WLAN oder Kabel)",
-      "Streaming-Apps einrichten und Konten anmelden",
-      "Sender sortieren und Software aktualisieren",
-      "Ruckler beim Streaming prüfen und beheben",
+      "Ein Smart-TV oder Streaming-Gerät",
+      "Mit vorhandenem WLAN oder LAN verbinden",
+      "Softwarestand kurz prüfen",
+      "Bis zu zwei vorhandene Streaming-Apps anmelden, wenn die Zugangsdaten vorliegen",
+      "Kurzer Wiedergabetest",
     ],
+    scopeNote:
+      "Der Preis gilt für ein Gerät und bis zu 45 Minuten vor Ort. Kontozugangsdaten müssen vorhanden sein.",
   },
   {
     id: "telefon-handgeraet",
@@ -127,18 +136,23 @@ export const services: Service[] = [
   {
     id: "gastgeber-check",
     segment: "ferienwohnung",
-    name: "Gastgeber-Check",
+    name: "Gastgeber-Check & Soforthilfe",
     price: 199,
     priceFrom: false,
-    tagline: "Der Rundum-Check für Ihre Unterkunft.",
+    tagline: "Prüfen, einfache Probleme direkt verbessern und ein nutzbares Ergebnis erhalten.",
     includes: [
-      "WLAN in der Unterkunft messen",
-      "Router/Repeater prüfen",
-      "Gäste-WLAN-Situation prüfen",
-      "Smart-TV/Streaming kurz testen",
-      "WLAN-Code und Gästeinfos prüfen",
-      "Google-/Website-Kurzcheck",
+      "WLAN in den relevanten Gästebereichen messen",
+      "Router, Repeater und Gäste-WLAN prüfen",
+      "Einfache Einstellungen direkt korrigieren",
+      "Vorhandenes Gäste-WLAN optimieren oder mit geeigneter vorhandener Technik einrichten",
+      "Einen digitalen WLAN-QR-Code erstellen",
+      "Einen Smart-TV oder ein Streaming-Gerät kurz prüfen",
+      "Kurze digitale Zusammenfassung für den Vermieter",
     ],
+    upsellNote:
+      "Wird daraus direkt Gäste-WLAN Komfort, zahlen Sie nicht 199 € + 699 €, sondern ab 699 € gesamt zuzüglich gegebenenfalls benötigter Hardware.",
+    scopeNote:
+      "Der Preis gilt für ein Objekt und bis zu 90 Minuten vor Ort mit vorhandener kompatibler Technik. Neue Hardware und umfangreichere Änderungen werden vorab besprochen.",
   },
   {
     id: "gaeste-wlan-komfort",
@@ -163,16 +177,21 @@ export const services: Service[] = [
     id: "saisonstart-check",
     segment: "ferienwohnung",
     name: "Saisonstart-Check",
-    price: 349,
-    priceFrom: true,
-    priceSuffix: "pro Objekt/Jahr",
-    tagline: "Jährlicher Check vor Saisonstart.",
+    price: 199,
+    priceFrom: false,
+    priceSuffix: "pro Objekt",
+    tagline: "Bereits eingerichtete Technik vor der nächsten Saison prüfen und aktualisieren.",
     includes: [
-      "WLAN-Test vor Saisonstart",
-      "Smart-TV prüfen",
-      "QR-Codes prüfen",
-      "Digitale Gästeinfos aktualisieren",
+      "WLAN in den relevanten Gästebereichen messen",
+      "Router, Repeater und Gäste-WLAN auf Funktion prüfen",
+      "WLAN-QR-Code und Zugangsdaten kontrollieren",
+      "Einen Smart-TV oder ein Streaming-Gerät kurz testen",
+      "Vorhandene Gästeanleitung und Vermieter-Dokumentation aktualisieren",
+      "Einfache Korrekturen an vorhandener Technik direkt durchführen",
+      "Klare Empfehlung bei größerem Handlungsbedarf",
     ],
+    scopeNote:
+      "Gedacht für grundsätzlich eingerichtete Unterkünfte. Der Preis gilt pro Objekt für bis zu 90 Minuten vor Ort. Neue Hardware, erstmalige Einrichtung und umfangreichere Änderungen werden vorab besprochen. Für mehrere Objekte erstellen wir ein gemeinsames Angebot.",
   },
   {
     id: "gaeste-wlan-set",
@@ -186,18 +205,24 @@ export const services: Service[] = [
   {
     id: "buero-check",
     segment: "buero",
-    name: "Büro-WLAN-Check",
-    price: 169,
+    name: "Büro-WLAN-Check & Soforthilfe",
+    price: 199,
     priceFrom: false,
-    priceSuffix: "zzgl. MwSt.",
-    tagline: "Pragmatische Bestandsaufnahme für kleine Betriebe.",
+    priceSuffix: "inkl. MwSt.",
+    tagline: "Prüfen, einfache Netzwerkprobleme direkt lösen und den nächsten Schritt festlegen.",
     includes: [
-      "Router und WLAN prüfen",
-      "Arbeitsplätze testen",
-      "Drucker/Scanner kurz prüfen",
-      "Gäste-WLAN prüfen",
+      "Router, WLAN-Abdeckung und Kunden-WLAN prüfen",
+      "Einfache WLAN- und Routereinstellungen direkt korrigieren",
+      "Vorhandenes Kunden-WLAN mit geeigneter Technik optimieren oder einrichten",
+      "Einen Drucker, Scanner oder ein Arbeitsplatzgerät nach Möglichkeit wieder verbinden",
+      "Netzwerkverbindung eines Kartenterminals eingrenzen",
+      "Kurze Vorher-/Nachher-Prüfung",
       "Klare Handlungsempfehlung mit Kostenrahmen",
     ],
+    upsellNote:
+      "Wird daraus direkt das Büro-WLAN Setup, zahlen Sie nicht 199 € + 599 €, sondern ab 599 € gesamt zuzüglich gegebenenfalls benötigter Hardware.",
+    scopeNote:
+      "Der Preis gilt für einen kleinen Standort und bis zu 90 Minuten vor Ort. Fehler in Kassen-, Zahlungs-, Termin- oder Branchensoftware sowie vollständige Firmen-IT sind nicht enthalten.",
   },
   {
     id: "buero-setup",
@@ -205,8 +230,8 @@ export const services: Service[] = [
     name: "Büro-WLAN Setup",
     price: 599,
     priceFrom: true,
-    priceSuffix: "zzgl. Hardware & MwSt.",
-    tagline: "Umsetzung der Empfehlungen aus dem Büro-WLAN-Check.",
+    priceSuffix: "inkl. MwSt., zzgl. Hardware",
+    tagline: "Umsetzung der Empfehlungen aus dem Büro-WLAN-Check & Soforthilfe.",
     includes: [
       "WLAN, Gästezugang und Router optimieren",
       "Drucker/Scanner einbinden",

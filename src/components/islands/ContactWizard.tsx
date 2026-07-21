@@ -1,8 +1,8 @@
-import { useRef, useState } from "preact/hooks";
+import { useEffect, useRef, useState } from "preact/hooks";
 import type { JSX } from "preact";
 import { estimateTravel } from "../../lib/travel-lookup";
 import { cleanPostcode } from "../../lib/format";
-import { buildContactMessage, phoneHref, whatsappHref, type ContactFormData } from "../../lib/whatsapp";
+import { buildContactMessage, emailHref, phoneHref, whatsappHref, type ContactFormData } from "../../lib/whatsapp";
 import { trackEvent, refreshFormAttribution } from "../../lib/tracking";
 import { getService } from "../../data/services";
 import { TravelResultBox } from "./TravelResultBox";
@@ -18,12 +18,18 @@ function prefillFromQuery(defaultObjectType = ""): ContactFormData {
   const leistung = params.get("leistung");
   const service = leistung ? getService(leistung) : undefined;
   if (service) {
-    const serviceObjectType =
-      service.segment === "technik" ? { objectType: "Technik-Hilfe zuhause" } : objectType;
+    const objectTypeBySegment: Partial<Record<typeof service.segment, string>> = {
+      privat: "Zuhause/Homeoffice",
+      schnell: "Zuhause/Homeoffice",
+      ferienwohnung: "Ferienwohnung/Monteurzimmer",
+      buero: "kleines Büro/Praxis/Studio",
+      technik: "Technik-Hilfe zuhause",
+    };
+    const serviceObjectType = { objectType: objectTypeBySegment[service.segment] || defaultObjectType };
     return { ...serviceObjectType, additionalInfo: `Interesse an: ${service.name}` };
   }
   if (params.get("intent") === "erstgespraech") {
-    return { ...objectType, additionalInfo: "Wunsch: kostenloses Erstgespräch – bitte kurz zurückrufen." };
+    return { ...objectType, additionalInfo: "Wunsch: kostenlos vorab klären. Bitte kurz zurückrufen." };
   }
   return objectType;
 }
@@ -55,6 +61,8 @@ const techProblemTypeOptions = [
   "anderes Technikproblem",
 ];
 
+const propertyCountOptions = ["1 Objekt", "2–5 Objekte", "6–10 Objekte", "mehr als 10 Objekte", "noch unklar"];
+
 const routerAccessOptions = ["ja, Routerpasswort vorhanden", "nur WLAN-Passwort vorhanden", "nein/unsicher"];
 const contactPreferenceOptions = ["Telefon", "WhatsApp", "E-Mail"];
 
@@ -65,7 +73,9 @@ const steps = [
 
 export default function ContactWizard({ defaultObjectType = "" }: ContactWizardProps) {
   const [stepIndex, setStepIndex] = useState(0);
-  const [data, setData] = useState<ContactFormData>(() => prefillFromQuery(defaultObjectType));
+  const [data, setData] = useState<ContactFormData>(() =>
+    defaultObjectType ? { objectType: defaultObjectType } : {},
+  );
   const [contactError, setContactError] = useState("");
   const [submitState, setSubmitState] = useState<"idle" | "submitting" | "prepared" | "error">("idle");
   const [submitError, setSubmitError] = useState("");
@@ -78,8 +88,13 @@ export default function ContactWizard({ defaultObjectType = "" }: ContactWizardP
   const travelEstimate = estimateTravel(data.postcode);
   const isHomeoffice = data.objectType === "Zuhause/Homeoffice";
   const isTechHelp = data.objectType === "Technik-Hilfe zuhause";
+  const isHolidayRental = data.objectType === "Ferienwohnung/Monteurzimmer";
   const problemTypeOptions = isTechHelp ? techProblemTypeOptions : homeProblemTypeOptions;
   const showProblemType = isHomeoffice || isTechHelp;
+
+  useEffect(() => {
+    setData(prefillFromQuery(defaultObjectType));
+  }, [defaultObjectType]);
 
   function update<K extends keyof ContactFormData>(key: K, value: string) {
     if ((key === "customerPhone" || key === "customerEmail" || key === "preferredContact") && value.trim()) {
@@ -88,7 +103,7 @@ export default function ContactWizard({ defaultObjectType = "" }: ContactWizardP
     setData((current) => ({
       ...current,
       [key]: value,
-      ...(key === "objectType" ? { problemType: "" } : {}),
+      ...(key === "objectType" ? { problemType: "", numberOfProperties: "" } : {}),
     }));
   }
 
@@ -153,11 +168,13 @@ export default function ContactWizard({ defaultObjectType = "" }: ContactWizardP
   }
 
   async function createLead(message: string) {
+    const { numberOfProperties, ...leadData } = data;
     const response = await fetch("/api/lead-create", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        ...data,
+        ...leadData,
+        number_of_properties: numberOfProperties || "",
         message,
         companyWebsite: (document.getElementById("cw-company-website") as HTMLInputElement | null)?.value || "",
         travel: travelEstimate,
@@ -168,7 +185,7 @@ export default function ContactWizard({ defaultObjectType = "" }: ContactWizardP
 
     const result = await response.json().catch(() => ({}));
     if (!response.ok || result.ok !== true) {
-      throw new Error(result.error || "lead_create_failed");
+      throw new Error(response.status === 429 ? "rate_limited" : result.error || "lead_create_failed");
     }
 
     return String(result.leadId || "");
@@ -215,11 +232,13 @@ export default function ContactWizard({ defaultObjectType = "" }: ContactWizardP
         },
         { category: "marketing" },
       );
-    } catch {
+    } catch (error) {
       setPreparedMessage(message);
       setSubmitState("error");
       setSubmitError(
-        "Die Anfrage konnte gerade nicht gespeichert werden. Sie können die Angaben trotzdem bewusst per WhatsApp senden oder telefonisch Kontakt aufnehmen.",
+        error instanceof Error && error.message === "rate_limited"
+          ? "Es wurden in kurzer Zeit mehrere Anfragen gesendet. Bitte warten Sie eine Minute und versuchen Sie es erneut oder kontaktieren Sie WLANklar per E-Mail oder Telefon."
+          : "Die Anfrage konnte gerade nicht gespeichert werden. Sie können die Angaben trotzdem per E-Mail, WhatsApp oder telefonisch übermitteln.",
       );
 
       trackEvent(
@@ -427,6 +446,23 @@ export default function ContactWizard({ defaultObjectType = "" }: ContactWizardP
             ))}
           </select>
         </div>
+        {isHolidayRental && (
+          <div class="field">
+            <label class="field-label" htmlFor="cw-property-count">
+              Wie viele Objekte oder Unterkünfte betrifft die Anfrage? <span class="is-optional">(optional)</span>
+            </label>
+            <select
+              id="cw-property-count"
+              value={data.numberOfProperties || ""}
+              onChange={(e) => update("numberOfProperties", (e.target as HTMLSelectElement).value)}
+            >
+              <option value="">Keine Angabe</option>
+              {propertyCountOptions.map((option) => (
+                <option value={option}>{option}</option>
+              ))}
+            </select>
+          </div>
+        )}
         {showProblemType && (
           <div class="field">
             <label class="field-label" htmlFor="cw-problem-type">
@@ -495,6 +531,9 @@ export default function ContactWizard({ defaultObjectType = "" }: ContactWizardP
               </a>
               <a class="btn btn-secondary btn-small" href={phoneHref()}>
                 Anrufen
+              </a>
+              <a class="btn btn-secondary btn-small" href={emailHref(preparedMessage)}>
+                E-Mail schreiben
               </a>
             </div>
           </div>

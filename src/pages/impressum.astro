@@ -5,33 +5,44 @@ import { siteConfig } from "../data/config";
 
 <BaseLayout title="Impressum" description="Impressum von WLANklar." noIndex>
   <section class="section">
-    <div class="container" style="max-width: 720px;">
+    <div class="container legal-page" style="max-width: 720px;">
       <p><a href="/">Zurück zur Startseite</a></p>
       <h1>Impressum</h1>
       <div class="panel">
-        <p><strong>Angaben gemäß § 5 DDG</strong></p>
-        <p>[Vollständiger Name / Firmenname]<br />[Straße Hausnummer]<br />[PLZ Ort]</p>
-
-        <h2>Kontakt</h2>
-        <p>Telefon: {siteConfig.phoneDisplay}<br />E-Mail: [E-Mail-Adresse]</p>
-
-        <h2>Umsatzsteuer-ID</h2>
-        <p>[falls vorhanden]</p>
-
-        <h2>Verantwortlich für den Inhalt</h2>
-        <p>[Name, Anschrift]</p>
-
-        <h2>Leistungsschwerpunkt</h2>
+        <p><strong>Angaben gemäß § 5 Digitale-Dienste-Gesetz (DDG)</strong></p>
         <p>
-          WLANklar bietet Vor-Ort-Hilfe für WLAN, Heimnetz, Gäste-WLAN und einfache Netzwerkprobleme. Der Fokus liegt
-          auf WLAN, Gästezugang, Heimnetz und einfachen Netzwerken; Elektroarbeiten, Unterputz-Verkabelung,
-          sicherheitskritische Systeme, Serverbetreuung, Telefonanlagen und komplexe Unternehmens-IT gehören nicht zum
-          Angebot.
+          {siteConfig.brandName}<br />
+          {siteConfig.legalForm}<br />
+          Inhaber: {siteConfig.ownerName}<br />
+          {siteConfig.street}<br />
+          {siteConfig.postcode} {siteConfig.city}<br />
+          Deutschland
         </p>
 
-        <p style="color: var(--color-ink-muted); font-size: 0.85rem;">
-          Hinweis: Dies ist ein Platzhalter und keine Rechtsberatung. Impressum, Datenschutz und rechtliche
-          Pflichtangaben müssen vor Veröffentlichung rechtlich geprüft und vollständig ausgefüllt werden.
+        <h2>Kontakt</h2>
+        <p>
+          Telefon: <a href={`tel:${siteConfig.phone}`}>{siteConfig.phoneDisplay}</a><br />
+          E-Mail: <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+        </p>
+
+        <h2>Umsatzsteuer-ID</h2>
+        <p>
+          Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz:<br />
+          {siteConfig.vatId}
+        </p>
+
+        <h2>Redaktionell verantwortlich</h2>
+        <p>
+          Verantwortlich für journalistisch-redaktionelle Inhalte gemäß § 18 Abs. 2 Medienstaatsvertrag:<br />
+          {siteConfig.ownerName}<br />
+          {siteConfig.street}<br />
+          {siteConfig.postcode} {siteConfig.city}
+        </p>
+
+        <h2>Verbraucherstreitbeilegung</h2>
+        <p>
+          WLANklar ist nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren vor einer
+          Verbraucherschlichtungsstelle teilzunehmen.
         </p>
       </div>
     </div>

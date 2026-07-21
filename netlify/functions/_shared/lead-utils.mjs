@@ -52,6 +52,7 @@ export function sanitizeLead(payload) {
     postcode: sanitizeText(payload.postcode, 12),
     city: sanitizeText(payload.city, 120),
     objectType: sanitizeText(payload.objectType, 80),
+    number_of_properties: sanitizeText(payload.number_of_properties, 40),
     problemType: sanitizeText(payload.problemType, 120),
     routerAccess: sanitizeText(payload.routerAccess, 120),
     problem: sanitizeText(payload.problem, 1600),
